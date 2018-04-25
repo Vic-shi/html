@@ -1,0 +1,127 @@
+body{
+	background-color: #f1f1f1;
+	width: 100%;
+}
+/*头部菜单栏layui样式更改*/
+/*.layui-nav ,.layui-nav-item{
+	background-color: white;
+	border-radius: 0;
+	line-height:3!important;
+	border-bottom: 2px solid white;
+}
+.layui-nav .layui-nav-item a{
+	color: #333;
+	font-size: 0.24rem!important;
+	transition: all 0;
+}
+.layui-this a{
+	color:#fea427!important;
+}
+.layui-this{
+	color:#666!important;
+}
+.layui-nav .layui-this:after{
+	height: 0px!important;
+}
+.layui-nav-bar{
+	height: 0px!important;
+}*/
+
+.head{padding: 0 5%;background-color: white;border-bottom: 1px solid #f1f1f1;}
+.head ul{
+	display: flex;
+	justify-content:space-around;
+}
+.head ul li{
+	padding: 0 2vw;
+	font-size:0.24rem;
+	line-height: 2.8;
+	color: #666;
+	transition: border-bottom-color .2s;
+}
+.head ul .nav_bottom{
+	color:#fea427;
+	border-bottom: 1px solid #fea427;
+	/*transition: all .2s;*/
+}
+/*正文订单样式设置*/
+/*整体样式*/
+.article >div{
+	margin-bottom: 3vw;
+	background-color: white;
+}
+.article >div li{
+	padding:0 5%;
+	display: flex;
+	align-items: center;
+	justify-content:space-between;
+}
+.article >div li:nth-child(2){
+	border-bottom: 1px solid #f1f1f1;
+	padding-bottom: 5vw;
+}
+/*作者 付款状态*/
+.article >div li h1{
+	font-size: 0.24rem;
+	background: url(../../../image/client/my/icon_11.png) no-repeat right;
+	background-size: 2vw;
+	padding-right: 8vw;
+	line-height:3.5; 
+}
+.article >div li h2{
+	font-size: 0.24rem;
+	color:#fea427;
+	line-height:3.5;
+}
+/*作品 订单信息*/
+.article >div li .img_show{
+	width:28vw;
+	height:28vw;
+	border-radius:1vw ;
+	overflow: hidden;
+}
+/*图片的高度还需修改*/
+.article >div li .img_show img{
+	height: 100%;
+}
+.article >div li .detail{
+	width: 55vw;
+	height: 100%;
+}
+.article >div li .detail h3{
+	display: block;
+	height:25vw;
+	font-size: 0.2rem;
+	overflow: hidden;
+	color: #999;
+	line-height:1.4;
+}
+.article >div li .detail h4{
+	height:3vw;
+	line-height: 0.6;
+	font-size: 0.26rem;
+	color:#fea427;
+}
+/*日期 订单操作*/
+.time h5{
+	width: 50vw;
+	line-height: 10vw;
+	color: #999;
+}
+.time input[type="button"]{
+	border: 1px solid #999;
+	border-radius: 2px;
+	color: #999;
+	font-size: 0.22rem;
+	padding: 4px 8px;
+	line-height:1;
+}
+.time input[type="submit"]{
+	border: 1px solid #fea427;
+	border-radius: 2px;
+	color: #fea427;
+	font-size: 0.22rem;
+	padding: 4px 8px;
+	line-height:1;
+}
+

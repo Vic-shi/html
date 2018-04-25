@@ -1,0 +1,96 @@
+	*{font-family: "微锟斤拷锟脚猴拷";}
+	body{background-color: #fff;}
+	.my-header{height:13.5vw;background-color: #fff;padding:2.7vw 0 2.7vw 6.5vw;}
+	.search_img{height:5.9vw;width:5.9vw;margin-top:0.7vw;margin-left:2.3vw;}
+	.search-input-box{height:7.7vw;border-top-right-radius:7.7vw;border-bottom-right-radius:7.7vw;border:none;margin-left:2vw;outline:none;color:#999;font-size:0.29rem;}
+	.search{display: flex;flex-direction:row;border: 0.3vw solid #999;border-radius: 7.7vw;height:8.3vw;width:68.3vw;}
+	.head{display: flex;flex-direction:row;height:10.9vw;}
+	.selected_img{width:4vw;height:4vw;margin-left:1.5vw;margin-bottom:2vw;}
+	.down_img{width:3vw;height:2vw;margin:0 0 2vw 2vw;}
+	.place_img{width:4vw;height:4vw;margin-left:35.71vw;margin-bottom: 15px;}
+	.sorting{padding:3.1vw 0 2.9vw 12.04vw;z-index:999!important;position: relative;top:50%;background-color: #fff;}
+	.integrated{color:#fea427;}
+	.integrated-2{margin-left:35.71vw;}
+	.integrated-1{margin-left:26.02vw;}
+	.selected{font-size:0.3rem;}
+	.am-panel{margin-bottom: 1.3vw;}
+	.sorting-place{position:absolute;z-index:999;background-color: #fff;width:100%;}
+	.sorting-list{border-top:0.3vw solid #ededed;padding:3.2vw 0 3.2vw 9.3vw;font-size:0.3rem;display: block;}
+	.vertical-1{display: flex;flex-direction:row;background-color: #fff;border-top: 0.1vw solid #ededed;border-bottom: 0.1vw solid #ededed;}
+	.am-offcanvas-bar:after{background: #fff;}
+	.am-offcanvas-bar{background:#fff;width:72vw;height:161.3vw;}
+	.am-offcanvas-content{padding:0;}
+	.size{display: flex;flex-direction:row;flex-wrap:wrap;margin-top:3.7vw;margin-left:2vw;}
+	.four_feet,.six_feet,.four-axis_screen,.two{height:10.7vw;width:21.3vw;background-color: #f0f0f0;font-size:0.21rem;border-radius: 0.41vw;}
+	.six_feet,.four-axis_screen{margin-left:2vw;}
+	.two{margin-top:2.3vw;margin-bottom: 4vw;}
+	.four_feet-1,.six_feet-1{display:flex;flex-direction:column;line-height:5.3vw;text-align:center;}
+	.four-axis_screen-1,.two-1{line-height:5.3vw;text-align:center;}
+	.provincial{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;border-radius: 0.41vw;}
+	.sino-american_association{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;font-size:0.20rem;text-align: center;margin-left:2vw;border-radius: 0.41vw;}
+	.national_level{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;margin-left:2vw; margin-bottom: 4vw;border-radius: 0.41vw;}
+	.chinese_painting{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;margin-bottom: 4vw;border-radius: 0.41vw;}
+	.calligraphy{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;margin-left:2vw; margin-bottom: 4vw;border-radius: 0.41vw;}
+	.li{border:0.3vw solid #fea427;background-color: #fff!important;}
+	.close{visibility:hidden;}
+	.size-1{display: flex;flex-direction:row;flex-wrap:wrap;margin-top:3.7vw;margin-left:2vw;}
+	.landscape,.freehand,.poetry{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;border-radius: 0.41vw;}
+	.beast,.no_bone{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;margin-top:2.3vw;border-radius: 0.41vw;}
+	.flowers_birds,.character,.white,.ink{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;margin-left:2vw;border-radius: 0.41vw;}
+	.other,.brushwork{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;margin:2.3vw 0 4vw 2vw;border-radius: 0.41vw;}
+	.other_1{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;margin:0vw 0 4vw 2vw;}
+	.botton{display:flex;flex-direction:row;margin-top:1.5vw;}
+	.reset{width:36vw;height:12vw;background-color: #f9f8f8;color:#fea427;border:none;font-size:0.25rem;}
+	.finished{width:36vw;height:12vw;background-color: #fea427;color:#fff;border:none;font-size:0.25rem;}
+	.four_character_list{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;margin:0 0 4vw 2vw;}
+	.vertical ul li{border-bottom:0.9vw solid #ededed;width:100%!important;}
+	.vertical ul li div>img:first-child{width:26.53vw;height:25vw;}
+	.vertical-1 div:nth-child(2){margin:3.06vw 0 0 4.08vw;}
+	.vertical-1>div>div:nth-child(1){font-size:0.3rem;}
+	.vertical-1>div>div:nth-child(2){font-size:0.19rem;margin:2.76vw 0 0 1.9vw;color:#999;}
+	.vertical-1>div>div:first-child+div+div{font-size:0.19rem;margin:2.04vw 0 0 1.9vw;color:#999;}
+	.vertical-1>div>div:first-child+div+div>span:first-child+span{font-size:0.28rem;color:#fea427;}
+	.vertical-1>div>div:first-child+div+div>span:first-child+span>a{font-size:0.28rem;color:#fea427;}
+	.vertical-1>div>div:first-child+div+div>span:first-child+span+span{margin-left:13.1vw;}
+	.horizontal{background-color: #ededed;}
+	#wrap{background-color: #ededed;}
+	.am-avg-sm-2 li{width:49.2vw;background-color: #ededed!important;}
+	.am-avg-sm li{background-color: #ededed!important;}
+	.am-img-responsive{width:49.2vw;height:46.3vw;}
+	.am-img-responsive+div{padding:2.7vw 0 0 2.4vw;}
+	.name{font-size:0.3rem;color:#333;width:29vw;border:none;}
+	.name+span{font-size:0.22rem;color:#666;}
+	.am-img-responsive+div+div{height:9.3vw;padding-top:1.3vw;}
+	.am-img-responsive+div+div>span:first-child{font-size:0.2rem;color:#666;padding-left:4vw;}
+	.am-img-responsive+div+div>span:first-child+span{font-size:0.22rem;color:#fea427;margin-left:12.2vw;}
+	.am-img-responsive+div+div>span:first-child+span>a{color:#fea427;font-size:0.22rem;}
+	.am-avg-sm-2 li:nth-child(even){margin-left:1.6vw;}
+	/*鑿滃崟鏍�*/
+body .menu{
+	width: 100%;
+	background-color:#f8f8f8;
+	border-top: #cacaca 1px solid!important;
+	display: flex;
+	align-items: center;
+	justify-content:space-around;
+	position: fixed;
+	bottom: 0;
+	z-index:99;
+}
+body .menu a{
+	width:8%!important;
+	display: block;
+	text-align: center;
+	font-size: 0.24rem!important;
+	line-height: 2;
+	margin-top: 2vw;
+	color: #999;
+}
+body .menu a img{
+	width:90%;
+	display: block!important;
+	text-align: center;
+}
+body .vertical .scroller{
+	z-index:0!important;
+}

@@ -1,0 +1,168 @@
+/*作品调整模块共有样式设置*/
+body{
+	background-color: #f1f1f1;
+	width: 100%;
+}
+body>div{
+	border-bottom: 1px solid #f1f1f1;
+	background-color: white;
+	line-height:1;
+	font-size: 0.23rem;
+	color: #666;
+	padding: 3vw 5%;
+}
+body>form{
+	background-color: white;
+}
+/*页头设置*/
+.head{padding: 0 5%;background-color: white;}
+.head ul{
+	display: flex;
+	justify-content:space-around;
+}
+.head ul li{
+	padding: 0 2vw;
+	font-size:0.24rem;
+	line-height: 2.8;
+	color: #666;
+	transition: border-bottom-color .2s;
+}
+.head ul .nav_bottom{
+	color:#fea427;
+	border-bottom: 1px solid #fea427;
+	/*transition: all .2s;*/
+}
+/*画作信息*/
+.paint{
+	padding: 5vw 0 5vw 10vw;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.paint div{
+	height: 20vw;
+	width: 20vw;
+	overflow: hidden;
+	margin-right: 5vw;
+}
+.paint div img{
+	width:100%;
+}
+/*整体的h1样式设计*/
+body div h1{
+	font-size: 0.24rem;
+	color:#666;
+	margin-bottom: 1vw;
+}
+body div h2{
+	font-size: 0.2rem;
+	color:#999;
+	line-height:1.8;
+}
+body div h3{
+	font-size: 0.30rem;
+	color:#fea427;
+	line-height:0;
+}
+body div h4{
+	font-size: 0.30rem;
+	color:white;
+	line-height:2.4;
+	background-color: #fea427;
+	text-align: center;
+}
+/*设置成横向*/
+body div>div{
+	display: flex;
+	justify-content:space-between;
+	align-items: center;
+}
+/*设置收货地址的h1和修改图标*/
+body .add h1{
+	line-height:1.5;
+	margin: 0;
+}
+body .add img{
+	height: 4vw;
+}
+/*提交按钮设置*/
+input[type="submit"]{
+	height: 10vw;
+	background-color:#fea427;
+	border-radius:5vw;
+	color: white;
+	width: 76%;
+	position:relative;
+	bottom:0vw;
+	left: 50%;
+	transform: translateX(-50%);
+	margin: 5vw 0;
+}
+/*图片上传*/
+.picture ul{
+	display: flex;
+	justify-content: flex-start;
+}
+.picture li{
+	height: 24vw;
+	width: 24vw;
+	border:1px dashed #d1d1d1;
+	margin: 3vw;
+	background: url(../../../image/client/payment/pic.png) no-repeat center;
+	background-size: 18vw;
+}
+/*结单原因*/
+.layui-form-label{
+	text-align: left;
+	padding-left: 0;
+}
+.layui-form-item{margin: 0;}
+.layui-input-block{
+	height: 6vw!important;
+	width: 38vw;
+	float: right;
+	margin-left: 0;
+}
+.layui-form-select dl dd, .layui-form-select dl dt{
+	line-height:1.6;
+}
+.layui-form-select dl dd.layui-this{
+	background-color: #f1f1f1;
+	color: #666;
+}
+/*选择要调换的作品*/
+/*画作信息*/
+.paint_change{
+	padding: 2vw 0 2vw 2vw;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	border: 1px solid #fea427;
+}
+.paint_change div{
+	height: 28vw;
+	width: 28vw;
+	overflow: hidden;
+	margin-right: 5vw;
+}
+.paint_change div img{
+	width:100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

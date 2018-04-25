@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<script src="/web/lib/amazeui/js/jquery.min.js"></script>
+<script src="/web/lib/amazeui/js/amazeui.min.js"></script>
+<link rel="stylesheet" href="/web/lib/amazeui/css/amazeui.min.css"/>
+<link rel="stylesheet" href="/web/lib/layui/css/layui.css">
+<link rel="stylesheet" href="/web/commons/css/wrapperuser.css"/>
+<title>搜索</title>
+<style type="text/css">
+	.my-header{ 
+		width:100%;
+		height:14vw; 
+		background-color: #fff;
+		padding:2.9vw 0 6.1vw 0;
+		border-bottom:0.3vw solid #e4e4e4;
+	}
+	.search{
+		float:left;
+		display: flex;
+		flex-direction:row;
+		//border: 0.3vw solid #999;
+		border-radius: 3vw;
+		//height:7.5vw;
+		width:83vw;
+		margin-left:4vw;
+		opacity:0.5;
+	}
+		.search-input-box{
+		height:7.5vw;
+		width:80vw;
+		border-radius:2vw;
+		border:none;
+		outline:none;
+		color:#999;
+		margin-left:5vw;
+		background-image:url('/web/commons/image/client/index/index_search.png');
+		background-repeat:no-repeat;
+		background-position-x: 21vw;
+    	background-position-y: 1.5vw;
+    	background-color:#eeeeee;
+	}
+	.placehoders::-ms-input-placeholder{text-align: center;font-size: 13px;color: #808080;} 
+	.placehoders::-webkit-input-placeholder{text-align: center;font-size: 13px;color: #808080;}
+	.sorting{padding:3.1vw 0 4vw 0;z-index:999!important;position: relative;top:50%;background-color: #fff;}
+  	.am-cf:after,.am-cf:before{content:" ";display:table;}.am-cf:after{clear:both}
+  	.am-cf{
+		//background-color: #f9f8f8; 
+	}
+  	.discNone{ 
+  		list-style-type: none;
+  	}
+  	.am-gallery{padding:5px 0 0 0;list-style:none}
+  	.am-avg-sm-2>li{width:50%;float:left;}
+	.am-avg-sm-2>li:nth-of-type(n){clear:none}
+	.am-avg-sm-2>li:nth-of-type(2n+1){clear:both}
+	  	.view{
+  		padding-left:55vw;
+  		color:#999;
+  	}
+  	.am-gallery-overlay>li{padding:5px}
+  	.am-gallery h3{margin:0}[data-am-gallery*=pureview] img{cursor:pointer}
+  	.am-panel{margin-bottom:1.6vw;background-color:#fff;border:1px solid transparent;-webkit-box-shadow:0 1px 1px rgba(0,0,0,.05);box-shadow:0 1px 1px rgba(0,0,0,.05)}
+	.am-panel-default{border-color:#ddd}
+.am-panel-default>.am-panel-hd{color:#444;background-color:#f5f5f5;border-color:#ddd}
+.am-panel-default>.am-panel-hd+.am-panel-collapse>.am-panel-bd{border-top-color:#ddd}
+.am-panel-default>.am-panel-footer+.am-panel-collapse>.am-panel-bd{border-bottom-color:#ddd}
+.am-img-responsive{max-width:100%;height:auto}
+.am-g{margin:0 auto;width:100%}
+.am-g{
+/* margin-left:-1rem;
+margin-right:-1rem; */
+width:auto}
+.am-g .am-g.am-g-collapse{margin-left:0;margin-right:0;width:auto} 
+.am-g.am-g-collapse .am-g{margin-left:0;margin-right:0}
+.selected{font-size:13px;}
+.integrated{color:#333333;}
+.sorting-list{color:#666666;font-size:15px;border-top:0.3vw solid #e4e4e4;padding:3.2vw 0 3.2vw 9.3vw;display: block;}
+	.integrated-2{margin-left:35.71vw;} 
+	.integrated-1{margin-left:26.02vw;}
+	.sorting-place{position:absolute;z-index:999;background-color: #fff;width:100%;}
+	.am-offcanvas.am-active {
+    display: block;
+}
+.am-offcanvas {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1090;
+    background: rgba(0,0,0,.15);
+}
+blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, li, ol, p, pre, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+/*筛选样式*/
+.am-offcanvas.am-active .am-offcanvas-bar.am-offcanvas-bar-active{-webkit-transform:translateX(0);-ms-transform:translateX(0);transform:translateX(0)}
+.am-offcanvas-bar{top:0;bottom:0;left:0;z-index:1091;width:270px;max-width:100%;background:#333;overflow-y:auto;-webkit-overflow-scrolling:touch;-webkit-transition:-webkit-transform .3s ease-in-out;transition:transform .3s ease-in-out;-webkit-transform:translateX(-100%);-ms-transform:translateX(-100%);transform:translateX(-100%)}
+.am-offcanvas-bar:after{content:"";display:block;position:absolute;top:0;bottom:0;right:0;width:1px;background:#262626}
+.am-offcanvas-content{padding:0;}
+.am-offcanvas-bar{background:#fff;width:72vw;height:100%;}
+.am-offcanvas-bar:after{background: #fff;} 
+.am-offcanvas-bar-flip{left:auto;right:0;-webkit-transform:translateX(100%);-ms-transform:translateX(100%);transform:translateX(100%)}
+.am-offcanvas-bar-flip:after{right:auto;left:0}
+.size{display: flex;flex-direction:row;flex-wrap:wrap;margin-top:3.7vw;margin-left:2vw;}
+.provincial{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;border-radius: 0.41vw;}
+.sino-american_association{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;font-size:13px;text-align: center;margin-left:2vw;border-radius: 0.41vw;}
+.national_level{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;margin-left:2vw; margin-bottom: 4vw;border-radius: 0.41vw;}
+.four_feet,.six_feet,.four-axis_screen,.two{height:10.7vw;width:21.3vw;background-color: #f0f0f0;font-size:13px;border-radius: 0.41vw;}
+.four_feet-1,.six_feet-1{display:flex;flex-direction:column;line-height:5.3vw;text-align:center;}
+.four-axis_screen-1,.two-1{line-height:5.3vw;text-align:center;}
+.chinese_painting{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;margin-bottom: 4vw;border-radius: 0.41vw;}
+.calligraphy{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;margin-left:2vw; margin-bottom: 4vw;border-radius: 0.41vw;}
+.size-1{display: flex;flex-direction:row;flex-wrap:wrap;margin-top:3.7vw;margin-left:2vw;}
+.landscape,.freehand,.poetry{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;border-radius: 0.41vw;}
+.flowers_birds,.character,.white,.ink{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;margin-left:2vw;border-radius: 0.41vw;}
+.beast,.no_bone{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;margin-top:2.3vw;border-radius: 0.41vw;}
+.other,.brushwork{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;margin:2.3vw 0 4vw 2vw;border-radius: 0.41vw;}
+.other_1{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;text-align:center;margin:0vw 0 4vw 2vw;}
+.four_character_list{height:10.7vw;width:21.3vw;background-color: #f0f0f0;line-height:10.7vw;margin:0 0 4vw 2vw;}
+.botton{display:flex;flex-direction:row;margin-top:3.5vw;}
+.discNone>div>ul>li{
+	list-style-type: none;
+	border-radius: 4px; 
+}
+.discNone>div>span{
+	color:#060000;
+}
+.discNone>div>ul>li>span{
+	color:#333333;
+	font-size: 13px;
+}
+.close{visibility:hidden;}
+.li{background-color: #666666;color:#ffffff;}
+.six_feet,.four-axis_screen{margin-left:2vw;}
+.two{margin-top:2.3vw;margin-bottom: 4vw;}
+.am-offcanvas-content{color:#999}
+/*按钮*/
+.reset{width:36vw;height:12vw;background-color: #f9f8f8;color:#060000;border:none;}
+.finished{width:36vw;height:12vw;background-color: #060000;color:#f9f8f8;border:none;}
+	.placehoders::-ms-input-placeholder{text-align: center;font-size: 13px;color: #808080;} 
+	.placehoders::-webkit-input-placeholder{text-align: center;font-size: 13px;color: #808080;} 
+	.am-avg-sm-2 li:nth-child(even){
+	margin-left: 1.6vw;
+	}
+		#wrapper {
+    position: absolute;
+    top: 21vw; 
+    bottom: 0;
+    overflow: hidden;
+    margin: 0;
+    width: 100%;
+    padding: 0 0px;
+    background-color: #f8f8f8;
+}
+</style> 
+</head>
+<body style = "margin:0;font-size:13px;">
+<div>
+	<div class="my-header" style="width: 100vw;">
+	     <div style = "width:3vw;float:left;margin-left:1vw">
+      		<a href="/web/client/index/searchHistory.html"> 
+      			<img style = "width:2.6vw;margin:1.5vw 0 0 4vw;" alt="" src="/web/commons/image/client/index/back2.png">
+			</a>
+      	</div> 
+		<div class="search">
+			<input type="text" class="search-input-box placehoders" placeholder="作品名称/类别" id = "galleryMsg" >
+      	</div>
+    </div> 
+    <div>  
+    	<div class="sorting" style = "height:11vw;">
+    		<div style = "width:50vw;float:left;text-align: center;">
+    		<span class="selected integrated summons" style = "font-size: 15px;">综合</span>
+    		<img alt="" style = "width:1.86vw;" src="/web/commons/image/client/index/triangle.png">
+    		</div>
+	      	<div style = "width:50vw;float:right;text-align: center;">
+	      	<span class="selected"><a href="#doc-oc-demo1" style = "color:#333333;text-decoration:none;font-size: 15px;" data-am-offcanvas>筛选</a></span>
+			</div>	    	
+    	</div>  
+    	 <ul class="sorting-place" hidden="hidden">
+    		<!-- <li class="sorting-list list_place" value="1">综合</li> -->
+    		<li class="sorting-list list_height" onclick = "gao(0)" value="0">价格从高到低</li>
+    		<li class="sorting-list list_down" onclick = "di(1)" value="1">价格从低到高</li>
+    		<!-- <li class="sorting-list list_down2" value="2">热门排序</li> -->
+    	</ul>
+    			<div id="wrapper"> 
+			<div id="scroller">
+    <div class="list am-cf am-g" style = "margin-left:0;height:88vw;display: table;">
+    					<div id="pullDown" class="loading">
+				<span class="pullDownIcon"></span><span class="pullDownLabel"></span>
+			</div>
+		 <ul class="am-avg-sm-2 am-gallery discNone" id="events-list">
+<!-- 		 <li style="width:49vw;" >
+	        <div class="am-panel am-panel-default">
+	           	<div>
+	              	<img class="am-img-responsive" src="/web/commons/image/client/index/circular.jpg" style="width:49vw;height:46.3vw;">
+					<div style="margin-top:3vw;">
+	                    <input type="text" readonly="readonly" style="font-size:13px;margin-left:1vw;color:#666;border:none;width:22vw;"class="name" value = "作品名"/>
+	                    <input type="text" readonly="readonly" style="font-size:13px;margin-right:1vw;color:#666;border:none;width:22vw;"class="name" value = "老师"/>
+	            	</div>
+	           		<div style="margin-top:3vw;">
+	       				<input type="text" readonly="readonly" style="font-size:13px;margin-left:1vw;color:#666;border:none;width:22vw;" value = "价格" />
+	       				<input type="text" readonly="readonly" style="font-size:13px;margin-right:1vw;color:#666;border:none;width:22vw;" value = "热度" />
+	       			</div>
+	       		</div> 
+	       	</div>
+	      </li> -->
+<!-- 	      <li style="width:49vw;margin-left:0.8vw" >
+	        <div class="am-panel am-panel-default">
+	               <div>
+	                   	<img class="am-img-responsive" src="/web/commons/image/client/index/circular.jpg" style="width:49vw;height:46.3vw;">
+					<div style="margin-top:3vw;">
+	                    <input type="text" readonly="readonly" style="font-size:13px;margin-left:1vw;color:#666;border:none;width:31vw;"class="name"/>
+	            	</div>
+	           		<div style="margin-top:3vw;">
+	       				<input type="text" readonly="readonly" style="font-size:0.2rem;margin-left:2.5vw;color:#666;border:none;width:29vw;" />
+	       			</div> 
+	       		</div>
+	    	</div>
+	    </li> -->
+	    
+        </ul> 
+                        </div>
+				<div id="noRecord" style="display:none;">
+					<span class="no-record-pic"></span>
+					<span class="no-msg">我们也是有底线的</span>
+				</div>  
+		        <div id="pullUp" style="display:none;margin-top:2px">
+						<span class="pullUpIcon"></span><span class="pullUpLabel">加载更多...</span>
+				</div> 
+    </div>
+    </div>
+    </div>
+        <div id="doc-oc-demo1" class="am-offcanvas" style = "touch-action: pan-y;user-select: none;-webkit-user-drag: none;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+  		<div class="am-offcanvas-bar am-offcanvas-bar-flip" style = "float:right;">
+    		<div class="am-offcanvas-content discNone" style="height: 90vw; ">
+    		 <div style="margin:4.3vw 0 0 2vw;text-align: center;">
+    		 	<span style="font-size:13px;">价格区间</span>
+      				<div style="width:68vw;height:10vw;background-color: #f3f3f3;margin-top:3.7vw;line-height: 8.7vw;text-align: center;">
+      					<input placeholder="最低价" type="text" style="width:26.7vw;height:6.1vw;text-align: center;border: none;font-size:13px;border-radius:6px"/>
+      					<span style="font-size:13px;font-weight:900;">—</span>
+      					<input placeholder="最高价" type="text" style="width:26.7vw;height:6.1vw;text-align: center;border: none;font-size:13px;border-radius:6px"/>
+      				</div> 
+      			</div> 
+    			<div style="border-bottom: 0.3vw solid #ededed;border-top: 0.3vw solid #ededed;margin-top:4.3vw;text-align: center;">
+      				<span style="font-size:13px;">级别</span>
+	      				<ul class="size">
+	      					<li class="provincial"> 
+	      						<span style="font-size:13px;">省级</span>
+	      					</li>
+	      					<li class="sino-american_association">
+	      						<span style = "font-size: 12px;">中美协/中书协</span>
+	      					</li>
+	      					<li class="national_level">
+	      						<span style="font-size:13px;">国家级</span>
+	      					</li>
+	      				</ul>
+      			</div>
+      			<div style="border-bottom: 0.3vw solid #ededed;margin-top:3.2vw;text-align: center;">
+      				<span style=" font-size:13px;">尺寸 (标注单位: CM)</span>
+	      			<ul class="size">
+	      				<li class="four_feet">
+	      					<div class="four_feet-1">
+	      						<span>四尺</span>
+	   							<span>69*138</span>
+	      					</div>
+		      			</li>
+		     			<li class="six_feet">
+		      				<div class="six_feet-1">
+		   						<span>六尺</span>
+		   						<span>96*178</span>
+	      					</div>
+		      			</li>
+		      			<li class="six_feet">
+		      				<div class="six_feet-1">
+		   						<span>八尺</span>
+		   						<span>122*244</span>
+	      					</div>
+		      			</li>
+		      			<li class="two">
+		      				<div class="two-1">
+		      					<span>四轴屏</span>
+		   						<span>272*136</span>
+		   					</div>
+	      				</li>
+		      			<li class="six_feet" style = "margin-top:2.3vw;">
+		      				<div class="six_feet-1">
+		      					<span>斗方</span>
+		      					<span>68*68</span>
+		   					</div>
+		   				</li>
+	   				</ul>
+      			</div>
+      			<div style="border-bottom: 0.3vw solid #ededed;margin-top:4.3vw;text-align: center;">
+      				<span style="font-size:13px;">类型</span>
+	      				<ul class="size">
+	      					<li class="chinese_painting">
+	      						<span style="font-size:13px;">国画</span>
+	      					</li>
+	      					<li class="calligraphy" style = "margin-left:2vw;">
+	      						<span style="font-size:13px;">书法</span>
+	      					</li>
+	      				</ul>
+      			</div>
+      			<div style="border-bottom: 0.3vw solid #ededed;margin-top:4.3vw;text-align: center;" class="category"hidden="hidden">
+	      			<ul class="size-1">
+	      				<li class="landscape">
+	      					<span style="font-size:13px;">山水</span> 
+	   					</li>
+	   					<li class="flowers_birds">
+	      					<span style="font-size:13px;">花鸟</span>
+	      				</li>
+	      				<li class="character">
+	      					<span style="font-size:13px;">人物</span>
+	   					</li>
+	      				<li class="beast">
+	      					<span style="font-size:13px;">走兽</span>
+	      				</li>
+	      				<li class="other">
+	   						<span style="font-size:13px;">其他</span>
+	      				</li>
+	      			</ul>
+      			</div>
+      			<div style="border-bottom: 0.3vw solid #ededed;margin-top:4.3vw;text-align: center;" class="calligraphy_1" hidden="hidden">
+	      			<ul class="size-1">
+	      				<li class="poetry">
+	      					<span style="font-size:13px;">诗词</span>
+	   					</li>
+	   					<li class="four_character_list">
+	      					<span style="font-size:13px;">四字榜书</span>
+	      				</li>
+	      				<li class="other_1">
+	      					<span style="font-size:13px;">其他</span>
+	   					</li>
+	      			</ul>
+      			</div>
+      			<div style="margin-top:4.3vw;text-align: center;">
+      				<span style="font-size:13px;">板式</span>
+	      				<ul class="size">
+	      					<li class="provincial">
+	      						<span style="font-size:13px;">横版</span>
+	      					</li>
+	      					<li class="sino-american_association">
+	      						<span>竖版</span>
+	      					</li>
+	      				</ul>
+      			</div>
+      			
+      			  <div class="botton" style = "position:relative;">
+    				<div>
+    					<button class="reset">重置</button>
+    				</div>
+    				<div>
+    					<button class="finished" id="finishId">完成</button>
+    				</div>
+    			</div>
+    		</div>
+  		</div>
+	</div>  
+</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/web/commons/js/iscroll.js"></script>
+<script type="text/javascript" src="/web/commons/js/pullrefresh.js"></script>
+<script>
+var smallErr = "/web/commons/image/smallErr.png"; 
+var page =1;
+var footer = false;
+var arr = new Array();
+var productSize,productStyle,productLevel,simsearch,sort,isCross;
+var productTypes = new Array();
+if(productSize==undefined){
+	productSize='';
+}if(productTypes==undefined){
+	productTypes=[];
+}if(productStyle==undefined){
+	productStyle='';
+}if(productLevel==undefined){
+	productLevel='';
+}if(simsearch==undefined){
+	simsearch='';
+}if(sort==undefined){
+	sort='';
+}
+if(isCross==undefined){
+	isCross='';
+}
+var list1=$(".list_place").html();
+var list2=$(".list_height").html();
+var list3=$(".list_down").html();
+/* var list4=$(".list_down2").html(); */
+$(".summons").click(function(){
+	if($(".sorting-place").is(":hidden")){
+		$(".sorting-place").show();
+		var summons=$(".summons").html();
+		if(summons==list1){
+			$(".list_place").addClass("integrated");
+			$(".list_height").removeClass("integrated");
+			$(".list_down").removeClass("integrated");
+			/* $(".list_down2").removeClass("integrated"); */
+		}else if(summons==list2){
+			$(".list_height").addClass("integrated");
+			$(".list_place").removeClass("integrated");
+			/* $(".list_down2").removeClass("integrated"); */ 
+			$(".list_down").removeClass("integrated");
+			//pull(0);
+		}else if(summons==list3){
+			$(".list_down").addClass("integrated");
+			$(".list_height").removeClass("integrated");
+			$(".list_place").removeClass("integrated");
+			/* $(".list_down2").removeClass("integrated"); */
+			//pull(1);
+		}
+/* 		else if(summons==list4){ */
+			/* $(".list_down2").addClass("integrated"); */
+/* 			$(".list_height").removeClass("integrated");
+			$(".list_down").removeClass("integrated");
+			$(".list_place").removeClass("integrated");
+		} */
+	}else{
+		$(".sorting-place").hide();
+	}
+});
+$(".sorting-place").click(function(){
+	$(".sorting-place").hide();
+});
+$(".list_place").click(function(){
+	$(".summons").html(list1);
+	$(".place_img").addClass("integrated-2");
+	$(".place_img").removeClass("integrated-1");
+});
+$(".list_height").click(function(){
+	$(".summons").html(list2);
+	$(".place_img").addClass("integrated-1");
+});
+$(".list_down").click(function(){
+	$(".summons").html(list3);
+	$(".place_img").addClass("integrated-1");
+});
+/* $(".list_down2").click(function(){
+	$(".summons").html(list4);
+	$(".place_img").addClass("integrated-1");
+}); */
+/*筛选-多选*/
+$(".size li").click(function(){
+	if($(this).hasClass("li")){
+		$(this).removeClass("li");
+	}else{
+		$(this).addClass("li");
+		$(this).siblings().removeClass("li");
+	}
+});
+$(".chinese_painting").click(function(){
+	//$(".calligraphy").hide();
+});
+$(".calligraphy").click(function(){
+	//$(".chinese_painting").hide();
+});
+//多选
+$(function(){
+	$(".size-1 li").click(function(){
+		if($(this).hasClass("li")){
+			$(this).removeClass("li");
+		}else{
+			$(this).addClass("li");
+		}
+	});
+	productType = sessionStorage.getItem("productTypes");
+	if(productType != null && productType !=""){
+		productTypes.push(productType);
+		sessionStorage.setItem("productTypes","");
+		pull();
+	}
+	productStyle = sessionStorage.getItem("productStyle");
+	if(productStyle != null && productStyle !=""){
+		sessionStorage.setItem("productStyle","");
+		pull();
+	}
+	simsearch = sessionStorage.getItem("simsearch");
+	if(simsearch !=""&&simsearch!=null){
+		sessionStorage.setItem("simsearch","");
+	}
+	pull();
+	var i = 2;
+	var time900 = window.setInterval(function(){
+		i--;
+		if(i == 0){
+			(function OnPrinterStateChanged() {
+			    var evt = new CustomEvent('printerstatechanged');
+			    window.dispatchEvent(evt);
+			})()
+			window.clearInterval(time900);  
+		}
+	},1000); 
+});
+//点击显示/隐藏
+$(function(){
+	$(".chinese_painting").click(function(){
+		if($(".category").is(":hidden")){
+			$(".category").show();
+			$(".calligraphy_1").hide();
+			//$(".species").show();
+		}else{
+			$(".category").hide();
+			//$(".species").hide();
+			$(".calligraphy").show();
+			$(".chinese_painting").removeClass("li");
+		}
+	});
+	$(".calligraphy").click(function(){
+		if($(".calligraphy_1").is(":hidden")){
+			$(".calligraphy_1").show();
+			$(".category").hide();
+		}else{
+			$(".calligraphy_1").hide();
+			$(".chinese_painting").show();
+			$(".calligraphy").removeClass("li");
+		}
+	});
+});
+function turnToPro(data){
+	sessionStorage.setItem("productId",arr[data]);
+	window.open('/web/client/index/share.html','_self');
+}
+function pull(sort){
+	if(sort == undefined){
+		sort = "";
+	}
+	$.ajax({
+		type:'POST',
+		url:"/web/api/product/listSimpleSort",
+		dataType:'json',
+		data:{"jsonStr":"{'pageNo':"+page+",'listLen':10,'draw':1,'productSize':'"+productSize+"','productTypes':'"+productTypes+"','productStyle':'"+productStyle+"','productLevel':'"+productLevel+"','orderMsg':'"+simsearch+"','sort':'"+sort+"','isCross':'"+isCross+"'}"},
+		success:function(data){
+			page++;
+			if(data.data.listProduct.length==0){
+				$("#events-list").append('<img id = "whereNoOrder" style = "width:100vw;" src = "/web/commons/image/client/index/noSearch.png">');
+			}
+			if(data.data.listProduct.length>0){
+				if((page-1) * 10 > data.data.page.totalCount){
+					footer = true;
+				}
+				var li='',l=''; 
+				for(var i=0;i<data.data.listProduct.length;i++){
+					arr[i] = data.data.listProduct[i].id;
+					data.data.listProduct[i].productMarketValue = data.data.listProduct[i].productMarketValue/100;
+					data.data.listProduct[i].productSharingValue = data.data.listProduct[i].productSharingValue/100;
+					l = '<li onclick = "turnToPro('+i+')" style="width:49vw;">'
+				        +'<div class="am-panel am-panel-default">'
+				        +'<div>'
+				        +'<div style = "width:49vw;height:46.3vw;display:table;text-align:center;">'
+				        +'<span style = "vertical-align:middle;display:table-cell;width:49vw;height:46.3vw;background-color:#eeeeee;">'
+				        +'  	<img class="am-img-responsive" src="'+data.data.listProduct[i].productPictureMain+'" onerror = \'javascript:this.src = "'+smallErr+'"\' style="max-width:49vw;max-height:46.3vw;margin-left:auto;margin-right:auto;">'
+				       	+'</span>'
+				        +'</div>'
+				        +'	<div style="margin-top:3vw;">'
+				        +'        <input type="text" readonly="readonly" style="font-size:15px;margin-left:1vw;color:#333333;border:none;width:22vw;"class="name" value = "《'+data.data.listProduct[i].productName+'》"/>'
+				        +'       <input type="text" readonly="readonly" style="font-size:15px;margin-right:1vw;color:#333333;border:none;width:22vw;text-align:right;text-decoration: line-through;"class="name" value = "￥'+data.data.listProduct[i].productMarketValue+'"/>'
+				        +'	</div>'
+				        +'	<div style="margin-top:3vw;margin-bottom:2.6vw;">'
+				        +'		<input type="text" readonly="readonly" style="font-size:15px;margin-left:2.5vw;color:#333333;border:none;width:20vw;" value = "'+data.data.listProduct[i].productAuthor+'" />'
+				        +'		<input type="text" readonly="readonly" style="font-size:15px;margin-right:1vw;color:#f76a65;border:none;width:22vw;text-align:right;" value = "￥'+data.data.listProduct[i].productSharingValue+'" />'
+				        +'	</div>'
+				        +'</div> '
+				        +'	</div>'
+				        +'</li>';
+					li+=l;
+				}
+				$("#events-list").append(li);
+				myScroll.refresh();
+			}
+		},
+		error:function(data){
+			console.log('shibai');
+		}
+	})
+}
+//复杂搜索
+$("#finishId").on("click",function(){
+	productSize="";
+	productTypes=[];
+	productStyle="";
+	productLevel="";
+    	var arr=[]; 
+    	$('#doc-oc-demo1 div div div li').each(function(){
+    		if($(this).attr("class").substring($(this).attr("class").length-2) == "li"){
+				var choose=$(this)[0].innerText;
+				choose = choose.replace(/\s/g, "")
+    			if(choose == "四尺69*138"){
+    				choose = "四尺";
+    			}else if(choose == "六尺96*178"){
+    				choose = "六尺";
+    			}else if(choose == "八尺122*244"){
+    				choose = "八尺"
+    			}else if(choose == "四轴屏272*136"){
+    				choose = "四轴屏";
+    			}else if(choose == "斗方68*68"){
+    				choose = "斗方";
+    			}
+    			arr.push(choose);
+
+    		}
+    	})
+    	//var array=['四尺','六尺','四条屏','小丈二','山水','花鸟','走兽','人物','国画其他','诗词','四字榜书','其他书法','国画','书法','国家级','中书协中美协','省级']
+    	for(var i=0;i<arr.length;i++){
+    		switch(arr[i]){
+    			case '四尺':
+    				productSize=0;
+    				console.log(productSize);
+    				break;
+    			case '六尺':
+    				productSize=1;
+    				break;
+    			case '八尺':
+    				productSize=2;
+    				break;
+    			case '四轴屏':
+    				productSize=3;
+    				break;
+    			case '斗方':
+    				productSize=4;
+    				break;
+    			case '山水':
+    				productTypes.push(0);
+    				break;
+    			case '花鸟':
+    				productTypes.push(1);
+    				break;
+    			case '走兽':
+    				productTypes.push(2);
+    				break;
+    			case '人物':
+    				productTypes.push(3);
+    				break;
+    			case '国画其他':
+    				productTypes.push(4);
+    				break;
+    			case '诗词':
+    				productTypes.push(6);
+    				break;
+    			case '四字榜书':
+    				productTypes.push(5);
+    				break;
+    			case '其他书法':
+    				productTypes.push(7);
+    				break;
+    			case '国画':
+    				productStyle=0;
+    				break;
+    			case '书法':
+    				productStyle=1;
+    				break;
+    			case '国家级':
+    				productLevel=0;
+    				break;
+    			case '中书协中美协':
+    				productLevel=1;
+    				break;
+    			case '省级':
+    				productLevel=2;
+    				break;
+    			case '横版':
+    				isCross=0;
+    				break;
+    			case '竖版':
+    				isCross=1;
+    				break;
+    			default:
+    				break;
+    		}
+    	}
+    	if(arr.length == 0){
+    		productSize="";
+    		productTypes="";
+    		productStyle="";
+    		productLevel="";
+    	}
+    	$("#events-list").empty();
+		//$("#doc-oc-demo1").offCanvas('close');
+		page=1;
+		//loadMsg1();
+		//loadMsg2();
+		pull();
+		//$('#doc-oc-demo1')[0].style.display = "none";
+})
+function gao(data){
+	pull(data);
+}
+function di(data){
+	pull(data);
+}
+//上拉
+var pullUp = function() {
+	if(footer==true){
+		document.getElementById('noRecord').innerHTML = "showType";
+		myScroll.refresh();
+		return false;
+	}
+	pull();
+}
+// 下拉
+var pullDown = function() {
+	$("#events-list").empty();
+	page = 1
+	start = 0;
+	footer = false;
+	//document.getElementById('noRecord').innerHTML = "noShowType";
+	index = 0;
+	pull();
+}
+$(".reset").click(function(){
+	//隐藏点击国画出现的内容
+	$(".category").hide();
+	//$(".species").hide();
+	//隐藏点击书法出现的内容
+	$(".calligraphy_1").hide();
+	//去掉黄色边框
+	$(".size li").removeClass("li");
+	//显示国画,书法
+	$(".calligraphy").show();
+	$(".chinese_painting").show();
+	//去掉点击样式
+	$(".size li img").addClass("close");
+});
+
+$("#galleryMsg").keydown(function(e) { 
+    if (e.keyCode == 13) { 
+    	simsearch = document.getElementById("galleryMsg").value;
+    	$("#events-list").empty();
+    	pull();
+    }
+}); 
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+body{
+	background-color: #f6f5f5;
+}
+.underline{
+	border-color: #878787; 
+	border-style: solid; 
+	border-top-width: 0px; 
+	border-right-width: 0px; 
+	border-bottom-width: 1px; 
+	border-left-width: 0px;
+	width:300px;
+	text-align:left;
+	margin-left: 10px;
+	font-size:21px;
+	color: #333333;
+	padding-left:20px;
+}
+#error{
+	color:#fe0338;
+	display:block;
+	height:23px;
+	width:340px;
+}
+.arrangement{
+	display: flex;
+	flex-direction:row;
+	height:100%;
+}
+.admin_add{
+	background-color: #fff;
+	border-radius: 10px;
+	height:375px;
+	width:562px;
+	margin:auto;
+}
+.table{
+	width:100%;
+	min-width:562px;
+}
+.adminName_column{
+	display:block;
+	margin-top:43px;
+}
+.password_column,.passwordConfirm_column,.phoneNumber_column,.email_column{
+	display:block;
+	margin-top:16px;
+}
+.save_column{
+	display:block;
+	margin:31px 0 0 212px;
+}
+.adminName_column font{
+	font-size: 21px;
+	margin-left: 61px;
+	color:#4ec3fb;
+}
+.password_column font{
+	font-size: 21px;
+	margin-left: 127px;
+	color:#4ec3fb;
+}
+.passwordConfirm_column font{
+	font-size: 21px;
+	margin-left: 83px;
+	color:#4ec3fb;
+}
+.phoneNumber_column font{
+	font-size: 21px;
+	margin-left: 83px;
+	color:#4ec3fb;
+}
+.email_column{
+	font-size: 21px;
+	margin-left: 127px;
+	color:#4ec3fb;
+}
+#error{
+	font-size: 18px;
+	padding-left:200px;
+	color:#fe0338;
+}
+.save_column input{
+	font-size:3px;
+	width:137px;
+	height:45px;
+	border-radius: 10px;
+	background-color: #4ec3fb;
+	color:#fff;
+	cursor: pointer;
+}
+.save_column input:hover{
+	background-color: #46aee0;
+}

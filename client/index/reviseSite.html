@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>新增地址</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+</head>
+<style type="text/css">
+.underline{
+	//border-color: #878787; 
+	border-style: solid; 
+	border-top-width: 0px; 
+	border-right-width: 0px; 
+	border-bottom-width: 0px; 
+	border-left-width: 0px;
+	width:50vw;;
+	text-align:left;
+	margin-left: 10px;
+	font-size:15px;
+	//color: #333333;
+	padding-left:20px;
+}
+.divBorder{
+border-bottom:1px solid #878787;
+height: 12vw;
+}
+.divBorder>label{
+margin-top:3vw;
+}
+.divBorder>input{
+margin-top:3.5vw;
+}
+.check_div{position: fixed;bottom: 13vw;text-align: center;width: 80vw;left:10vw;top:120vw;} 
+.check_add{outline:none;width: 80vw;height: 12vw;font-size: 16px;background-color: #000000;color: #ffffff;border-radius:20px;border:none;left:10vw;}
+.all{display: flex;justify-content:space-around;align-items:center;font-size: 0.28rem;}
+.gearArea { 
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9900;
+    overflow: hidden;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both
+}
+
+.area_ctrl {
+    vertical-align: middle;
+    background-color: #d5d8df;
+    color: #000;
+    margin: 0;
+    height: auto;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 9901;
+    overflow: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0)
+}
+
+.slideInUp {
+    -webkit-animation: slideInUp .3s;
+            animation: slideInUp .3s;
+}
+
+@-webkit-keyframes slideInUp {
+    from {
+        -webkit-transform: translate3d(0, 100%, 0);
+                transform: translate3d(0, 100%, 0)
+    }
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0)
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        -webkit-transform: translate3d(0, 100%, 0);
+                transform: translate3d(0, 100%, 0)
+    }
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0)
+    }
+}
+
+.area_roll {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background-color: transparent;
+    -webkit-mask: -webkit-gradient(linear, 0% 50%, 0% 100%, from(#debb47), to(rgba(36, 142, 36, 0)));
+    -webkit-mask: -webkit-linear-gradient(top, #debb47 50%, rgba(36, 142, 36, 0))
+}
+
+.area_roll>div {
+    font-size: 1.6em;
+    height: 10em;
+    float: left;
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1
+}
+
+.area_roll>div .gear {
+    width: 100%;
+    float: left;
+    position: absolute;
+    z-index: 9902;
+    margin-top: 4em
+}
+
+.area_roll_mask {
+    -webkit-mask: -webkit-gradient(linear, 0% 40%, 0% 0%, from(#debb47), to(rgba(36, 142, 36, 0)));
+    -webkit-mask: -webkit-linear-gradient(bottom, #debb47 50%, rgba(36, 142, 36, 0));
+    padding: 0
+}
+
+.area_grid {
+    position: relative;
+    top: 4em;
+    width: 100%;
+    height: 2em;
+    margin: 0;
+    box-sizing: border-box;
+    z-index: 0;
+    border-top: 1px solid #abaeb5;
+    border-bottom: 1px solid #abaeb5
+}
+
+.area_roll>div:nth-child(3) .area_grid>div {
+    left: 42%
+}
+
+.area_btn {
+    color: #0575f2;
+    font-size: 1.6em;
+    line-height: 1em;
+    text-align: center;
+    padding: .8em 1em
+}
+
+.area_btn_box:before,
+.area_btn_box:after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    display: block;
+    background-color: #96979b;
+    z-index: 15;
+    -webkit-transform: scaleY(0.33);
+            transform: scaleY(0.33)
+}
+
+.area_btn_box {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack:justify;
+    -webkit-justify-content:space-between;
+        -ms-flex-pack:justify;
+            justify-content:space-between;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+    background-color: #f1f2f4;
+    position: relative
+}
+
+.area_btn_box:before {
+    left: 0;
+    top: 0;
+    -webkit-transform-origin: 50% 20%;
+            transform-origin: 50% 20%
+}
+
+.area_btn_box:after {
+    left: 0;
+    bottom: 0;
+    -webkit-transform-origin: 50% 70%;
+            transform-origin: 50% 70%
+}
+
+.tooth {
+    height: 2em;
+    line-height: 2em;
+    text-align: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    line-clamp: 1;
+    -webkit-box-orient:vertical;
+    -webkit-box-direction:normal;
+    -webkit-flex-direction:column;
+        -ms-flex-direction:column;
+            flex-direction:column;
+    overflow: hidden
+}
+</style>
+<body style = "padding:0 5vw 0 5vw;">
+<div> 
+	<div class = "divBorder">
+		<label style = "float:left;">姓名</label>
+		<input style = "margin-left:11vw;" type="text" id = "adminName" class = "underline" value = "" placeholder="请输入姓名">
+	</div>
+	<div class = "divBorder">
+		<label style = "float:left;">手机号码</label>
+		<input type="text" id = "userMobile" class = "underline" value = "" placeholder="请输入您的手机号">
+	</div>
+	<div class = "divBorder">
+		<label style = "float:left;">所在地区</label>
+			<div class="right content-block">
+				<input style = "margin-top:3.5vw;" id="demo1" type="text" class =  "underline" readonly="" placeholder="请选择您的地区"  value="广东省,深圳市,南山区">
+				<input id="value1" type="hidden" value="20,234,504">
+			</div> 
+		<!-- <input type="text" id = "address" class = "underline" placeholder="请选择您的地区" value = "广东省,深圳市,南山区" placeholder="请选择您的地区"> -->
+		<img style = "height:3.2vw;float:right;margin-top:-4vw;" src="/web/commons/image/client/index/goin.png">
+	</div>
+	<div class = "divBorder">
+		<label style = "float:left;">详细地址</label>
+		<input type="text" id = "detailedaddress" class = "underline" value = "" placeholder="请输入您的详细地址">
+	</div>
+	<div class = "divBorder">
+		<input id = "default" type="checkbox" style="margin-right:1vw;"/>
+		<label >设为默认</label>
+	</div>
+</div>
+	<div class="check_div all">
+		<input type="button" class="check_add" onclick="add()" value="确定">
+	</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script> 
+<script src="/web/commons/js/LAreaData1.js"></script>
+<script src="/web/commons/js/LAreaData2.js"></script>
+<script src="/web/commons/js/LArea.js"></script>
+<script>
+function add(){
+	var userId=sessionStorage.getItem("userId");
+	var name = document.getElementById("adminName").value;
+	var userMobile = document.getElementById("userMobile").value;
+	var address = document.getElementById("demo1").value;
+	var detailedaddress = document.getElementById("detailedaddress").value;
+	var sfdefault = 0;
+	if($('#default').is(':checked')){
+		sfdefault = 1;
+	}else{ 
+		sfdefault = 0;
+	}
+	
+	var queryData = {"jsonStr":"{'userId':"+userId+",'name':'"+name+"','userMobile':'"+userMobile+"','address':'"+address+"','detailedaddress':'"+detailedaddress+"','sfdefault':'"+sfdefault+"'}"};
+	var backMessage = sessionStorage.getItem("backMessage");
+	$.ajax({
+		type:'POST',
+		url:"/web/api/orderaddress/save",
+		dataType:'json',
+		data:queryData,
+		success:function(data){
+			console.log('成功');
+			if(data.state == 0){
+				if(backMessage == "yes"){
+					var addressId = data.data.addressId;
+					sessionStorage.setItem("backMessage","");
+					sessionStorage.setItem("addressId",addressId);
+					window.open('/web/client/index/share_message.html','_self');
+				}else{
+					window.open('/web/client/index/site.html','_self');
+				}
+			}
+
+			
+		}
+		})
+}
+
+//三级连选
+var area1 = new LArea();
+area1.init({
+	'trigger': '#demo1', //触发选择控件的文本框，同时选择完毕后name属性输出到该位置
+	'valueTo': '#value1', //选择完毕后id属性输出到该位置
+	'keys': {
+		id: 'id',
+		name: 'name'
+	}, //绑定数据源相关字段 id对应valueTo的value属性输出 name对应trigger的value属性输出
+	'type': 1, //数据源类型
+	'data': LAreaData //数据源
+});
+area1.value=[1,13,3];//控制初始位置，注意：该方法并不会影响到input的value
+var area2 = new LArea();
+area2.init({
+	'trigger': '#demo2',
+	'valueTo': '#value2',
+	'keys': {
+		id: 'value',
+		name: 'text'
+	},
+	'type': 2,
+	'data': [provs_data, citys_data, dists_data]
+});
+
+
+</script>
+</body>
+</html>

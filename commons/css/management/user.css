@@ -1,0 +1,26 @@
+.arrangement{
+	display: flex;
+	flex-direction:row;
+	height:100%;
+}
+.rt_wrap{
+	height:100%;
+	width:100%;
+	min-width:800px;
+	margin-right: 20px;
+}
+.user_add_edit{
+	width:651px;
+	margin: 53px auto;
+}
+.user_add_edit span{
+	font-size:20px;
+	color:333;
+}
+.determine_btn{
+	width:651px;
+	height:48px;
+	background-color: #4ec3fb;
+	color:#fff;
+	cursor: pointer;
+}

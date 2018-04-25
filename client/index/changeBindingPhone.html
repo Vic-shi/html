@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>换绑手机</title>
+<style type="text/css">
+ .divInput>div>span{
+ 	margin-top:4vw;
+}
+.check_add{border-radius:20px;border:none;outline:none;width: 80vw;height: 12vw;font-size: 16px;background-color: #000000;color: #ffffff;}
+.readonlyInput{
+	background-color: #999999;
+}
+</style>
+</head>
+<body style= "background-color: #f6f6f6;margin:0;margin-top:2.6vw;"> 
+<div>
+	<div class = "divInput" align="center">
+	<div style = "background-color: #ffffff;height:14vw;border-bottom:1px solid #eeeeee;">
+		<span style = "color:#666666;font-size: 16px;">手机号</span><input id = "telNumber" disabled="disabled" style = "width:45vw;height:7.4vw;border:none;margin-left:5vw;font-size: 15px;color:#000000;background-color: #ffffff;margin-top:3.5vw;" type="text"/>
+		<input id = "obtain" style = "width:25vw;height:7.4vw;background-color: #333333;color:#ffffff;border-radius: 5px;text-align: center;font-size: 12px;border:none;margin-top:3.5vw;" type = "button" onclick = "send()" value = "获取验证码"/>
+	</div>	
+	<div style = "background-color: #ffffff;height:14vw;">
+		<span style = "display:block;margin-left:7vw;float:left;color:#666666;font-size: 16px;">验证码</span><input id = "verifyCode" style = "width:45vw;height:7.4vw;float:left;border:none;margin-left:5vw;font-size: 15px;color:#000000;border: none;margin-top:3.5vw;" type="text" placeholder="验证码"/>
+		<input class = "check_add readonlyInput" id = "check_add" disabled="disabled" onclick = "changePhone()" style = "margin-top:25vw;" type="button" value = "验证后绑定新手机"/><br/>
+	</div>
+	</div>
+</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script>
+$(function(){
+	var telNumber = sessionStorage.getItem("telNumber");
+	document.getElementById("telNumber").value = telNumber; 
+})
+function send(){
+	$(".check_add").removeClass("readonlyInput");
+	document.getElementById("check_add").disabled=false;
+	var telNumber = sessionStorage.getItem("telNumber");
+	$.ajax({
+		type:'POST', 
+		url:"/web/user/getVerifySMS",
+		dataType:'json',
+		data:{"jsonStr":"{'telNumber':'"+telNumber+"'}"},
+		success:function(data){
+			console.log('成功');
+			var i = 60;
+			var time60 = window.setInterval(function(){
+				i--;  
+				if(i == 0){
+					document.getElementById("obtain").value = "重新获取";
+					document.getElementById("obtain").disabled=false;
+					window.clearInterval(time60);
+					return;
+				}
+				document.getElementById("obtain").value = i + "s后重新获取";
+				document.getElementById("obtain").disabled="disabled";
+			},1000); 
+		},
+		error:function(data){
+			console.log('shibai');
+		}
+	})  
+	
+}
+function changePhone(){
+	var verifyCode = document.getElementById("verifyCode").value;
+	var telNumber = sessionStorage.getItem("telNumber");
+	$.ajax({
+		type:'POST',  
+		url:"/web/user/checkSMS",
+		dataType:'json',
+		data:{"jsonStr":"{'verifyCode':'"+verifyCode+"','telNumber':'"+telNumber+"'}"},
+		success:function(data){
+			if(data.state == "0"){
+				window.open('/web/client/index/bindingNewPhone.html','_self');
+			}else if(data.state == "1"){
+				console.log("错误");
+			}
+		},
+		error:function(data){
+			console.log('shibai');
+		}
+	}) 
+	
+
+}
+</script>
+</body>
+</html>

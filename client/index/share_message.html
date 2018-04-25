@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html style = "font-size: 0.24rem">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>共享</title>
+<style type="text/css">
+			h1{
+				line-height:2.2;
+				margin: 0!important;
+			}
+			body>form{
+				background-color: white;
+				height: 80vw;
+			}
+			body .tijiao{
+	background-color: white;
+	padding: 0 0 1vw 0;
+	border-bottom: 0;
+/*	height: 50vw;*/
+}
+/*整体的h1样式设计*/
+body div h1{
+	font-size: 15px;
+	color:#666; 
+	margin-bottom: 1vw;
+}
+body div h2{
+	font-size: 14px; 
+	color:#999;
+	line-height:1.8;
+}
+body div h3{
+	font-size: 0.30rem;
+	color:#fea427;
+	line-height:0;
+}
+/*设置成横向*/
+body div div{
+	display: flex;
+	justify-content:space-between;
+	align-items: center;
+}
+/*设置收货地址的h1*/
+body .add h1{
+	line-height:1.5;
+	margin: 0;
+}
+
+.gearArea { 
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9900;
+    overflow: hidden;
+    -webkit-animation-fill-mode: both;
+            animation-fill-mode: both
+}
+
+.area_ctrl {
+    vertical-align: middle;
+    background-color: #d5d8df;
+    color: #000;
+    margin: 0;
+    height: auto;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 9901;
+    overflow: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0)
+}
+
+.slideInUp {
+    -webkit-animation: slideInUp .3s;
+            animation: slideInUp .3s;
+}
+
+@-webkit-keyframes slideInUp {
+    from {
+        -webkit-transform: translate3d(0, 100%, 0);
+                transform: translate3d(0, 100%, 0)
+    }
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0)
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        -webkit-transform: translate3d(0, 100%, 0);
+                transform: translate3d(0, 100%, 0)
+    }
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0)
+    }
+}
+
+.area_roll {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background-color: transparent;
+    -webkit-mask: -webkit-gradient(linear, 0% 50%, 0% 100%, from(#debb47), to(rgba(36, 142, 36, 0)));
+    -webkit-mask: -webkit-linear-gradient(top, #debb47 50%, rgba(36, 142, 36, 0))
+}
+
+.area_roll>div {
+    font-size: 1.6em;
+    height: 10em;
+    float: left;
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1
+}
+
+.area_roll>div .gear {
+    width: 100%;
+    float: left;
+    position: absolute;
+    z-index: 9902;
+    margin-top: 4em
+}
+
+.area_roll_mask {
+    -webkit-mask: -webkit-gradient(linear, 0% 40%, 0% 0%, from(#debb47), to(rgba(36, 142, 36, 0)));
+    -webkit-mask: -webkit-linear-gradient(bottom, #debb47 50%, rgba(36, 142, 36, 0));
+    padding: 0
+}
+
+.area_grid {
+    position: relative;
+    top: 4em;
+    width: 100%;
+    height: 2em;
+    margin: 0;
+    box-sizing: border-box;
+    z-index: 0;
+    border-top: 1px solid #abaeb5;
+    border-bottom: 1px solid #abaeb5
+}
+
+.area_roll>div:nth-child(3) .area_grid>div {
+    left: 42%
+}
+
+.area_btn {
+    color: #0575f2;
+    font-size: 1.6em;
+    line-height: 1em;
+    text-align: center;
+    padding: .8em 1em
+}
+
+.area_btn_box:before,
+.area_btn_box:after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    display: block;
+    background-color: #96979b;
+    z-index: 15;
+    -webkit-transform: scaleY(0.33);
+            transform: scaleY(0.33)
+}
+
+.area_btn_box {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack:justify;
+    -webkit-justify-content:space-between;
+        -ms-flex-pack:justify;
+            justify-content:space-between;
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+    background-color: #f1f2f4;
+    position: relative
+}
+
+.area_btn_box:before {
+    left: 0;
+    top: 0;
+    -webkit-transform-origin: 50% 20%;
+            transform-origin: 50% 20%
+}
+
+.area_btn_box:after {
+    left: 0;
+    bottom: 0;
+    -webkit-transform-origin: 50% 70%;
+            transform-origin: 50% 70%
+}
+
+.tooth {
+    height: 2em;
+    line-height: 2em;
+    text-align: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    line-clamp: 1;
+    -webkit-box-orient:vertical;
+    -webkit-box-direction:normal;
+    -webkit-flex-direction:column;
+        -ms-flex-direction:column;
+            flex-direction:column;
+    overflow: hidden
+}
+.check_add{border-radius:20px;border:none;outline:none;width: 80vw;height: 12vw;font-size: 16px;background-color: #000000;color: #ffffff;}
+.gearArea { 
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding: 0px;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 998;
+}
+.changeTrue{
+background-color: #eeeeee;
+}
+</style>
+</head>
+<body>
+		<div style = "border-bottom:1px solid #e4e4e4;">
+			<div>
+				<h1>作品</h1>
+				<h2 id='productName'>父亲</h2>
+			</div>
+			<div>
+				<h1>共享方</h1>
+				<h2>云鼎国际</h2>
+			</div>
+		</div>
+		<div style = "border-bottom:1px solid #e4e4e4;">
+			<div onclick = "way()">
+				<h1>方式</h1>
+				<h2 id = "store" class = "store">当场取货</h2>
+			</div>
+			<div class = "rent1">
+				<h1>租期</h1>
+				<h2 id = "rentTime">一年</h2>
+			</div>
+		</div>
+		<div style = "border-bottom:1px solid #e4e4e4;">
+<!-- 			<div class = "productMountedValue">  
+				<h1>装裱费</h1>
+				<h2 id='productMountedValue'>￥100000</h2>
+			</div> -->
+			<div class = "rent2">
+				<h1>租金</h1>
+				<h4 style = "font-size:10px;color:#999999;margin-left: -15vw;">(交易结束后押金将返还到您的账户)</h4>
+				<h2 id='rent'>￥9000</h2>
+			</div>
+			<div class = "productDeposit">  
+				<h1>押金</h1>
+				<h2 id='productDeposit'>￥100000</h2>
+			</div>
+<!-- 			<div class = "overOrderCost">  
+				<h1>润笔费</h1>
+				<h2 id='overOrderCost'>￥100000</h2>
+			</div> -->
+			<div>
+				<h1>活动价</h1>
+				<h2 id = "activePrice"></h2>
+			</div>
+		</div>
+		<div style = "border-bottom:1px solid #e4e4e4;margin-top:2vw;">
+			<div>
+				<h1 style="color: #666;">总计</h1>
+				<h2 style="color: #999;" id='shareprice'>￥10000</h2>
+			</div>
+		</div> 
+		<div style = "border-bottom:1px solid #e4e4e4;">  
+			<div>
+				<h1>联系电话</h1>
+				<!-- <span id = "telNumber" style = "margin-left:35vw;color:#999;">22222222222</span> -->
+				<input id = "telNumber" style = "font-size:14px;;color:#333;border:none;text-align: right;background-color: #ffffff;" disabled="disabled"/>
+			</div> 
+			<div>
+				<h1 id="num"></h1>
+			</div>
+			<div style = "display:block;" id = "showAddress">
+			<h1 onclick = "goChangeAddress()" id="Address">收货地址</h1> 
+			<img style = "float: right;margin-top:-6.5vw;" src="/web/commons/image/client/index/goinSmall.png"/>
+			<h2 id="addAddress" onclick = "goAddress()">请新增地址</h2>
+			</div>
+		</div>
+		<!--<form action="" method="">-->
+		<div class="tijiao" style = "text-align: center;margin-top:30vw;"> 
+			<input class = "check_add" type="submit" onclick = "save()" value="提交订单" />
+		</div>
+		<div id = "message" class = "am-offcanvas" style = "width: 72vw;height:28vw;background-color: #f6f6f6;position: fixed;top:60vw;left:14vw;border-radius: 12px;display: none;">
+		<div style = "border-bottom: 1px solid #e4e4e4;height:11vw;display: block;text-align:center;">
+			<span id = "AllMessage" style = "display: block;margin-top:5vw;font-size: 15px;font-weight: bold;text-align:center;">手慢了,作品已被他人收藏</span>
+		</div>
+		<div style = "font-size: 17px;height:12vw;display:block;text-align: center;">
+			<span style = "display: block;margin-top:2vw;text-align: center;" onclick = "changeTrue()">确定</span>
+		</div>
+		</div>
+		<div id = "sexBom">
+
+</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script>
+/*活动价*/
+var activePrice = sessionStorage.getItem("activePrice");
+/*润笔费*/
+var overOrderCost = sessionStorage.getItem("overOrderCost");
+/*装裱费*/
+var productMountedValue = sessionStorage.getItem("productMountedValue");
+/*共享价格*/
+var productSharingValue = sessionStorage.getItem("productSharingValue");
+/*租金*/
+var rent = sessionStorage.getItem("rent");
+/*几个月*/
+var timeType = sessionStorage.getItem("timeType");
+/*担保金*/
+var productDeposit = sessionStorage.getItem("productDeposit");
+/*作品ID*/
+var productId = sessionStorage.getItem("productId");
+/*作品名称*/
+var productName = sessionStorage.getItem("productName");
+/*作品图片*/
+var productPictureMain = sessionStorage.getItem("productPictureMain");
+/*作者名称*/
+var productAuthor = sessionStorage.getItem("productAuthor");
+/*作者ID*/
+var productAuthorId = sessionStorage.getItem("productAuthorId");
+/*作者ID*/
+var activePrice = sessionStorage.getItem("activePrice");
+var userId = sessionStorage.getItem("userId");
+var isOnline,orderType,term;
+var addressId = sessionStorage.getItem("addressId");
+$(function(){
+	if(rent == 0){
+		$(".rent1").hide();
+		$(".rent2").hide();
+		$(".productDeposit").hide();
+		term = timeType;
+		if(timeType == 6){
+			timeType = "半年";
+		}else{
+			timeType = "一年";
+		}
+		orderType = 1;
+	}else{
+		$(".overOrderCost").hide();
+		orderType = 0;
+		term = 0;
+	}
+	
+	if(timeType == 6){
+		timeType = "半年";
+	}else{
+		timeType = "一年";
+	}
+	$("#showAddress").hide();
+	$("#productName")[0].innerHTML = "《"+productName+"》";
+	$("#rentTime")[0].innerHTML = timeType;
+	//$("#productMountedValue")[0].innerHTML = "￥"+productMountedValue;
+	$("#rent")[0].innerHTML = rent;
+	$("#productDeposit")[0].innerHTML = "￥"+productDeposit;
+	$("#shareprice")[0].innerHTML = "￥"+activePrice;
+	//$("#overOrderCost")[0].innerHTML = "￥"+overOrderCost;
+	$("#activePrice")[0].innerHTML = "￥"+activePrice;
+	$.ajax({
+		type:'POST', 
+		url:"/web/api/user/selectById",
+		dataType:'json',
+		data:{"jsonStr":"{'userId':"+userId+"}"},
+		success:function(data){
+			//$("#express")[0].innerHTML = "收货人: "+data.data.nickName;
+			document.getElementById('telNumber').value = data.data.telNumber;
+			//$("#telNumber")[0].innerHTML = data.data.telNumber
+		}, 
+		error:function(data){
+			console.log('shibai');
+		}
+	})
+	if(addressId!= ""&&addressId!=null){
+		var queryData = {"jsonStr":"{'addressId':"+addressId+",'userId':"+userId+"}"};
+		$.ajax({
+			type:'POST',
+			url:"/web/api/orderaddress/list",
+			dataType:'json',
+			data:queryData,
+			success:function(data){
+				if(data.state == 0){
+					$("#store")[0].innerHTML = "快递";
+					$("#showAddress").show();
+					sessionStorage.setItem("addressId","");
+					$("#addAddress")[0].innerHTML = data.data[0].address + data.data[0].detailedaddress;
+					document.getElementById('telNumber').value = data.data[0].userMobile;
+				}
+			}
+			})
+	}else{
+		$.ajax({
+			type:'POST',
+			url:"/web/api/orderaddress/list",
+			dataType:'json',
+			data:{"jsonStr":"{'userId':"+userId+"}"},
+			success:function(data){
+				if(data.state == 0){
+					for(var i=0;i<data.data.length;i++){ 
+						if(data.data[i].sfdefault == 1){
+							addressId =data.data[0].addressId;
+							$("#addAddress")[0].innerHTML = data.data[0].address + data.data[0].detailedaddress;
+							document.getElementById('telNumber').value = data.data[0].userMobile;
+						}
+					}
+				}
+			},
+			error:function(data){
+				console.log('shibai');
+			}
+		})
+	}
+});
+function save(){
+	productSharingValue = sessionStorage.getItem("productSharingValue")
+	productSharingValue = productSharingValue * 100;
+	if($("#store")[0].innerHTML == "当场取货"){
+		isOnline =1;
+	}else{
+		isOnline =0;
+	}
+	$.ajax({
+		type:'POST', 
+		url:"/web/api/order/save",
+		dataType:'json',
+		data:{"jsonStr":"{'orderType':"+orderType+",'term':"+term+",'orderStatus':'0','orderTotalValue':"+productSharingValue+",'preferential':0,'actualPayment':"+productSharingValue+",'originalPrice':"+productSharingValue+" ,'userId':"+userId+",'isOverdue':0,'productId':"+productId+",'userAddressId':0,'isOnline':"+isOnline+",'productAuthorId':"+productAuthorId+"}"},
+		success:function(data){
+			console.log(data);
+			if(data.state == 0){
+				sessionStorage.setItem("orderId",data.data.orderId);
+				window.open('/web/client/index/pay.html','_self');
+			}else if(data.state == 1){
+				$("#AllMessage")[0].innerHTML = data.message;
+				document.getElementById("message").style.display = "block";
+				//alert(data.message)
+			}
+		}, 
+		error:function(data){
+			console.log('shibai');
+		}
+	})
+}
+function changeTrue(){
+	window.open('/web/client/index/share.html','_self');
+}
+function way(){
+	$("#sexBom").addClass("gearArea");
+	$("#sexBom").append('<div style = "position: fixed;height:100vh;width:100vw;" onclick = "cancel()"></div>');
+    var html = '<div style = "position: fixed;bottom: 0;background-color: #ffffff;height: 40vw; font-size: 18px;z-index:999;display:block;">' +
+    '<div style = "    width: 100vw;height: 14vw;border-bottom: 1px solid #f6f6f6;font-size: 18px;">' +
+    '<div onclick = "cancel()" style = "width: 45vw;float: left;padding-left: 5vw;padding-top: 4vw;">取消</div>' +
+    '<div onclick = "finish()" style = "width: 45vw;float: left;text-align: right;padding-top: 4vw;color:#318dfd;display:block;padding-right:5vw;">确定</div>' +
+    '</div>'+
+    '<div style = "text-align:center;height:10vw;padding-top:3vw;border-bottom:1px solid #f6f6f6;display:block;" onclick = "change(1)" class = "spot">当场取货</div>'+
+    '<div style = "text-align:center;padding-top:3vw;height:10vw;display:block;" onclick = "change(0)" class = "onLine">快递</div>'+
+    '</div>';
+    $("#sexBom").append(html);
+    if($(".store")[0].innerHTML == "当场取货"){
+		$(".spot").addClass("changeTrue");
+		$(".onLine").removeClass("changeTrue");
+    }else if($(".store")[0].innerHTML == "快递"){
+		$(".spot").removeClass("changeTrue");
+		$(".onLine").addClass("changeTrue");
+    }
+}
+function cancel(){
+	$("#sexBom").removeClass("gearArea");
+	$("#sexBom").empty();
+}
+function finish(){
+	if($(".spot").hasClass("changeTrue") == false &&$(".onLine").hasClass("changeTrue") == false){
+		return;
+	}
+	if($(".spot").hasClass("changeTrue")){
+		$(".store")[0].innerHTML = "当场取货";
+		$("#showAddress").hide();
+	}else if($(".onLine").hasClass("changeTrue")){
+		$(".store")[0].innerHTML = "快递";
+		$("#showAddress").show();
+	} 
+	$("#sexBom").removeClass("gearArea");
+	$("#sexBom").empty();
+}
+function change(data){
+	if(data == "1"){
+		$(".spot").addClass("changeTrue");
+		$(".onLine").removeClass("changeTrue");
+	}else if(data == "0"){
+		$(".spot").removeClass("changeTrue");
+		$(".onLine").addClass("changeTrue");
+	}
+}
+function goAddress(){
+	if($("#addAddress")[0].innerHTML == "请新增地址"){
+		sessionStorage.setItem("backMessage","yes");
+		window.open('/web/client/index/reviseSite.html','_self');	
+	}else{
+		sessionStorage.setItem("backMessage","yes");
+		sessionStorage.setItem("addressId",addressId);
+		window.open('/web/client/index/editSite.html','_self');	
+	}
+}
+function goChangeAddress(){
+	sessionStorage.setItem("backShareMessage","yes");
+	window.open('/web/client/index/site.html','_self');	
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>订单</title>
+<style type="text/css">
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+body{
+	background-color: #f1f1f1;
+	width: 100%;
+}
+
+.head{padding: 0 5%;background-color: white;border-bottom: 1px solid #f1f1f1;list-style-type: none;}
+.head ul{
+	display: flex;
+	justify-content:space-around;
+}
+.head ul li{
+	padding: 0 2vw;
+	font-size:14px;
+	line-height: 2.8;
+	color: #999999;
+	transition: border-bottom-color .2s;
+	list-style-type: none;
+}
+.head ul .nav_bottom{
+	color:#333333; 
+	border-bottom: 1px solid #333333;
+	font-size:14px; 
+	/*transition: all .2s;*/
+}
+/*正文订单样式设置*/
+/*整体样式*/
+.article >div{
+	//margin-bottom: 3vw;
+	background-color: white;
+}
+.article >div li{
+	padding:0 5%;
+	display: flex;
+	align-items: center;
+	justify-content:space-between;
+}
+.article >div li:nth-child(2){
+	border-bottom: 1px solid #f1f1f1;
+	padding-bottom: 3vw;
+} 
+/*作者 付款状态*/
+.article >div li h1{
+	font-size: 12px;
+	background: url(../../../image/client/payment/in.png) no-repeat right;
+	background-size: 2vw;
+	padding-right: 8vw;
+	line-height:3.5; 
+	color:#333333;
+}
+.article >div li h2{
+	font-size: 14px;
+	color:#f76a65;
+	line-height:3.5;
+}
+/*作品 订单信息*/
+.article >div li .img_show{
+	width:26.6vw;
+	height:26.6vw;
+	border-radius:7px;
+	overflow: hidden;
+	text-align: center;
+}
+/*图片的高度还需修改*/
+.article >div li .img_show img{
+	height: 100%;
+}
+.article >div li .detail{
+	width: 55vw;
+	height: 28vw;
+}
+.article >div li .detail h3{
+	display: block;
+	height:16vw;
+	width:55vw;
+	font-size: 0.7rem;
+	overflow: hidden;
+	color: #999;
+	line-height:1.4;
+	font-size: 14px;
+}
+.article >div li .detail h4{
+	height:10vw;
+	line-height: 0.6;
+	font-size: 14px;
+	color:#f76a65;
+	float:left;
+	width:20vw;
+	margin-top:10vw;
+}
+/*日期 订单操作*/
+.time h5{
+	width: 50vw;
+	line-height: 10vw;
+	color: #999;
+}
+.time{
+height:10vw;
+}
+.time input[type="button"]{
+	border: 1px solid #999;
+	border-radius: 2px;
+	color: #999;
+	background-color:#ffffff;
+	font-size: 14px;
+	padding: 4px 8px;
+	line-height:1;
+	height:8vw;
+	width:19vw;
+	-webkit-appearance:none;
+}
+.time input[type="submit"]{
+	border: 1px solid #f76a65;
+	border-radius: 2px;
+	color: #f76a65;
+	font-size: 0.22rem;
+	padding: 4px 8px;
+	line-height:1;
+}
+/*已逾期设置*/
+.accomplish .detail{
+	position: relative;
+}
+.accomplish .detail h6{
+	position:absolute;
+	right: 0;
+	bottom: 0;
+	color: red;
+	line-height: 0.6;
+	font-size: 0.24rem;
+}
+.unpaid{
+	margin-bottom:2.6vw;
+}
+.payMoney{
+	border:1px solid #f76a65;
+	color:#f76a65;
+}
+.am-offcanvas {
+    //display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1090;
+    background: rgba(0,0,0,.15);
+}
+.imgHeightWidth{
+	height: 26vw;
+	width: 26vw;
+	border-radius: 10px;
+}
+.gearArea { 
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding: 0px;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 998;
+}
+</style>
+</head>
+<body>
+<div>
+	<div class="head" style="z-index:999!important;position: relative;border-bottom: 0.8vw solid #ededed;">
+		<ul>
+			<li class="nav_bottom">全部</li>
+			<li>待付款</li>
+			<li>发货中</li>
+			<li>租借中</li>
+			<li>交易完成</li>
+		</ul>
+	</div>
+    <div class="article" id="events-list">
+    <img id = "whereNoOrder" style = "" src = "/web/commons/image/client/index/noOrder.png">
+	</div>
+	<div id = "message" class = "gearArea" style = "display: none;">
+	<div class = "am-offcanvas" style = "width: 72vw;height:28vw;background-color: #ffffff;position: fixed;top:60vw;left:14vw;border-radius: 12px;">
+		<div style = "text-align: center;border-bottom: 1px solid #e4e4e4;height:11vw;">
+			<span id = "AllMessage" style = "display: block;margin-top:5vw;font-size: 15px;font-weight: bold;">确认取消该订单</span>
+		</div>
+		<div style = "width:36vw;float:left;font-size: 17px;height:12vw;border-right:1px solid #e4e4e4;text-align: center;">
+			<span style = "display: block;margin-top:2vw;" onclick = "changeTrue()">确定</span>
+		</div>
+		<div style = "width:35vw;float:left;font-size: 17px;height:12vw;text-align: center;">
+			<span style = "display: block;margin-top:2vw;" onclick = "changeFalse()">取消</span>
+		</div>  
+	</div>
+	</div>
+	<div id = "prompt" style = "width: 50vw;height:8vw;background-color: #000000;position: fixed;top:60vw;left:25vw;border-radius: 10px;text-align: center;opacity:0.5;display: none;"> 
+		<span id = "AllSmallMessage" style = "font-size: 15px;color:#ffffff;display: block;margin-top:1vw;">取消成功</span>
+	</div>
+	<div id = "paySuccess" style = "width: 50vw;height:8vw;background-color: #000000;position: fixed;top:60vw;left:25vw;border-radius: 10px;text-align: center;opacity:0.5;display: none;"> 
+		<span style = "font-size: 15px;color:#ffffff;display: block;margin-top:1vw;">支付成功</span>
+	</div>
+</div>
+		 <div id = "getHeight2" >
+		<div id = "messages" class = "am-offcanvas" style = "width: 72vw;height:28vw;background-color: #f6f6f6;position: fixed;top:60vw;left:14vw;border-radius: 12px;display: none;z-index:999;">
+		<div style = "border-bottom: 1px solid #e4e4e4;height:11vw;display: block;text-align:center;">
+			<span style = "display: block;margin-top:5vw;font-size: 15px;font-weight: bold;text-align:center;">请联系客服</span>
+		</div>
+		<div style = "font-size: 17px;height:12vw;display:block;text-align: center;">
+			<span style = "display: block;margin-top:2vw;text-align: center;">400-822-4666</span>
+		</div>  
+		</div>
+		</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script>
+var pagePro = 1;
+var term;
+var arr = new Array();
+var arrProductId = new Array();
+var type;
+var productIdCancel;
+var noShow;
+var canShow;
+//导航栏的下滑线
+$(".head li").click(function(){
+	arr = new Array();
+	index = 0;
+	$(this).addClass("nav_bottom");
+	$(this).siblings().removeClass("nav_bottom");
+	type = $(this).html();
+	pagePro = 1;
+	falseData(type);
+})
+function falseData(type){
+	var userId=sessionStorage.getItem("userId");
+	if($(".nav_bottom").html()=="待付款"){
+		type = "待付款";
+		status ="0";
+		var queryData = {"jsonStr":"{'pageNo':"+pagePro+",'listLen':100,'userId':"+userId+",'status':'"+status+"'}"}
+	}else if($(".nav_bottom").html()=="发货中"){
+		type = "发货中";
+		status ="1,2";
+		var queryData = {"jsonStr":"{'pageNo':"+pagePro+",'listLen':100,'userId':"+userId+",'status':'"+status+"'}"}
+	}else if($(".nav_bottom").html()=="租借中"){
+		type = "租借中";
+		status ="3";
+		var queryData = {"jsonStr":"{'pageNo':"+pagePro+",'listLen':100,'userId':"+userId+",'status':'"+status+"'}"}
+	}else if($(".nav_bottom").html()=="交易完成"){
+		type = "交易完成"; 
+		status ="5";
+		var queryData = {"jsonStr":"{'pageNo':"+pagePro+",'listLen':100,'userId':"+userId+",'status':'"+status+"'}"}
+	}else{
+		type = "全部";
+		var queryData = {"jsonStr":"{'pageNo':"+pagePro+",'listLen':100,'userId':"+userId+"}"}
+	}
+	
+	$("#events-list").empty();
+	/*页面默认加载（热门书画）*/
+	$.ajax({
+	type:'POST',
+	url:"/web/api/order/listSimpleByStatus",
+	dataType:'json',
+	data:queryData,
+	success:function(data){
+		if(data.data == null){
+			$("#events-list").append('<img id = "whereNoOrder" style = "width:100vw;" src = "/web/commons/image/client/index/noOrder.png">');
+			//document.getElementById("whereNoOrder").style.display = "block";
+		}
+		var li='',l='';
+		pagePro++;
+		if(data.data == null){
+			
+		}else{
+		for(var i=0;i<data.data.listOrder.length;i++){
+			if(data.data.listOrder[i].term == 0){
+				term = "";
+			}else{
+				if(data.data.listOrder[i].term == 6){
+					term = "租期:半年";
+				}else{
+					term = "租期:一年";
+				} 
+			}
+			data.data.listOrder[i].actualPayment = data.data.listOrder[i].actualPayment/100;
+			arr[i] = data.data.listOrder[i].id;
+			arrProductId[i] = data.data.listOrder[i].pid;
+			if(data.data.listOrder[i].orderStatus == 6){
+				noShow = "display:none";
+			}else{
+				noShow = "";
+			}
+			if(type == "全部"){
+				if(data.data.listOrder[i].orderStatus == 5){
+					$("#events-list").append( 
+							'<div class="unpaid">'
+							+'<ul>'
+							+'<li><h1>订单号码：'+data.data.listOrder[i].id+'</h1><h2 style = "color:#f76a65;">'+changeByNumber(data.data.listOrder[i].orderStatus,"orderStatus")+'</h2></li>'
+							+'<li onclick = "goDetail('+i+')">' 
+							+'	<div class="img_show">'
+							+'		<img class = "imgHeightWidth" src="'+data.data.listOrder[i].productPicture+'">'
+							+'	</div>'
+							+'	<div class="detail">'
+							+'		<h3>'
+							+'			《'+data.data.listOrder[i].productName+'》<br>'
+							+'			'+data.data.listOrder[i].productAuthor+' <br>' 
+							+'			尺寸: '+changeByNumber(data.data.listOrder[i].productSize,"productSize")+'&nbsp;类型:'+changeByNumber(data.data.listOrder[i].productType,"productType")+'&nbsp;状态:'+changeByNumber(data.data.listOrder[i].productMountedStatus,"productMountedStatus")+''
+							+'		</h3>'
+							+'		<h4 style = "color:#f76a65;">¥'+data.data.listOrder[i].actualPayment+'</h4>'
+							+'		<h4 style = "float:right;color:#666666;font-weight:normal;">'+term+'</h4>		'
+							+'	</div>'
+							+'</li>'
+							+'<li style = "" class="time">'
+							+'	<input type="button" style = "-webkit-appearance:none;margin-left:71vw;" value="售后"/>'
+							+'</li>'
+							+'</ul>'
+							+'</div>'
+					);
+				}else{
+					$("#events-list").append( 
+							'<div class="unpaid">'
+							+'<ul>'
+							+'<li><h1>订单号码：'+data.data.listOrder[i].id+'</h1><h2 style = "color:#f76a65;">'+changeByNumber(data.data.listOrder[i].orderStatus,"orderStatus")+'</h2></li>'
+							+'<li onclick = "goDetail('+i+')">' 
+							+'	<div class="img_show">'
+							+'		<img class = "imgHeightWidth" src="'+data.data.listOrder[i].productPicture+'">'
+							+'	</div>'
+							+'	<div class="detail">'
+							+'		<h3>'
+							+'			《'+data.data.listOrder[i].productName+'》<br>'
+							+'			'+data.data.listOrder[i].productAuthor+' <br>' 
+							+'			尺寸: '+changeByNumber(data.data.listOrder[i].productSize,"productSize")+'&nbsp;类型:'+changeByNumber(data.data.listOrder[i].productType,"productType")+'&nbsp;状态:'+changeByNumber(data.data.listOrder[i].productMountedStatus,"productMountedStatus")+''
+							+'		</h3>'
+							+'		<h4 style = "color:#f76a65;">¥'+data.data.listOrder[i].actualPayment+'</h4>'
+							+'		<h4 style = "float:right;color:#666666;font-weight:normal;">'+term+'</h4>		'
+							+'	</div>'
+							+'</li>'
+							+'<li style = "" class="time">'
+							+'	<input type="button" style = "-webkit-appearance:none;margin-left:50vw;'+noShow+'" onclick = "cancel('+i+')" value="取消订单"/>'
+							+'	<input type="button" style = "-webkit-appearance:none;border:1px solid #f76a65;color:#f76a65;'+noShow+'" onclick = "payMoney('+i+')" value="付款"/>'
+							+'</li>'
+							+'</ul>'
+							+'</div>' 
+					);
+				}
+					}else if(type == "待付款"){
+						$("#events-list").append(
+								'<div class="unpaid">' 
+								+'<ul>'
+								+'<li><h1>订单号码：'+data.data.listOrder[i].id+'</h1><h2>待付款</h2></li>'
+								+'<li onclick = "goDetail('+i+')">'
+								+'	<div class="img_show">'
+								+'		<img class = "imgHeightWidth" src="'+data.data.listOrder[i].productPicture+'">'
+								+'	</div>'
+								+'	<div class="detail">'
+								+'		<h3>'
+								+'			《'+data.data.listOrder[i].productName+'》<br>'
+								+'			'+data.data.listOrder[i].productAuthor+' <br>'
+								+'			尺寸: '+changeByNumber(data.data.listOrder[i].productSize,"productSize")+'&nbsp;类型:'+changeByNumber(data.data.listOrder[i].productType,"productType")+'&nbsp;状态:'+changeByNumber(data.data.listOrder[i].productMountedStatus,"productMountedStatus")+''
+								+'		</h3>'
+								+'		<h4>¥'+data.data.listOrder[i].actualPayment+'</h4>'
+								+'		<h4 style = "float:right;font-weight:normal;color:#666666;">'+term+'</h4>		'
+								+'	</div>'
+								+'</li>'
+								+'<li style = "" class="time">'
+								+'	<input type="button" style = "-webkit-appearance:none;margin-left:50vw;" onclick = "cancel('+i+')" value="取消订单"/>'
+								+'	<input type="button" style = "-webkit-appearance:none;border:1px solid #f76a65;color:#f76a65;" onclick = "payMoney('+i+')" value="付款"/>'
+								+'</li>'
+								+'</ul>'
+								+'</div>'
+						);
+					}else if(type == "发货中"){
+						$("#events-list").append(
+								'<div class="unpaid">'
+								+'<ul>'
+								+'<li><h1>订单号码：'+data.data.listOrder[i].id+'</h1><h2>'+changeByNumber(data.data.listOrder[i].orderStatus,"orderStatus")+'</h2></li>'
+								+'<li onclick = "goDetail('+i+')">'
+								+'	<div class="img_show">'
+								+'		<img class = "imgHeightWidth" src="'+data.data.listOrder[i].productPicture+'">'
+								+'	</div>'
+								+'	<div class="detail">'
+								+'		<h3>'
+								+'			《'+data.data.listOrder[i].productName+'》<br>'
+								+'			'+data.data.listOrder[i].productAuthor+' <br>'
+								+'			尺寸: '+changeByNumber(data.data.listOrder[i].productSize,"productSize")+'&nbsp;类型:'+changeByNumber(data.data.listOrder[i].productType,"productType")+'&nbsp;状态:'+changeByNumber(data.data.listOrder[i].productMountedStatus,"productMountedStatus")+''
+								+'		</h3>'
+								+'		<h4>¥'+data.data.listOrder[i].actualPayment+'</h4>'
+								+'		<h4 style = "float:right;font-weight:normal;color:#666666;">'+term+'</h4>		'
+								+'	</div>'
+								+'</li>'
+								+'<li style = "" class="time">'
+								+'	<input type="button" style = "-webkit-appearance:none;margin-left:70vw;" onclick = "receipt('+i+')" value="确认收货"/>'
+								+'</li>'
+								+'</ul>'
+								+'</div>'
+						);
+					}else if(type == "租借中"){ 
+						$("#events-list").append(
+								'<div class="unpaid">'
+								+'<ul>'
+								+'<li><h1>订单号码：'+data.data.listOrder[i].id+'</h1><h2>已逾期70天</h2></li>'
+								+'<li>'
+								+'	<div class="img_show">'
+								+'		<img class = "imgHeightWidth" src="'+data.data.listOrder[i].productPicture+'">'
+								+'	</div>'
+								+'	<div class="detail">'
+								+'		<h3>'
+								+'			《'+data.data.listOrder[i].productName+'》<br>'
+								+'			'+data.data.listOrder[i].productAuthor+' <br>'
+								+'			尺寸: '+changeByNumber(data.data.listOrder[i].productSize,"productSize")+'&nbsp;类型:'+changeByNumber(data.data.listOrder[i].productType,"productType")+'&nbsp;状态:'+changeByNumber(data.data.listOrder[i].productMountedStatus,"productMountedStatus")+''
+								+'			2017.4.12-2018.4.12'
+								+'		</h3>'
+								+'		<h4>¥'+data.data.listOrder[i].actualPayment+'</h4>'
+								+'		<h4 style = "float:right;font-weight:normal;color:#666666;">'+term+'</h4>		'
+								+'	</div>'
+								+'</li>'
+								+'<li style = "" class="time">'
+								+'	<input type="button" style = "-webkit-appearance:none;" value="售后"/>'
+								+'	<input type="button" style = "-webkit-appearance:none;" value="还画"/>' 
+								+'	<input type="button" style = "-webkit-appearance:none;" value="续租"/>'
+								+'	<input type="button" style = "-webkit-appearance:none;border:1px solid #f76a65;color:#f76a65;" value="结单"/>'
+								+'</li>'
+								+'</ul>'
+								+'</div>'
+						);
+					}else if(type == "交易完成"){
+						$("#events-list").append(
+								'<div class="unpaid">'
+								+'<ul>'
+								+'<li><h1>订单号码：'+data.data.listOrder[i].id+'</h1><h2>已完成</h2></li>'
+								+'<li>'
+								+'	<div class="img_show">'
+								+'		<img class = "imgHeightWidth" src="'+data.data.listOrder[i].productPicture+'">'
+								+'	</div>'
+								+'	<div class="detail">'
+								+'		<h3>'
+								+'			《'+data.data.listOrder[i].productName+'》<br>'
+								+'			'+data.data.listOrder[i].productAuthor+' <br>'
+								+'			尺寸: '+changeByNumber(data.data.listOrder[i].productSize,"productSize")+'&nbsp;类型:'+changeByNumber(data.data.listOrder[i].productType,"productType")+'&nbsp;状态:'+changeByNumber(data.data.listOrder[i].productMountedStatus,"productMountedStatus")+''
+								+'		</h3>'
+								+'		<h4>¥'+data.data.listOrder[i].actualPayment+'</h4>'
+								+'		<h4 style = "float:right;font-weight:normal;color:#666666;">'+term+'</h4>		'
+								+'	</div>'
+								+'</li>'
+								+'<li style = "" class="time">'
+								+'	<input type="button" style = "-webkit-appearance:none;margin-left:70vw;" value="售后"/>'
+								+'</li>'
+								+'</ul>'
+								+'</div>'
+						);
+				} 
+		}
+		}
+	},
+	error:function(data){
+		console.log('shibai');
+	}
+})
+}
+$(function(){
+	var paySuccess = sessionStorage.getItem("paySuccess");
+	if(paySuccess == "yes"){
+		sessionStorage.setItem("paySuccess","");
+		$("#AllSmallMessage")[0].innerHTML = "支付成功";
+		var i = 2;
+		var time900 = window.setInterval(function(){
+			i--;
+			document.getElementById("prompt").style.display = "block";
+			if(i == 0){
+				document.getElementById("prompt").style.display = "none";
+				window.clearInterval(time900); 
+				falseData();
+			}
+		},1000); 
+	}
+	falseData("全部");
+}) 
+function getMyDate(str){  
+    var oDate = new Date(str),  
+    oYear = oDate.getFullYear(),  
+    oMonth = oDate.getMonth()+1,  
+    oDay = oDate.getDate(),  
+    oHour = oDate.getHours(),  
+    oMin = oDate.getMinutes(),  
+    oSen = oDate.getSeconds(),  
+    oTime = oYear +'年'+ getzf(oMonth) +'月';//最后拼接时间  
+    return oTime;  
+};
+function getzf(num){  
+    if(parseInt(num) < 10){  
+        num = '0'+num;  
+    }  
+    return num;  
+}
+function changeByNumber(index,type){
+	if(type == "productMountedStatus"){
+		switch (parseInt(index)) {
+		case 0:
+			return "轴";
+		case 1:
+			return "芯";
+		case 2:
+			return "框";
+		default:
+			break;
+		}		
+	}
+	if(type == "productSize"){
+		switch (parseInt(index)) {
+		case 0:
+			return "四尺";
+		case 1:
+			return "六尺";
+		case 2:
+			return "八尺";
+		case 3:
+			return "四轴屏";
+		case 4:
+			return "斗方";
+		default:
+			break; 
+		}
+	}
+	if(type == "productType"){
+		switch (parseInt(index)) {
+		case 0:
+			return "国画";
+		case 1:
+			return "书法";
+		default:
+			break;
+		}
+	}
+	if(type == "productStyle"){
+		switch (parseInt(index)) {
+		case 0:
+			return "山水";
+		case 1:
+			return "花鸟";
+		case 2:
+			return "走兽";
+		case 3:
+			return "人物";
+		case 4:
+			return "国画其他";
+		case 5:
+			return "四字榜书";
+		case 6:
+			return "诗词";
+		case 7:
+			return "其他书法";
+		default:
+			break;
+		}
+	}
+	if(type == "orderStatus"){
+		switch (parseInt(index)) {
+		case 0:
+			return "待付款";
+		case 1:
+			return "未发货";
+		case 2:
+			return "已发货";
+		case 3:
+			return "租赁中";
+		case 4:
+			return "还画中";
+		case 5:
+			return "交易完成";
+		case 6:
+			return "取消订单";
+		case 7:
+			return "已删除";
+		default:
+			break;
+		}
+	}
+}
+function goDetail(id){
+	sessionStorage.setItem("orderId",arr[id]);
+	window.open('/web/client/index/waitBuy.html','_self');
+}
+function cancel(i){
+	sessionStorage.setItem("productIdCancel",arrProductId[i]);
+	sessionStorage.setItem("orderIdCancel",arr[i]);
+	$("#AllMessage")[0].innerHTML = "确认取消该订单";
+	document.getElementById("message").style.display = "block";
+	$(document.body).css({
+		   "overflow-x":"hidden",
+		   "overflow-y":"hidden"
+		 });
+}
+function changeTrue(){
+	if($("#AllMessage")[0].innerHTML == "是否确定收货"){
+		var orderId = sessionStorage.getItem("orderIdCancel");
+		var productId = sessionStorage.getItem("productIdCancel");
+		$.ajax({
+			type:'POST',
+			url:"/web/api/order/receiveByOrderId",
+			dataType:'json',
+			data:{"jsonStr":"{'orderId':"+orderId+"}"},
+			success:function(data){
+				console.log(data);
+				if(data.state == 0){
+				document.getElementById("message").style.display = "none";
+				var i = 2;
+				var time900 = window.setInterval(function(){
+					$("#AllSmallMessage")[0].innerHTML = "确认收货成功";
+					i--;
+					document.getElementById("prompt").style.display = "block";
+					if(i == 0){
+						document.getElementById("prompt").style.display = "none";
+						window.clearInterval(time900); 
+						falseData();
+					}
+				},1000); 
+				}
+			}
+			}) 
+	}else if($("#AllMessage")[0].innerHTML == "确认取消该订单"){
+		var orderId = sessionStorage.getItem("orderIdCancel");
+		var productId = sessionStorage.getItem("productIdCancel");
+		$.ajax({
+			type:'POST',
+			url:"/web/api/order/cancel",
+			dataType:'json',
+			data:{"jsonStr":"{'orderId':"+orderId+",'productId':"+productId+"}"},
+			success:function(data){
+				console.log(data);
+				if(data.state == 0){
+				document.getElementById("message").style.display = "none";
+				var i = 2;
+				var time900 = window.setInterval(function(){
+					$("#AllSmallMessage")[0].innerHTML = "取消成功";
+					i--;
+					document.getElementById("prompt").style.display = "block";
+					if(i == 0){
+						document.getElementById("prompt").style.display = "none";
+						window.clearInterval(time900); 
+						falseData();
+					}
+				},1000); 
+				}
+			}
+			}) 
+	}
+	 $(document.body).css({
+		   "overflow-x":"auto",
+		   "overflow-y":"auto"
+		 });
+}
+function changeFalse(){
+	document.getElementById("message").style.display = "none";
+	 $(document.body).css({
+		   "overflow-x":"auto",
+		   "overflow-y":"auto"
+		 });
+}
+function payMoney(i){ 
+	sessionStorage.setItem("orderId",arr[i]);
+	window.open('/web/client/index/pay.html','_self');
+}
+function receipt(i){
+	sessionStorage.setItem("productIdCancel",arrProductId[i]);
+	sessionStorage.setItem("orderIdCancel",arr[i]);
+	document.getElementById("message").style.display = "block";
+	$("#AllMessage")[0].innerHTML = "是否确定收货";
+}
+function afterSale(){
+	document.getElementById("messages").style.display = "block";
+	
+}
+</script>
+</body>
+</html>

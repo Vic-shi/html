@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="/web/lib/qrcode/jquery.min.js"></script> 
+<script type="text/javascript" src="/web/lib/qrcode/qrcode.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	<div onclick = "printss()" id = "code" style = "margin:100px 0 0 40px;"></div>
+<script>   
+$(function(){
+	var qrcode = new QRCode('code', { 
+		  text: 'your content', 
+		  width: 100, 
+		  height: 100, 
+		  colorDark : '#000000', 
+		  colorLight : '#ffffff', 
+		  correctLevel : QRCode.CorrectLevel.H 
+		});
+	qrcode.makeCode('http://pysmyy.com/web/client/order/showDetail?productId=6356789178587495427');
+});  
+function printss(){
+	window.print();		
+}
+</script>	
+</body>
+</html>

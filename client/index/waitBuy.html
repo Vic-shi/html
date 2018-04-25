@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>待付款-购</title>
+<style type="text/css">
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+body{
+	background-color: #f1f1f1;
+	width: 100%;
+}
+
+.head{padding: 0 5%;background-color: white;border-bottom: 1px solid #f1f1f1;list-style-type: none;}
+.head ul{
+	display: flex;
+	justify-content:space-around;
+}
+.head ul li{
+	padding: 0 2vw;
+	font-size:12px;
+	line-height: 2.8;
+	color: #666;
+	transition: border-bottom-color .2s;
+	list-style-type: none;
+}
+.head ul .nav_bottom{
+	color:#fea427;
+	border-bottom: 1px solid #fea427;
+	/*transition: all .2s;*/
+}
+/*正文订单样式设置*/
+/*整体样式*/
+.article >div{
+	//margin-bottom: 3vw;
+	background-color: white;
+}
+.article >div li{
+	padding:0 5%;
+	display: flex;
+	align-items: center;
+	justify-content:space-between;
+}
+.article >div li:nth-child(2){
+	border-bottom: 1px solid #f1f1f1;
+	padding-bottom: 3vw;
+} 
+/*作者 付款状态*/
+.article >div li h1{
+	font-size: 12px;
+	background: url(../../../image/client/payment/in.png) no-repeat right;
+	background-size: 2vw;
+	padding-right: 8vw;
+	line-height:3.5; 
+}
+.article >div li h2{
+	font-size: 12px;
+	color:#f76a65;
+	line-height:3.5;
+}
+/*作品 订单信息*/ 
+.article >div li .img_show{
+	width:28vw;
+	height:28vw;
+	border-radius:1vw ;
+	overflow: hidden;
+	text-align: center;
+}
+/*图片的高度还需修改*/
+.article >div li .img_show img{
+	height:28vw;
+	width:28vw;
+	border-radius: 10px;
+}
+.article >div li .detail{
+	width: 55vw;
+	height: 28vw;
+}
+.article >div li .detail h3{
+	display: block;
+	height:18vw;
+	width:55vw;
+	font-size: 12px;
+	overflow: hidden;
+	color: #999;
+	line-height:1.4;
+}
+.article >div li .detail h4{
+	height:10vw;
+	line-height: 0.6;
+	font-size: 12px;
+	color:#fea427;
+	float:left;
+	width:20vw;
+	margin-top:10vw;
+}
+/*日期 订单操作*/
+.time h5{
+	width: 50vw;
+	line-height: 10vw;
+	color: #999;
+}
+.time{
+height:10vw;
+}
+.time input[type="button"]{
+	border: 1px solid #999;
+	border-radius: 2px;
+	color: #999;
+	font-size: 12px;
+	padding: 4px 8px;
+	line-height:1;
+	height:8vw;
+	width:19vw;
+}
+.time input[type="submit"]{
+	border: 1px solid #fea427;
+	border-radius: 2px;
+	color: #fea427;
+	font-size: 12px;
+	padding: 4px 8px;
+	line-height:1;
+}
+/*已逾期设置*/
+.accomplish .detail{
+	position: relative;
+}
+.accomplish .detail h6{
+	position:absolute;
+	right: 0;
+	bottom: 0;
+	color: red;
+	line-height: 0.6;
+	font-size: 12px;
+}
+.gearArea { 
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding: 0px;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 998;
+}
+</style>
+</head>
+<body style = "background-color: white;">
+<div> 
+<div style = "background-color: white;">
+	<span id = "userName" style = "display:block;margin:3vw 0 5vw 5vw">李察&nbsp;15365893339</span>
+	<span id = "address" style = "display:block;margin:0 0 5vw 5vw">浙江省宁波市鄞州区双东路永红家园10幢502室</span>
+	<span id = "messages" style = "margin:3vw 0 5vw 5vw;color:#f76a65;"></span>
+</div>
+<div class= "article" style = "border-top: 1px solid #f1f1f1;">
+				<div class="unpaid">
+				<ul>
+				<li><h1 id= "orderId">订单号码：123456789123456790</h1><h2 id = "orderStatus">待付款</h2></li>
+				<li>
+					<div class="img_show">
+						<img onclick = "turnToPro()" id = "prodcutImg" src="/web/commons/image/client/index/circular.jpg">
+					</div>
+					<div class="detail">
+						<h3 id = "product"> 
+						《扎木便桥》<br>
+							张道 <br>
+							尺寸: 四尺&nbsp;;类型:山水&nbsp;状态:轴		
+						</h3>
+					</div> 
+				</li> 
+				</ul>
+	</div>
+	<div style= "border-bottom: 1px solid #f1f1f1;margin-top:2vw;color:#666666;font-size: 12px;">
+		<div style = "width:90vw;height:6vw;margin-left:5vw;">
+			<span style = "display:block;float:left;">市场价</span>
+			<span id = "productMarketValue" style = "display:block;float:right;text-decoration:line-through;font-size: 14px;">￥350000</span>
+		</div>
+		<div style = "width:90vw;height:6vw;margin-left:5vw;">
+			<span style = "display:block;float:left;">装裱费</span>
+			<span id = "productMountedValue" style = "display:block;float:right;font-size: 14px;">￥300</span>
+		</div> 
+		<div style = "width:90vw;height:6vw;margin-left:5vw;">
+			<span style = "display:block;float:left;">润笔费</span>
+			<span id = "overOrderCost" style = "display:block;float:right;font-size: 14px;">￥200</span> 
+		</div> 
+		<div style = "width:90vw;height:6vw;margin-left:5vw;">
+			<span style = "display:block;float:left;">租金</span>
+			<span id = "overOrderCost" style = "display:block;float:right;font-size: 14px;">￥200</span> 
+		</div> 
+		<div style = "width:90vw;height:6vw;margin-left:5vw;">
+			<span style = "display:block;float:left;">保证金</span>
+			<span id = "overOrderCost" style = "display:block;float:right;font-size: 14px;">￥200</span> 
+		</div> 
+		<div style = "width:90vw;height:6vw;margin-left:5vw;">
+			<span style = "display:block;float:left;color:#333333;font-size: 14px;font-weight: bold;">共享价格&nbsp;(购)</span>
+			<span id = "actualPayment" style = "display:block;float:right;color:red;font-size: 15px;">￥1000</span> 
+		</div>
+	</div>  
+	<div  id = "ifCanel" style= "border-top:1px solid #f1f1f1;height:12vw;width:100vw;position: fixed;bottom:0;height:12vw">
+	<div style = "position: fixed;bottom:0;right:5vw;height:12vw">		
+		<input type="button" style = "margin-top:2vw;background-color: #ffffff;height:8vw;width:20vw;text-align: center;border:1px solid #999999;font-size:14px;margin-right:2vw;border-radius: 2.5px;" onclick = "cancel()" value="取消订单"/>
+		<input type="button" style = "margin-top:2vw;background-color: #ffffff;height:8vw;width:20vw;text-align: center;border:1px solid #f76a65;font-size:14px;color:#f76a65;border-radius: 2.5px;" onclick = "payMoney()" value="付款"/>
+	</div>
+	</div>	
+	<div id = "getStore" style= "border-top:1px solid #f1f1f1;height:12vw;width:100vw;position: fixed;bottom:0;height:12vw;display: none;">
+		<input type="button" style = "margin-top:2vw;background-color: #ffffff;height:8vw;width:20vw;text-align: center;border:1px solid #999999;font-size:14px;margin-right:2vw;float: right;" onclick = "cancel()" value="确认收货"/>
+	</div> 
+</div>
+<div id = "message" class = "gearArea" style = "display: none;">
+	<div style = "width: 72vw;height:28vw;background-color: #ffffff;position: fixed;top:60vw;left:14vw;border-radius: 12px;">
+		<div style = "text-align: center;border-bottom: 1px solid #e4e4e4;height:11vw;">
+			<span id = "AllMessage" style = "display: block;margin-top:5vw;font-size: 15px;font-weight: bold;">确认取消该订单</span>
+		</div>
+		<div style = "width:36vw;float:left;font-size: 17px;height:12vw;border-right:1px solid #e4e4e4;text-align: center;">
+			<span style = "display: block;margin-top:2vw;" onclick = "changeTrue()">确定</span>
+		</div>
+		<div style = "width:35vw;float:left;font-size: 17px;height:12vw;text-align: center;">
+			<span style = "display: block;margin-top:2vw;" onclick = "changeFalse()">取消</span>
+		</div> 
+	</div>
+</div>
+	
+	<div id = "prompt" style = "width: 50vw;height:8vw;background-color: #000000;position: fixed;top:60vw;left:25vw;border-radius: 10px;text-align: center;opacity:0.5;display: none;"> 
+		<span id = "AllSmallMessage" style = "font-size: 15px;color:#ffffff;display: block;margin-top:1vw;">取消成功</span>
+	</div>
+</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script>
+var orderId=sessionStorage.getItem("orderId");
+var ary = new Array();
+var productId;
+$(function(){
+	$.ajax({
+		type:'POST', 
+		url:"/web/api/order/listDetail",
+		dataType:'json',
+		data:{"jsonStr":"{'orderId':"+orderId+"}"},
+		success:function(data){
+			ary = data.data;
+			productId = data.data.pid;
+			data.data.productMarketValue = data.data.productMarketValue/100;
+			data.data.productMountedValue = data.data.productMountedValue/100;
+			data.data.overOrderCost = data.data.overOrderCost/100;
+			data.data.actualPayment = data.data.actualPayment/100;
+			$("#prodcutImg")[0].src = data.data.productPicture;
+			$("#orderId")[0].innerHTML = "订单号码:"+ data.data.id;
+			if(data.data.term > 0){
+				var term = "";
+				if(data.data.term == 6){
+					term = "半年";
+				}else if(data.data.term == 12){
+					term = "一年";
+				}
+				$("#product")[0].innerHTML = "《"+ data.data.productName +"》<br>"
+				+data.data.productAuthor +"<br>尺寸 :&nbsp;"
+				+changeByNumber(data.data.productSize,"productSize")+"&nbsp;类型:&nbsp;"
+				+changeByNumber(data.data.productStyle,"productStyle")+"&nbsp;状态:&nbsp;"+changeByNumber(data.data.productMountedStatus,"productMountedStatus")
+				+"<br>租期:&nbsp;"+term;
+			}else{
+				$("#product")[0].innerHTML = "《"+ data.data.productName +"》<br>"
+				+data.data.productAuthor +"<br>尺寸 :&nbsp;"
+				+changeByNumber(data.data.productSize,"productSize")+"&nbsp;类型:&nbsp;"
+				+changeByNumber(data.data.productStyle,"productStyle")+"&nbsp;状态:&nbsp;"+changeByNumber(data.data.productMountedStatus,"productMountedStatus");
+			}
+
+			
+			
+			$("#productMarketValue")[0].innerHTML = "￥" + data.data.productMarketValue;
+			$("#productMountedValue")[0].innerHTML = "￥" + data.data.productMountedValue;
+			$("#overOrderCost")[0].innerHTML = "￥" + data.data.overOrderCost;
+			$("#actualPayment")[0].innerHTML = "￥" + data.data.actualPayment;
+			$("#orderStatus")[0].innerHTML = changeByNumber(data.data.orderStatus,"orderStatus");
+			if(data.data.userName == null || data.data.userName == ""){
+				$("#userName")[0].innerHTML = "";
+				$("#address")[0].innerHTML =  "";
+				$("#messages")[0].innerHTML = "线下交易,无收获信息";
+			}
+			if(data.data.orderStatus == 6){
+				document.getElementById("ifCanel").style.display = "none";
+			}
+			if(data.data.orderStatus == 5){
+				document.getElementById("ifCanel").style.display = "none";
+			}
+			if(data.data.orderStatus == 1){
+				document.getElementById("ifCanel").style.display = "none";
+				document.getElementById("getStore").style.display = "block";
+			}
+			if(data.data.orderStatus == 2){
+				document.getElementById("ifCanel").style.display = "none";
+				document.getElementById("getStore").style.display = "block";
+			}
+			
+		}, 
+		error:function(data){
+			console.log('shibai');
+		}
+	})
+});
+function payMoney(){
+	window.open('/web/client/index/pay.html','_self');
+}
+function cancel(i){
+	if(ary.orderStatus == 1||ary.orderStatus == 2){
+		$("#AllMessage")[0].innerHTML = "是否确定收货";
+	}
+	document.getElementById("message").style.display = "block";
+}
+function changeTrue(){
+	if($("#AllMessage")[0].innerHTML == "是否确定收货"){
+		var orderId = sessionStorage.getItem("orderIdCancel");
+		var productId = sessionStorage.getItem("productIdCancel");
+		$.ajax({
+			type:'POST',
+			url:"/web/api/order/receiveByOrderId",
+			dataType:'json',
+			data:{"jsonStr":"{'orderId':"+orderId+"}"},
+			success:function(data){
+				console.log(data);
+				if(data.state == 0){
+				document.getElementById("message").style.display = "none";
+				var i = 2;
+				var time900 = window.setInterval(function(){
+					$("#AllSmallMessage")[0].innerHTML = "确认收货成功";
+					i--;
+					document.getElementById("prompt").style.display = "block";
+					if(i == 0){
+						document.getElementById("prompt").style.display = "none";
+						window.clearInterval(time900); 
+						falseData();
+					}
+				},1000); 
+				}
+			}
+			}) 
+	}else if($("#AllMessage")[0].innerHTML == "确认取消该订单"){
+		var orderId = sessionStorage.getItem("orderIdCancel");
+		var productId = sessionStorage.getItem("productIdCancel");
+		$.ajax({
+			type:'POST',
+			url:"/web/api/order/cancel",
+			dataType:'json',
+			data:{"jsonStr":"{'orderId':"+orderId+",'productId':"+productId+"}"},
+			success:function(data){
+				console.log(data);
+				if(data.state == 0){
+				document.getElementById("message").style.display = "none";
+				var i = 2;
+				var time900 = window.setInterval(function(){
+					$("#AllSmallMessage")[0].innerHTML = "取消成功";
+					i--;
+					document.getElementById("prompt").style.display = "block";
+					if(i == 0){
+						document.getElementById("prompt").style.display = "none";
+						window.clearInterval(time900); 
+						falseData();
+					}
+				},1000); 
+				}
+			}
+			}) 
+	}
+}
+function changeFalse(){
+	document.getElementById("message").style.display = "none";
+}
+function turnToPro(data){
+	sessionStorage.setItem("productId",productId);
+	window.open('/web/client/index/share.html','_self');
+}
+function changeByNumber(index,type){
+	if(type == "productMountedStatus"){
+		switch (parseInt(index)) {
+		case 0:
+			return "轴";
+		case 1:
+			return "芯";
+		case 2:
+			return "框";
+		default:
+			break;
+		}		
+	}
+	if(type == "productSize"){
+		switch (parseInt(index)) {
+		case 0:
+			return "四尺";
+		case 1:
+			return "六尺";
+		case 2:
+			return "八尺";
+		case 3:
+			return "四轴屏";
+		case 4:
+			return "斗方";
+		default:
+			break; 
+		}
+	}
+	if(type == "productType"){
+		switch (parseInt(index)) {
+		case 0:
+			return "国画";
+		case 1:
+			return "书法";
+		default:
+			break;
+		}
+	}
+	if(type == "productStyle"){
+		switch (parseInt(index)) {
+		case 0:
+			return "山水";
+		case 1:
+			return "花鸟";
+		case 2:
+			return "走兽";
+		case 3:
+			return "人物";
+		case 4:
+			return "国画其他";
+		case 5:
+			return "四字榜书";
+		case 6:
+			return "诗词";
+		case 7:
+			return "其他书法";
+		default:
+			break;
+		}
+	}
+	if(type == "orderStatus"){
+		switch (parseInt(index)) {
+		case 0:
+			return "待付款";
+		case 1:
+			return "未发货";
+		case 2:
+			return "已发货";
+		case 3:
+			return "租赁中";
+		case 4:
+			return "还画中";
+		case 5:
+			return "交易完成";
+		case 6:
+			return "取消订单";
+		case 7:
+			return "已删除";
+		default:
+			break;
+		}
+	}
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+.setup_edit{
+	width:651px;
+	margin: 53px auto;
+}
+.setup_edit span{
+	font-size:20px;
+	color:333;
+}
+.arrangement{
+	display: flex;
+	flex-direction:row;
+	height:100%;
+}
+.rt_wrap{
+	height:903px;
+	width:100%;
+	min-width:800px;
+	margin-right: 20px;
+}
+.determine_btn{
+	width:651px;
+	height:48px;
+	background-color: #4ec3fb;
+	color:#fff;
+	cursor: pointer;
+}

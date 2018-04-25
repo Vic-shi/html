@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>首页</title>
+<style type="text/css">
+	.my-header{
+		width:100%;
+		height:7vw; 
+		//background-color: #fff;
+		padding:2.9vw 0 6.1vw 0;
+		//border-bottom:0.3vw solid #999999;
+		position: fixed;
+		z-index:999;
+	}
+		.informationAndActivity{
+		width:100%;
+		height:37vw; 
+		background-color: #fff;
+		padding:2.9vw 0 0 0;
+		//border-bottom:0.3vw solid #999999;
+	}
+	.container{
+  		margin: 0 auto;
+  		width:100%;
+  		max-width: 640px;
+	}
+		.search-input-box{
+		height:28px;
+		width:83vw;
+		border-radius:2vw;
+		border:none;
+		outline:none;
+		color:#999; 
+		margin-left:3vw;
+		background-image:url('/web/commons/image/client/index/index_search.png');
+		background-repeat:no-repeat;
+		background-position-x: 22vw;
+    	background-position-y: 2.5vw;
+	}
+	.search{
+		float:left;
+		display: flex;
+		flex-direction:row;
+		//border: 0.3vw solid #999;
+		border-radius: 3vw;
+		height:30px;
+		width:83vw;
+		margin-left:8vw;
+		opacity:0.5;
+	}
+	.swiper-wrapper{position:relative;width:100%;height:100%;z-index:1;display:-webkit-box;
+display:-moz-box;display:-ms-flexbox;display:-webkit-flex;display:flex;
+-webkit-transition-property:-webkit-transform;-moz-transition-property:-moz-transform;
+-o-transition-property:-o-transform;-ms-transition-property:-ms-transform;
+transition-property:transform;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;
+box-sizing:content-box}
+
+	.swiper-container{margin-left:auto;margin-right:auto;position:relative;overflow:hidden;z-index:1}
+	.informationAndActivity{margin-left:auto;margin-right:auto;position:relative;overflow:hidden;z-index:1}
+	.placehoders::-ms-input-placeholder{text-align: center;font-size: 12px;color: #929395;} 
+	.placehoders::-webkit-input-placeholder{text-align: center;font-size: 12px;color: #929395;} 
+	.information{ 
+  	  	height:18vw; 
+  		width:35vw;
+  		display: block; 
+  	}
+  	.list{
+		background-color:#fff;
+	}
+/* 	.li{
+    	<a href="https://www.baidu.com/s?wd=list-style&tn=44039180_cpr&fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1YduyfdPHKhnWRvrHfLPHc10ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EPWDdrjb3rHcznW6vP10zPHTz" target="_blank" class="baidu-highlight">list-style</a>-type:square;
+    	color:#fea427; 
+    	margin-left:6.7vw;
+    	list-style: disc;
+    } */
+  	.art,.recommend{
+  		font-size:15px;
+  	}
+  	.classify{
+    	color:#000;
+    	font-size:15px;
+    	display:flex;
+    	flex-direction:row;
+    }
+    .classify li:nth-child(1){
+    	line-height: 10vw;
+    }
+   	.landscape,.poetry{
+  		padding-left:5vw;
+  		display: block;
+  	}
+  	.site-demo-button{
+  		margin-bottom: 0;
+  	}
+  	.flowers_birds,.character,.beast,.other,.book_list{
+  		padding-left:2vw;
+  	}
+  	.layui-btn:hover{
+  		color:#999;
+  	}
+  	 .layui-btn,.layui-inline,img{vertical-align:middle}
+ 	.layui-btn,.layui-disabled,.layui-icon,.layui-unselect{-webkit-user-select:none;-ms-user-select:none;-moz-user-select:none}
+  	 .layui-btn{display:inline-block;height:38px;line-height:38px;padding:0 18px;background-color:#009688;color:#fff;white-space:nowrap;text-align:center;font-size:14px;border:none;border-radius:2px;cursor:pointer;opacity:.9;filter:alpha(opacity=90)}
+  	  	.layui-btn{
+  		padding:0px 2.7vw;
+  		color:#999;
+  		background-color: #fff;
+  		font-size:15px;
+  		line-height: 5vw;
+  	}
+  	.layui-btn{
+  		padding:0;
+  	}
+  	.am-cf:after,.am-cf:before{content:" ";display:table;}.am-cf:after{clear:both}
+  	.am-cf{
+		//background-color: #f9f8f8;
+	}
+  	.discNone{
+  		list-style-type: none;
+  	}
+  	.am-gallery{padding:5px 5px 0;list-style:none}
+  	.am-avg-sm-2>li{width:50%;float:left;}
+	.am-avg-sm-2>li:nth-of-type(n){clear:none}
+	.am-avg-sm-2>li:nth-of-type(2n+1){clear:both}
+	  	.view{
+  		padding-left:55vw;
+  		color:#999;
+  	}
+  	.am-gallery-overlay>li{padding:5px}
+  	.am-gallery h3{margin:0}[data-am-gallery*=pureview] img{cursor:pointer}
+  	.am-panel{margin-bottom:1.6vw;background-color:#fff;border:1px solid transparent;-webkit-box-shadow:0 1px 1px rgba(0,0,0,.05);box-shadow:0 1px 1px rgba(0,0,0,.05)}
+	.am-panel-default{border-color:#ddd}
+.am-panel-default>.am-panel-hd{color:#444;background-color:#f5f5f5;border-color:#ddd}
+.am-panel-default>.am-panel-hd+.am-panel-collapse>.am-panel-bd{border-top-color:#ddd}
+.am-panel-default>.am-panel-footer+.am-panel-collapse>.am-panel-bd{border-bottom-color:#ddd}
+.am-img-responsive{max-width:100%;height:auto}
+.am-g{margin:0 auto;width:100%}
+.am-g{
+/* margin-left:-1rem;
+margin-right:-1rem; */
+width:auto}
+.am-g .am-g.am-g-collapse{margin-left:0;margin-right:0;width:auto}
+.am-g.am-g-collapse .am-g{margin-left:0;margin-right:0} 
+body .menu{
+	width: 100%;
+	background-color:#f8f8f8;
+	//border-top: #cacaca 1px solid!important;
+	display: flex;
+	align-items: center;
+	justify-content:space-around;
+	position: fixed;
+	bottom: 0;
+	z-index:999;
+}
+body .menu a{
+	width:8%!important;
+	display: block;
+	text-align: center;
+	font-size: 10px!important;
+	line-height: 2;
+	margin-top: 2vw;
+	color: #999;
+	text-decoration:none;
+}
+body .menu a img{
+	width:90%;
+	display: block!important;
+	text-align: center;
+}
+[class*=am-avg-] {
+    display: block;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+    	.swiper-pagination{position:absolute;text-align:center;-webkit-transition:.3s;-moz-transition:.3s;-o-transition:.3s;transition:.3s;-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0);z-index:10}
+.swiper-pagination-bullet{width:8px;height:8px;margin-left:1.33vw;display:inline-block;border-radius:100%;background:#ffffff;}
+.swiper-pagination-bullet-active{background:#000000;width:4vw;border-radius:5px;}
+    	 .swiper-wrapper,.swiper-slide{
+    		width:100%; 
+    	}
+    	.swiper-slide{
+    		width:44.5vw;
+    	}
+    	.swiper-wrapper,.swiper-slide>img{
+    		width:100%;
+    		z-index:-1;
+    	}
+    	.swiper-slide>div{
+    		position:absolute;
+    		z-index:2;
+    		left:0vw;
+    		top:49.33vw;
+    		font-size:15px;
+    		width: 100%;
+    		height: 6.67vw;
+    		line-height:6.67vw;
+		    color: #fff;
+		    background-color: rgba(0,0,0,0.5);
+		    text-align: center;
+    	}
+    	.swiper-wrapper{-ms-perspective:1200px}
+    	.swiper-slide-active{pointer-events:auto}
+    	.swiper-slide-active{pointer-events:auto;visibility:visible}
+    		.am-avg-sm-2 li:nth-child(even){
+	margin-left: 1.6vw;
+	}
+	.buttonStyle{
+		width:15vw;
+		height:30px;
+		display: inline-block;
+		text-align:center;
+		box-shadow: 6px 6px 6px 0px rgba(215, 215, 215, 0.58);
+		border-radius: 3px;
+		line-height: 29px;
+	}
+</style>
+</head>
+<body style = "margin: 0 auto;font-size: 14px;">
+<div class="container">
+	<div class="my-header" style="width: 100vw;"> 
+		<div class="search">
+			<input type="text" placeholder="作品名称/类别" class="search-input-box placehoders" id = "galleryMsg" onclick = "bom()" onkeypress="prosearch()">
+      	</div>
+      	<div style = "width:3vw;float:left;margin-left:1vw;display: none;">
+      		<img src="/web/commons/image/client/index/camera.png" style = "height:5.3vw;width:5.3vw;margin:1.5vw 0 0 3.5vw;">
+      	</div>    
+    </div>
+                <div id="wrapper" style="top:8vh;height:96vh;">
+		<div id="scroller">
+    <div class="swiper-container" id = "swiper-container" style="width: 100%;"><!--swiper容器[可以随意更改该容器的样式-->  
+    	<div id="banner" class="swiper-wrapper"> 
+    		<!-- <div class="swiper-slide">
+	        	<img style="width:100vw;height:56vw;">
+	        </div>  -->  
+	    </div>  
+	    <div class="swiper-pagination" style = "margin-top:-5vw;margin-left:41vw;" align="center"></div>
+	</div> 
+	<div style = "height:4vw;background-color:#f6f6f6;"></div>
+	<div class = "swiper-container" id = "informationAndActivity" style = "width:97.6vw;margin-left:2.4vw;height:50vw;">
+	<span style = "margin-left:2.6vw;float:left;font-size: 18px;color:#000000;font-weight: bold;">资讯活动</span>
+		<div id = "information-2" class = "swiper-wrapper">
+		
+		</div>
+    </div>
+    <div style = "height:4vw;background-color:#f6f6f6;"></div>
+        <div class="am-cf am-g list" style = "margin-left:4vw;height:30vw;">
+        	<div style= "font-size: 15px;margin-top:4vw;">
+        	<span onclick = "searchType(0)">国画</span>
+        	<span class = "buttonStyle" onclick = "searchStyle(0)">山水</span>
+        	<span class = "buttonStyle" onclick = "searchStyle(1)">花鸟</span>
+        	<span class = "buttonStyle" onclick = "searchStyle(3)">人物</span>
+        	<span class = "buttonStyle" onclick = "searchStyle(2)">动物</span>
+        	<span class = "buttonStyle" onclick = "searchStyle(4)">其他</span>
+        	</div>
+        	<div style= "font-size: 15px;margin-top:6vw;">
+        	<span onclick = "searchType(1)">书法</span>
+        	<span class = "buttonStyle" onclick = "searchStyle(5)" style = "width:21vw;">四字榜书</span>
+        	<span class = "buttonStyle" onclick = "searchStyle(6)">诗词</span>
+        	<span class = "buttonStyle" onclick = "searchStyle(7)">其他</span>
+        	</div>
+    	</div>
+    <div style = "height:4vw;background-color:#f6f6f6;"></div>
+    <div style = "height:40vw;">
+    	<div style = "margin-left:4vw;margin-top:2vw;height:8vw;">
+    	<span style = "font-size: 18px;color:#000000;font-weight: bold;">推荐老师</span>
+		<a style = "text-decoration:none;color:#000000" href="/web/client/index/masters.html"><span style = "float:right; margin-right:4vw;color:#999999;font-size: 15px;">所有老师</span></a>
+		</div>
+	<div class = "swiper-container" id = "showTeachers" style = "padding-left:0;height:30vw;">
+		<div id = "showTeacher" class = "swiper-wrapper">
+		
+		</div>
+    </div>
+    </div>
+    
+    <div style = "height:4vw;background-color:#f6f6f6;"></div>
+    <div class="list am-cf am-g" style = "margin-left:0;padding-bottom:10vw;">
+    	<ul style="padding:0 0 0 2vw;margin-top:0">
+			<li class = "discNone" style = "margin-bottom:3vw">
+				<div style = "margin-top:2vw;height:2vw;"> 
+				<span style = "float:left;font-size: 18px;color:#000000;font-weight: bold;margin-left:2vw;margin-bottom: 2vw;">热门书画</span>
+				</div>
+			</li>  
+		</ul>
+					<div id="pullDown" class="stopDown">
+				<span class="pullDownIcon"></span><span class="pullDownLabel"></span>
+			</div>
+		 <ul class="am-avg-sm-2 discNone" id="events-list">
+        </ul> 
+                </div>
+        		<div id="noRecord" style="display:none;">
+				<span class="no-record-pic"></span>
+				<span class="no-msg">我们也是有底线的</span>
+		</div> 
+        <div id="pullUp" style="display:none;margin-top:2px">
+				<span class="pullUpIcon"></span><span class="pullUpLabel">加载更多...</span>
+		</div>
+    </div>
+	</div>
+	</div> 
+    <div class="menu">
+	<a href="/web/client/index/index.html" style="color: black;">
+		<img src="/web/commons/image/client/index/indexin.png">首页
+	</a>
+	<a href="/web/client/index/gallery.html" >
+		<img src="/web/commons/image/client/index/gallerys.png">作品
+	</a>
+	<a href="/web/client/index/my_index.html" >
+		<img src="/web/commons/image/client/index/my_index.png">我的 
+	</a>
+</div>
+<script src="/web/lib/swiper/swiper-3.4.2.min.js"></script>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/web/commons/js/iscroll.js"></script>
+<script type="text/javascript" src="/web/commons/js/pullrefresh.js"></script>
+<script>
+var carouselIndex = 0;
+var carouselArr = new Array();
+var index = 0;
+var arr = new Array();
+var page=1;
+var pagePro=1;
+var footer=false;
+var totalCount = 0;
+var arrActivty = new Array();
+var arrInformation = new Array();
+var smallErr = "/web/commons/image/smallErr.png";
+var onerror = "onerror = \"javascript:this.src=\"'+smallErr+'\"\"";
+$(function() {
+	var queryString = window.top.location.search.substring(1);
+	var parameteropenid = "openid=";
+	if ( queryString.length > 0 ) {
+	   begin = queryString.indexOf ( parameteropenid );
+	   if ( begin != -1 ) {
+	     begin += parameteropenid.length;
+	     end = queryString.indexOf ( "&" , begin );
+	       if ( end == -1 ) {
+	         end = queryString.length
+	       }
+	       parameteropenid = queryString.substring ( begin, end );
+	  }
+	}
+	if(parameteropenid!=null && parameteropenid!="openid=" && parameteropenid !="null"){
+		console.log(parameteropenid);
+		sessionStorage.setItem("openid",parameteropenid);
+	}
+	
+	//获取userID
+	var openId = "";
+	//sessionStorage.setItem("openid","oJCd51uRcqQ_aXaJGLQfUBa2s9BI");
+	if(sessionStorage.getItem("openid")==null || sessionStorage.getItem("openid")=="null"){
+		openId = "oJCd51uRcqQ_aXaJGLQfUBa2s9BI";
+	}else{
+		openId = sessionStorage.getItem("openid");
+	}
+	if(openId!=null && openId!="openid=" ){
+		sessionStorage.setItem("openid",openId); 
+	}else{
+		console.log("openid为空");
+	}
+	
+	$.ajax({
+		type : "get",
+		url : "/web/user/wechat/getUser",
+		dataType : "json",
+		data:{"jsonStr":"{'openId':'"+openId+"'}"},
+		success : function(data) {
+			console.log(data);
+			sessionStorage.setItem("userId",data.SUCCESS);
+			
+		}
+	});
+	/*页面默认加载（轮播内容）*/
+	$.ajax({
+		type : "get",
+		url : "/web/api/information/loadAllCarousel",
+		dataType : "json",
+		success : function(data) {
+			var result = data.data;
+			var banner = $('#banner');
+			for(var i=0;i<result.length;i++){
+				//轮播类型
+				carouselIndex = parseInt(i);
+				carouselArr[carouselIndex] = result[i].id;
+				var strCarouselType = JSON.stringify(result[i].carouselType);
+				var div = '<div onclick=detail('+carouselIndex+','+strCarouselType+') class="swiper-slide">'
+			        	+'<img  src="'+data.data[i].posterAddress+'" style="width:100vw;height:110vw;" onerror = \'javascript:this.src = "'+smallErr+'"\' >'
+			        	+'</div>';
+				banner.append(div);  
+			}
+			var mySwiper = new Swiper("#swiper-container",{  
+		        direction:"horizontal",/*横向滑动*/  
+		        loop:true,/*形成环路（即：可以从最后一张图跳转到第一张图*/
+		        autoplay:3000,/*每隔3秒自动播放*/
+		        autoplayDisableOnInteraction: false,
+		        initialSlide :0,
+		        observer:true,//修改swiper自己或子元素时，自动初始化swiper
+		        observeParents:true,//修改swiper的父元素时，自动初始化swiper
+		        pagination : '.swiper-pagination',
+		        paginationType : 'bullets',
+		        //paginationType : 'fraction'
+		    });   
+		}
+	});
+	/*资讯活动*/
+	$.ajax({
+		type:'get',
+		url:"/web/api/information/findFreshActivityInfo",
+		dataType:'json',
+		success:function(data){
+			var li='',l='',name;
+			page++;
+			for(var i=0;i<data.data.length;i++){ 
+				arrActivty[i] = data.data[i].id;
+				arrInformation[i] = data.data[i].sign;
+					l = '<div onclick = "goActivity('+i+')" class="swiper-slide" style = "width:44.5vw;margin-left:2.6vw;margin-top:4vw;">'
+		        	+'<img style = "width:41.9vw;height:27vw;border-radius:8px;margin-bottom:2.6vw;" src="'+data.data[i].imageAddress+'" onerror = \'javascript:this.src = "'+smallErr+'"\'>'
+		        	+'<span style = "font-size:12px;">'+data.data[i].title+'</span>'
+		        	+'</div>'; 
+					li+=l; 
+			}
+			$("#information-2").append(li);
+			var mySwiper2 = new Swiper("#informationAndActivity",{  
+				//history: 'love',
+				slidesPerView: 2.2, 
+				freeMode : true,
+				freeModeMomentum : true, 
+			}); 
+		}, 
+		error:function(data){
+			console.log('shibai');
+		} 
+	})
+	/*老师*/
+	$.ajax({
+		type:'POST',
+		url:"/web/api/author/listSimple",
+		dataType:'json',
+		data:{"jsonStr":"{'pageNo':"+page+",'listLen':6,'draw':1}"},
+		success:function(data){
+			var li='',l='',name;
+			page++;
+			for(var i=0;i<data.data.listAuthor.length;i++){
+			/* 	l = '<div class="swiper-slide discNone" style = "height:25vw;float:left;margin-left:2.6vw;margin-top:4vw;">'
+		        	+'<img style = "width:41.9vw;height:27vw;border-radius:8px;margin-bottom:2.6vw;" src="'+data.data[i].imageAddress+'" onerror = \'javascript:this.src = "'+smallErr+'"\'>'
+		        	+'<span style = "font-size:12px;">'+data.data[i].title+'</span>'
+		        	+'</div>'; 
+					li+=l;  */
+  					l='<div onclick = "goAuthor('+data.data.listAuthor[i].authorId+')" class = "discNone swiper-slide" style = "height:25vw;float:left;width:23.8vw;">'
+					+'<img style = "height: 22vw;width:22vw;border-radius:100%;float:left;margin-left:1.8vw;" alt="" src="'+data.data.listAuthor[i].authorPicturePortrait+'" onerror = \'javascript:this.src = "'+smallErr+'"\'>'
+					+'<span style = "display:block;text-align:center;margin-left:1.8vw;">'+data.data.listAuthor[i].authorName+'</span>'
+					+'</div>';
+					li+=l;
+			}
+			$("#showTeacher").append(li);
+			var mySwiper3 = new Swiper("#showTeachers",{  
+				//history: 'love',
+				freeMode : true,
+				slidesPerView: 4.3,
+				freeModeMomentum : true,
+				//freeModeMomentumRatio : 5,
+			});  
+			
+		},
+		error:function(data){
+			console.log('shibai');
+		}
+	})
+		/*页面默认加载（热门书画）*/
+		$.ajax({
+		type:'POST',
+		url:"/web/api/product/listSimpleSort",
+		dataType:'json',
+		data:{"jsonStr":"{'pageNo':"+pagePro+",'listLen':10,'draw':1,'productStatus':0}"},
+		success:function(data){
+			var li='',l='';
+			pagePro++;
+			for(var i=0;i<data.data.listProduct.length;i++){
+				index = parseInt(parseInt(index) + parseInt(i));
+				arr[index] = data.data.listProduct[i].id;
+				data.data.listProduct[i].productMarketValue = data.data.listProduct[i].productMarketValue/100;
+				data.data.listProduct[i].productSharingValue = data.data.listProduct[i].productSharingValue/100;
+				if(data.data.listProduct[i].productName.length>3){
+					data.data.listProduct[i].productName = data.data.listProduct[i].productName.substring(0,2);
+					data.data.listProduct[i].productName +="..."; 
+				}
+				l='<li style="width:49vw;" onclick="turnToPro('+index+')">'
+        			+'<div class="am-panel am-panel-default">'
+                    +'<div>'
+                    +'<div style="width:49vw;height:46.3vw;text-align:center;display:table;">'
+                   	+'<span style = "vertical-align:middle;display:table-cell;width:49vw;height:46.3vw;background-color:#eeeeee;">'
+                    +'<img class="am-img-responsive" src="'+data.data.listProduct[i].productPictureMain+'" onerror = \'javascript:this.src = "'+smallErr+'"\' style="max-width:49vw;max-height:46.3vw;">'
+					+'</span>'
+                    +'</div>'
+                    +'<div style = "height:15.5vw;">' 
+                   	+'<div style="margin-top:3vw;">'
+                    +'<span style="font-size:15px;margin-left:1vw;color:#666;border:none;width:20vw;" class="name">《'+data.data.listProduct[i].productName+'》</span>'
+                    +'<span style = "float:right;margin-right:2vw;text-decoration: line-through;color:#666666;">￥'+data.data.listProduct[i].productMarketValue+'</span>'
+                    +'</div>' 
+           			+'<div style="height:9.3vw;margin-top:1vw;">'
+       				+'<span style="font-size:15px;margin-left:2.5vw;color:#666;border:none;width:20vw;">'+data.data.listProduct[i].productAuthor+'</span>'
+                    +'<span style = "float:right;margin-right:2vw;color:#f76a65;">￥'+data.data.listProduct[i].productSharingValue+'</span>' 
+       				+'</div>'
+       				+'</div>'
+       				+'</div>' 
+       				+'</div>'
+       				+'</li>'; 
+				li+=l;
+			}
+			//$(".am-avg-sm-2").append(li);
+			$("#events-list").append(li);
+			var i = 1;
+			var time900 = window.setInterval(function(){
+				i--;
+				if(i == 0){ 
+					(function OnPrinterStateChanged() {
+					    var evt = new CustomEvent('printerstatechanged');
+					    window.dispatchEvent(evt);
+					})()
+					window.clearInterval(time900); 
+				}
+			},1000); 
+		},
+		error:function(data){
+			console.log('shibai');
+		}
+	}) 
+});
+function bom(){
+	window.open('/web/client/index/searchHistory.html','_self');
+}
+function turnToPro(data){
+	sessionStorage.setItem("productId",arr[data]);
+	window.open('/web/client/index/share.html','_self');
+}
+function goAuthor(authorId){
+	sessionStorage.setItem("authorId",authorId);
+	window.open('/web/client/index/authorDeatil.html','_self');
+}
+function searchStyle(data){
+	sessionStorage.setItem("productStyle",data);
+	window.open('/web/client/index/searchProduct.html','_self');
+}
+function searchType(data){
+	sessionStorage.setItem("productTypes",data);
+	window.open('/web/client/index/searchProduct.html','_self');
+}
+function goActivity(data){ 
+	if(arrInformation[data] == "activity"){
+		sessionStorage.setItem("ActivtyId",arrActivty[data]);
+		window.open('/web/client/index/activty.html','_self');
+	}else if(arrInformation[data] == "information"){ 
+		sessionStorage.setItem("informationId",arrActivty[data]);
+		window.open('/web/client/index/information.html','_self');
+	}
+}
+/*点击轮播图片开始页面跳转*/
+function detail(contentId, strCarouselType) {
+	var contentIds = carouselArr[contentId];
+	if(strCarouselType == "author") {
+		sessionStorage.setItem("authorId", contentIds);
+		$(location).attr('href', '/web/client/index/authorDeatil.html');
+	}
+	if(strCarouselType == "product") {
+		sessionStorage.setItem("productId", contentIds);
+		$(location).attr('href', '/web/client/index/share.html');
+	}
+	if(strCarouselType == "information") {
+		sessionStorage.setItem("informationId", contentIds);
+		$(location).attr('href', '/web/client/index/information.html');
+	}
+	if(strCarouselType == "activity") {
+		sessionStorage.setItem("activityId", contentIds);
+		$(location).attr('href', '/web/client/index/activty.html');
+	}
+}
+//上拉
+var pullUp = function() {
+	if(footer==true){
+		myScroll.refresh();
+		return false;
+	}
+	pull();
+}
+//下拉
+var pullDown = function() {
+	return "no";
+}
+function pull(){
+	$.ajax({
+		type:'POST',
+		url:"/web/api/product/listSimpleSort",
+		dataType:'json',
+		data:{"jsonStr":"{'pageNo':"+pagePro+",'listLen':10,'draw':1,'productStatus':0}"},
+		success:function(data){
+			var li='',l='';
+			pagePro++;
+			if(pagePro*10>data.data.page.totalCount){
+				footer = true;
+			}
+			for(var i=0;i<data.data.listProduct.length;i++){
+				index = parseInt(parseInt(index) + parseInt(i));
+				arr[index] = data.data.listProduct[i].id;
+				data.data.listProduct[i].productMarketValue = data.data.listProduct[i].productMarketValue/100;
+				data.data.listProduct[i].productSharingValue = data.data.listProduct[i].productSharingValue/100;
+				if(data.data.listProduct[i].productName.length>3){
+					data.data.listProduct[i].productName = data.data.listProduct[i].productName.substring(0,2);
+					data.data.listProduct[i].productName +="..."; 
+				}
+				l='<li style="width:49vw;" onclick="turnToPro('+index+')">'
+        			+'<div class="am-panel am-panel-default">'
+                    +'<div>'
+                    +'<div style="width:49vw;height:46.3vw;text-align:center;display:table;">'
+                   	+'<span style = "vertical-align:middle;display:table-cell;width:49vw;height:46.3vw;background-color:#eeeeee;">'
+                    +'<img class="am-img-responsive" src="'+data.data.listProduct[i].productPictureMain+'" onerror = \'javascript:this.src = "'+smallErr+'"\' style="max-width:49vw;max-height:46.3vw;">'
+					+'</span>'
+                    +'</div>'
+                    +'<div style = "height:15.5vw;">' 
+                   	+'<div style="margin-top:3vw;">'
+                    +'<span style="font-size:15px;margin-left:1vw;color:#666;border:none;width:20vw;" class="name">《'+data.data.listProduct[i].productName+'》</span>'
+                    +'<span style = "float:right;margin-right:2vw;text-decoration: line-through;color:#666666;">￥'+data.data.listProduct[i].productMarketValue+'</span>'
+                    +'</div>' 
+           			+'<div style="height:9.3vw;margin-top:1vw;">'
+       				+'<span style="font-size:15px;margin-left:2.5vw;color:#666;border:none;width:20vw;">'+data.data.listProduct[i].productAuthor+'</span>'
+                    +'<span style = "float:right;margin-right:2vw;color:#f76a65;">￥'+data.data.listProduct[i].productSharingValue+'</span>' 
+       				+'</div>'
+       				+'</div>'
+       				+'</div>' 
+       				+'</div>'
+       				+'</li>'; 
+				li+=l;
+			}
+			//$(".am-avg-sm-2").append(li);
+			$("#events-list").append(li);
+		},
+		error:function(data){
+			console.log('shibai');
+		}
+	}) 
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+	*{font-family: "微锟斤拷锟脚猴拷"!important;}
+	bady{
+		background-color: #fff;
+		font-size: 0.14rem!important;
+	}
+	.am-with-fixed-navbar{
+		padding-bottom:14.4vw;
+	}
+	.my-header{
+		height:13.5vw;
+		background-color: #fff;
+		padding:2.9vw 6.1vw 6.1vw 3vw;
+		border-bottom:0.3vw solid #999999;
+	}
+	.img{
+		height:5.9vw;
+		width:5.9vw;
+		margin-top:0.7vw;
+		margin-left:2.6vw;
+	}
+	.search-input-box{
+		height:7.5vw;
+		width:85vw;
+		border-top-right-radius:3vw;
+		border-bottom-right-radius:3vw;
+		border:none;
+		outline:none;
+		color:#999;
+	}
+	.search{
+		float:left;
+		display: flex;
+		flex-direction:row;
+		border: 0.3vw solid #999;
+		border-radius: 3vw;
+		height:8.5vw;
+		width:85vw;
+	}
+	.fullbg { 
+		background-color:gray; 
+		left:0; 
+		opacity:0.5; 
+		position:absolute; 
+		top:0; 
+		z-index:3; 
+		filter:alpha(opacity=50); 
+		-moz-opacity:0.5; 
+		-khtml-opacity:0.5; 
+		margin-top: 13.5vw;
+	}
+	.am-slider-default{
+		margin:0px;
+	}
+	.am-gallery-title{
+		height:8vw!important;
+		padding-top:0px!important;
+		font-size:0.28rem!important;
+		text-align: center;
+		line-height: 8vw!important;
+	}
+	.am-slider-default .am-slider-desc{
+		text-align: center;
+	}
+	.am-control-nav,.am-direction-nav{
+		display: none;
+	}
+	.guarantee{
+		margin:2.6vw 0 3.3vw 6.2vw;
+	}
+	.guarantee span{
+		font-size:0.26rem;
+		color:#2f85ff;
+	}
+	.li{
+    	<a href="https://www.baidu.com/s?wd=list-style&tn=44039180_cpr&fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1YduyfdPHKhnWRvrHfLPHc10ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EPWDdrjb3rHcznW6vP10zPHTz" target="_blank" class="baidu-highlight">list-style</a>-type:square;
+    	color:#fea427; 
+    	margin-left:6.7vw;
+    	list-style: disc;
+    }
+    .teacher{
+    	margin-bottom:2.7vw;
+    }
+    .popular{
+    	margin-top:9.9vw;
+    	margin-bottom: 5.6vw;
+    	font-size:0.3rem;
+    }
+    .classify{
+    	color:#000;
+    	font-size:0.27rem;
+    	display:flex;
+    	flex-direction:row;
+    }
+    .classify li:nth-child(1){
+    	line-height: 10vw;
+    }
+    .properly{
+		float: left;
+	}
+	.am-cf{
+		background-color: #f9f8f8;
+	}
+	.list{
+		background-color:#fff;
+	}
+	.am-icon-home,.am-icon-phone,.am-icon-comments,.am-icon-map-marker,.am-icon-user,.am-navbar-label{
+		color:#999;
+	}
+	.bottom{
+		height:12.9vw;
+	}
+  	.layui-layer-content{
+  		padding:0px 0px!important;
+  		text-align: left!important;
+  	}
+  	.layui-btn{
+  		padding:0px 2.7vw;
+  		color:#999;
+  		background-color: #fff;
+  		font-size:0.27rem;
+  		line-height: 5vw;
+  	}
+  	.layui-btn:hover{
+  		color:#999;
+  	}
+  	.art,.recommend{
+  		font-size:0.3rem;
+  	}
+  	.landscape,.poetry{
+  		padding-left:1.9vw;
+  		display: block;
+  	}
+  	.site-demo-button{
+  		margin-bottom: 0;
+  	}
+  	.flowers_birds,.character,.beast,.other,.book_list{
+  		padding-left:1.9vw;
+  	}
+  	.view{
+  		padding-left:45vw;
+  		color:#999;
+  		font-size:0.3rem;
+  	}
+  	.right{
+  		height:5vw;
+  		padding-left:1.5vw;
+  		margin-bottom: 1vw;
+  	}
+  	.pic{
+  		height:30.1vw;
+  		width:30.4vw;
+  		display: block;
+  	}
+  	.information{
+  	  	height:30.1vw;
+  		width:30.4vw;
+  		display: block;
+  	}
+  	.information-2>li{width:47%}
+  	.am-navbar-nav a img{
+  		height:6.4vw;
+  		width:6.4vw;
+  		margin:1.1vw auto 0;
+  	}
+  	.level_all{
+  		height:14vw;width:100vw;line-height: 14vw;text-align: center;position: absolute;z-index:999;background-color: #fff;
+  	}
+  	.level_all>input{
+  		border-radius: 7.5vw;height:7.5vw;border:0.3vw solid #d0cbca;background-color: #fff;
+  	}
+  	.level_all input:nth-child(1),.my-header+div input:nth-child(3){
+  		width:20.3vw;
+  	}
+  	.level_all input:nth-child(2){
+  		width:34.9vw;
+  	}
+  	.header{
+  		padding:1.5vw 3.1vw;
+  	}
+  	.btn{
+  		border: none;
+  		background-color: #fff;
+  		font-size:0.25rem;
+  	}
+  	.am-avg-sm-2 li:nth-child(even){
+  		margin-left:1.6vw;
+  	}
+  	/*.test{
+  		color:#fff!important;
+  		background-color:#999;
+  		
+  	} */
+  	  	/*鑿滃崟鏍�*/
+body .menu{
+	width: 100%;
+	background-color:#f8f8f8;
+	border-top: #cacaca 1px solid!important;
+	display: flex;
+	align-items: center;
+	justify-content:space-around;
+	position: fixed;
+	bottom: 0;
+}
+body .menu a{
+	width:8%!important;
+	display: block;
+	text-align: center;
+	font-size: 0.24rem!important;
+	line-height: 2;
+	margin-top: 2vw;
+	color: #999;
+}
+body .menu a img{
+	width:90%;
+	display: block!important;
+	text-align: center;
+}

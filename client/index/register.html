@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>注册</title>
+<style type="text/css">
+.divNumber{
+	height:12vw;
+	width:85vw;
+	margin-top:4vw;
+	border-radius: 22px;
+	border: 1px solid #c8c6c6;
+}
+.inputNumber{
+	height:9vw;
+	width:65vw; 
+	border:none;
+	margin-top:1.5vw;
+	font-size:15px;
+}
+ .divInput>span{
+ 	margin-top:4vw;
+}
+ .divInput>a>span{
+ 	margin-top:4vw;
+}  
+.check_add{border-radius:20px;border:none;outline:none;width: 85vw;height: 12vw;font-size: 16px;background-color: #000000;color: #ffffff;margin-top:9.3vw;}
+	   	.placehoders::-ms-input-placeholder{padding-left:1vw;font-size: 15px;color: #d9d9d9;} 
+		.placehoders::-webkit-input-placeholder{padding-left:1vw;font-size: 15px;color: #d9d9d9;} 
+.readonlyInput{
+	background-color: #999999;
+}
+
+</style>  
+</head>
+<body>
+<div>
+	<div align = "center" style = "height:50vw;margin-top:10vw;">
+		<img src="/web/commons/image/client/index/login.png"> 
+		<span style = "display:block;">123 —— 艺术</span>
+	</div>  
+	<div class = "divInput" align="center">
+		<div class = "divNumber">
+		<input id = "telNumber" class = "inputNumber placehoders" type="number" placeholder="请输入手机号"/> 
+		</div>
+		<div class = "divNumber">
+		<input id = "verifyCode" class = "inputNumber placehoders" type="number" placeholder="请输入验证码"/> 
+		</div>
+		<input id = "obtain" onclick = "getNumber()" class = "inputNumber " style = "width:25vw;height:6.5vw;font-size:8px;background-color:#ffffff;border:1px solid #333333;position: absolute;margin-left: 15vw;margin-top:-9.8vw;border-radius: 9px;" type = "button" value = "获取验证码"/>
+		<div class = "divNumber">
+		<input id = "account2" class = "inputNumber placehoders account2" type="text" placeholder="请输入密码" style="ime-mode:disabled"/>
+		<img onclick = "passwordShow()" style = "position: absolute;margin-top:5vw;" src="/web/commons/image/client/index/eye.png">
+		</div>
+		<input onclick = "register()" id = "check_add" class = "check_add readonlyInput" disabled="disabled" type="button" value = "注册"/><br/>
+	</div>
+</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script>
+function passwordShow(){
+	if($(".account2").prop('type') == 'text'){ 
+		$(".account2").prop('type','password');
+	}else{
+		$(".account2").prop('type','text');
+	}
+}
+function getNumber(){
+	var telNumber = document.getElementById('telNumber').value;
+	var re = /^1\d{10}$/ ;
+	 if (re.test(telNumber)) {      //判断字符是否是11位数字
+		$(".check_add").removeClass("readonlyInput");
+		document.getElementById("check_add").disabled=false;
+   }
+   else {
+   	return;
+   }
+	$.ajax({
+		type:'POST', 
+		url:"/web/user/getVerifySMS",
+		dataType:'json',
+		data:{"jsonStr":"{'telNumber':'"+telNumber+"'}"},
+		success:function(data){
+			console.log('成功');
+			var i = 60;
+			var time60 = window.setInterval(function(){
+				i--;  
+				if(i == 0){
+					document.getElementById("obtain").value = "重新获取";
+					document.getElementById("obtain").disabled=false;
+					window.clearInterval(time60);
+					return;
+				}
+				document.getElementById("obtain").value = i + "s后重新获取";
+				document.getElementById("obtain").disabled="disabled";
+			},1000); 
+		},
+		error:function(data){
+			console.log('shibai');
+		}
+	}) 
+	
+}
+function register(){
+	var userId = sessionStorage.getItem("userId");
+	var verifyCode = document.getElementById("verifyCode").value;
+	var telNumber = document.getElementById("telNumber").value;
+	var password = document.getElementById("account2").value;
+	$.ajax({
+		type:'POST',  
+		url:"/web/user/checkSMS",
+		dataType:'json',
+		data:{"jsonStr":"{'verifyCode':'"+verifyCode+"','telNumber':'"+telNumber+"'}"},
+		success:function(data){
+			if(data.state == 0){
+				if(userId == ""||userId == null){
+					$.ajax({
+						type:'POST', 
+						url:"/web/api/user/save",
+						dataType:'json',
+						data:{"jsonStr":"{'telNumber':'"+telNumber+"','password':'"+password+"'}"},
+						success:function(data){
+							console.log(data);
+							window.open('/web/client/index/index.html','_self');
+							
+						},
+						error:function(data){
+							console.log('shibai');
+						}
+					})
+				}else{
+				$.ajax({
+					type:'POST', 
+					url:"/web/api/user/update",
+					dataType:'json',
+					data:{"jsonStr":"{'userId':"+userId+",'telNumber':'"+telNumber+"','password':'"+password+"'}"},
+					success:function(data){
+						console.log(data);
+						history.back(-1);
+					},
+					error:function(data){
+						console.log('shibai');
+					}
+				})}
+			}else if(data.state == "1"){
+				console.log("错误");
+			}
+		},
+		error:function(data){
+			console.log('shibai');
+		}
+	}) 
+}
+
+
+
+
+</script>
+</body>
+</html>

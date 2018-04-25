@@ -1,0 +1,101 @@
+/*Common area style*/
+body{
+	background-color: #f6f5f5;
+}
+	.input_box{
+		border:1px solid #999;
+		background-color: #fcfcfc;
+		height:48px;
+		font-size: 18px;
+		color:#000000;
+		margin-top:3px;
+		padding-left:10px;
+	}
+	.input{
+		width:274px;
+	}
+	.vertical_arrangement{
+		 display: flex;
+		 flex-direction:column;
+	}
+	.lateral_alignment{
+		display: flex;
+		flex-direction:row;
+	}
+	.lateral_alignment .vertical_arrangement{
+		width:284px;
+	}
+	.lateral_alignment .vertical_arrangement:nth-child(even){
+		margin-left:83px;
+	}
+	.move_down{
+		margin-top:35px;
+	}
+	
+	.layui-inline{
+		width:274px;
+	}
+	.layui-form-select .layui-input{
+		padding-right:0px;
+		font-size: 20px;
+		width:284px;
+		height:48px;
+		color:#000000;
+		background-color: #fcfcfc!important;
+		background: url("../../image/management/drop_down_icon.png") scroll  transparent;
+		background-repeat:no-repeat;
+  		background-position:245px 20px;
+	}
+	.layui-inline input::-webkit-input-placeholder {
+		color: #999;
+	}
+	.layui-form-select dl dd.layui-this{
+		background-color: #eae9e9;
+		color:#4ec3fb;
+	}
+	.layui-form-select dl dd.layui-select-tips,.layui-form-select dl dd, .layui-form-select dl dt{
+		color:#999;
+	}
+	.layui-form-select .layui-edge{
+		display: none;
+	}
+	#edui1_bottombar{
+		display: none;
+	}
+	.layui-form-selectup dl{
+		display: block;
+	}
+#img_upload{
+	width:40%;
+}
+#img_name{
+	height:35px;
+}
+.select_img{
+	width:284px;
+	height:48px;
+	background-color: #4ec3fb;
+	color:#fff;
+	line-height: 48px;
+	text-align: center;
+	cursor: pointer;
+}
+.select_img:hover,.determine_btn:hover,.productUpload:hover,.select_avi:hover,.master_determine:hover{
+	background-color: #46aee0;
+}
+
+#uploadImages{
+	position:absolute;
+	clip:rect(0 0 0 0);
+}
+.item_name{
+	width:120px;
+}
+#editor{
+	width:651px;
+	margin-top:15px;
+}
+#productProfile{
+	display:none;
+}
+

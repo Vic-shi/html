@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>修改用户名</title>
+<style type="text/css">
+.divSpan>div{
+	height:17vw;
+	margin-top:3vw;
+	background-color: #ffffff;
+}
+.divSpan>div>input{
+	display:block; 
+}
+.check_add{border-radius:20px;border:none;outline:none;width: 80vw;height: 12vw;font-size: 16px;background-color: #000000;color: #ffffff;}
+</style>  
+</head>
+<body style = "margin:0;background-color: #f6f6f6;">
+<div> 
+	<div class = "divSpan"> 
+		<div> 
+			<input id = "nickName" style = "border:0;height:14vw;width:90vw;margin-left:8vw;color:#333333;font-size: 15px;" type = "Text" placeholder="请输入新的用户名"/>
+		</div>
+		<input style = "margin-top:11vw;height:12vw;margin-left:10vw;" type="button" class="check_add" onclick = "save()" value = "确定"/><br/>
+	</div>
+</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script>
+$(function(){
+	var nickName = sessionStorage.getItem("nickName");
+	document.getElementById("nickName").value = nickName; 
+})
+function save(){
+	var userId = sessionStorage.getItem("userId");
+	var nickName = document.getElementById("nickName").value
+	$.ajax({
+		type:'POST', 
+		url:"/web/api/user/update",
+		dataType:'json',
+		data:{"jsonStr":"{'userId':"+userId+",'nickName':'"+nickName+"'}"},
+		success:function(data){
+			console.log('成功');
+		},
+		error:function(data){
+			console.log('shibai');
+		}
+	})
+	
+	
+}
+
+</script>
+</body>
+</html>

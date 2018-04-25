@@ -1,0 +1,155 @@
+/*页头设置*/
+body{
+	background-color: #f1f1f1;
+	width: 100%;
+	overflow: hidden;
+}
+.head{
+	height:30vw;
+	line-height: 30vw;
+	font-size: 0.3rem;
+	color: white;
+	padding: 0 5%;
+	background-color: white;
+	border-bottom: 1px solid #f1f1f1;
+	background: -webkit-gradient(linear, 80% 100%, 20% 0, from(#fea52d), to(#fdc77d));
+}
+.head img{
+	vertical-align: middle;
+	margin-left: 20vw;
+	margin-right: 6vw;
+	height: 16vw;
+}
+/*正文订单样式设置*/
+/*整体样式*/
+body .article >div{
+	
+	background-color: white;
+}
+body .article >div li{
+	padding:0 5%;
+	display: flex;
+	align-items: center;
+	justify-content:space-between;
+}
+body .article >div li:nth-child(2){
+	border-bottom: 1px solid #f1f1f1;
+	padding-bottom: 5vw;
+}
+/*作者*/
+body .article >div li h1{
+	font-size: 0.24rem;
+	background: url(../../../image/client/payment/in.png) no-repeat right;
+	background-size: 2vw;
+	padding-right: 8vw;
+	line-height:3.5; 
+}
+/*作品 订单信息*/
+body .article >div li .img_show{
+	width:28vw;
+	height:28vw;
+	border-radius:1vw ;
+	overflow: hidden;
+}
+/*图片的高度还需修改*/
+body .article >div li .img_show img{
+	height: 100%;
+}
+body .article >div li .detail{
+	width: 55vw;
+	height: 100%;
+}
+body .article >div li .detail h3{
+	display: block;
+	height:25vw;
+	font-size: 0.2rem;
+	overflow: hidden;
+	color: #999;
+	line-height:1.4;
+}
+body .article >div li .detail h4{
+	height:3vw;
+	line-height: 0.6;
+	font-size: 0.2rem;
+	color:#999;
+}
+/*价格*/
+body .price{
+	border-bottom: 1px solid #f1f1f1;
+	background-color: white;
+	line-height:1;
+	font-size: 0.23rem;
+	color: #666;
+	padding: 3vw 5%;
+	margin-bottom: 3vw;
+}
+body .success_detail,.zhu{
+	background-color: white;
+	line-height:1;
+	font-size: 0.23rem;
+	color: #666;
+	padding: 3vw 5%;
+	height: 80vw;
+	border-bottom: 1px solid #f1f1f1;
+}
+/*全局设置成横向*/
+body .price div{
+	display: flex;
+	justify-content:space-between;
+	align-items: center;
+}
+/*整体的h1样式设计*/
+body .price h1{
+	font-size: 0.26rem;
+	color:#333;
+	margin-bottom: 1vw;
+	line-height: 1.6;
+}
+body h2,.detail h3{
+	font-size: 0.22rem;
+	color:#999;
+	line-height:1.8;
+}
+body .price h3{
+	font-size: 0.30rem;
+	color:#fea427;
+	line-height:0;
+}
+/*调换成功相关属性设置（图片调换模块）*/
+.pro_change ul{
+	display: flex;
+	justify-content: space-between;
+	align-items:flex-end;
+	margin-bottom: 6vw;
+}
+.pro_change li{
+	width: 28vw;
+}
+.pro_change li>img{
+	width: 20vw;
+	margin:0  auto 4vw;
+	display: block;
+}
+.pro_change .img_show{
+	width:28vw;
+	height:28vw;
+	border-radius:1vw ;
+	overflow: hidden;
+}
+.pro_change .img_show img{
+	height: 100%;
+}
+body .pro_change{
+	background-color: white;
+	line-height:1;
+	font-size: 0.23rem;
+	color: #666;
+	padding: 3vw 5%;
+	border-bottom: 1px solid #f1f1f1;
+}
+body .pro_change h1{
+	font-size: 0.26rem;
+	color:#333;
+	margin-bottom: 1vw;
+	line-height: 1.2;
+}

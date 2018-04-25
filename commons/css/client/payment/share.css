@@ -1,0 +1,182 @@
+/*作品调整模块共有样式设置*/
+body{
+	background-color:white;
+	width: 100%;
+}
+body>div{
+	border-bottom: 1px solid #f1f1f1;
+	background-color: white;
+	line-height:1;
+	font-size: 0.23rem;
+	color: #666;
+	padding: 3vw 5%;
+}
+body>form{
+	background-color: white;
+/*	height: 50vw;*/
+}
+body .tijiao{
+	background-color: white;
+	padding: 0 0 1vw 0;
+	border-bottom: 0;
+/*	height: 50vw;*/
+}
+/*页头图片设置*/
+body div:nth-child(1) img{
+	width: 100%;
+}
+/*全局设置成横向*/
+body div div{
+	display: flex;
+	justify-content:space-between;
+	align-items: center;
+}
+/*整体的h1样式设计*/
+body div h1{
+	font-size: 0.24rem;
+	color:#666;
+	margin-bottom: 1vw;
+	line-height: 1.4;
+}
+body div h2{
+	font-size: 0.22rem;
+	color:#999;
+	line-height:1.8;
+}
+body div h3{
+	font-size: 0.30rem;
+	color:#fea427;
+	line-height:0;
+}
+body div h6{
+	font-size: 0.3rem;
+	color: #333;
+	text-align: center;
+}
+/*标签属性设置*/
+.pic_lable ul{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.pic_lable li{
+	font-size: 0.22rem;
+	line-height:2.2;
+	background-color: #f1f1f1;
+	color: #666;
+	border-radius:6px;
+	padding: 0 4vw;
+	margin-right: 3vw;
+	margin-top: 3vw;
+}
+/*时间单选框*/
+.time_choose>div{
+    position: relative;
+    width: 16vw;
+    height: 6vw;
+    z-index: 1;
+    margin-left: 2vw;
+}
+.time_choose label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    opacity: 0;
+    display: inline-block;
+    cursor: pointer;
+}
+.time_choose input {
+    display: inline-block;
+    vertical-align: middle;
+    height:6vw;
+    width: 16vw;
+}
+.time_choose .btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16vw;
+    height: 6vw;
+    z-index: 2;
+    display: inline-block;
+    line-height:6vw;
+    text-align: center;
+    border: 1px solid #f1f1f1;
+    color: #999999;
+    border-radius: 4px;
+}
+.time_choose span.active{
+    background-color:#fea427;
+    color: #fff;
+}  
+/*物流方式fieldset属性设置*/ 
+fieldset{
+	border-top: 1px solid #f1f1f1;
+	text-align: center;
+	line-height: 2;
+	font-size: 0.22rem;
+	color: #999;
+	padding: 3vw 21vw 5vw 21vw;
+}
+legend{
+	margin: auto;
+	padding: 0 5vw;
+	font-size: 0.26rem;
+	color: #666;
+}
+/*共享流程介绍*/
+.liucheng fieldset{
+	padding: 2vw 0 5vw 0;
+}
+.liucheng img{
+	width: 100%;
+}
+/*立即共享按钮*/
+input[type="submit"]{
+	color: white;
+	background-color:#fea427;
+	line-height: 3;
+	font-size: 0.24rem;
+	width: 100%;
+}
+/*调换商品页面的相关属性设置*/
+.pro_change{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	overflow: hidden;
+	border-top:1px solid #f1f1f1 ;
+	padding: 0;
+	border-bottom: 0;
+}
+body .pro_change input{
+	color: white;
+	background-color:#fea427;
+	line-height: 3;
+	font-size: 0.24rem;
+	width:50vw;
+	float: left;
+}
+body .pro_change input[type="button"]{
+	color:#fea427;
+	background-color:#FBFBFB;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

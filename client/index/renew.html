@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>续租</title>
+<style type="text/css">
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+body{
+	background-color: #f1f1f1;
+	width: 100%;
+}
+/*整体样式*/
+.article >div{
+	//margin-bottom: 3vw;
+	background-color: white;
+}
+.article >div li{
+	padding:0 5%;
+	display: flex;
+	align-items: center;
+	justify-content:space-between;
+}
+.article >div li:nth-child(2){
+	border-bottom: 1px solid #f1f1f1;
+	padding-bottom: 3vw;
+} 
+/*作品 订单信息*/
+.article >div li .img_show{
+	width:20vw;
+	height:20vw;
+	border-radius:1vw ;
+	overflow: hidden;
+}
+/*图片的高度还需修改*/
+.article >div li .img_show img{
+	height: 100%;
+}
+.article >div li .detail{
+	width: 70vw; 
+	height: 20vw;
+}
+/*已逾期设置*/
+.accomplish .detail{
+	position: relative;
+}
+input[type="submit"]{
+	height: 10vw;
+	background-color:#fea427;
+	border-radius:5vw;
+	color: white;
+	width: 76%;
+	position:fixed;
+	//bottom:10vw;
+	left: 50%;
+	transform: translateX(-50%);
+	margin-top:55vw;
+}
+.time_choose span.active{
+    background-color:#fea427;
+    color: #fff;
+}  
+.time_choose .btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16vw;
+    height: 6vw;
+    z-index: 2;
+    display: inline-block;
+    line-height:6vw;
+    text-align: center;
+    border: 1px solid #f1f1f1;
+    color: #999999;
+    border-radius: 4px;
+}
+.time_choose input {
+    display: inline-block;
+    vertical-align: middle;
+    height:6vw;
+    width: 16vw;
+}
+.time_choose label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    opacity: 0;
+    display: inline-block;
+    cursor: pointer;
+}
+.time_choose>div{
+    position: relative;
+    width: 16vw;
+    height: 6vw;
+    z-index: 1;
+    margin-left: 2vw;
+    float:left;
+}
+</style>
+</head>
+<body style = "background-color: white;">
+<div> 
+<div class= "article" style = "border-top: 1px solid #f1f1f1;">
+<div style = "border-bottom: 1px solid #f1f1f1;height:10vw;">
+	<span style = "display:block;margin-left:5vw;margin-top:4vw;font-size:0.75rem;color:#333333">订单号码：123456789123456790</span>
+</div>
+				<div class="unpaid">
+				<ul>
+				<li></li>
+				<li style = "margin-top:4vw;">
+					<div class="img_show">
+						<img style= "height:16vw;width:16vw;border-radius: 15px" src="/web/commons/image/client/index/circular.jpg">
+					</div>
+					<div class="detail">
+							<h3 style = "font-size: 0.9375rem;"> 
+							《烟雨湖光山水景色图》
+							</h3>
+							<h3 style = "font-size: 0.9375rem;margin-top:1.4vw;">
+							史树青 
+							</h3>
+					</div> 
+				</li> 
+				</ul>
+	</div> 
+</div>
+			<div style = "border-bottom: 1px solid #f1f1f1;height:10vw;">
+				<h1 style= "font-size: 0.24rem;	color:#666;	margin-bottom: 1vw;	line-height: 1.4;float:left;">选择续租时间</h1>
+				<!--时间选择-->
+				<div class="time_choose" style = "margin-left:40vw;margin-top:3vw;height:6vw;">
+					<div>
+			            <label for="time1">                        
+			                <input type="radio" name="1" id="time1" checked> 
+			            </label>
+			            <span class="btn active">半年</span>
+			        </div>
+					<div>
+			            <label for="time2">
+			                <input type="radio" name="2" id="time2">
+			            </label>
+			            <span class="btn">一年</span>
+			        </div> 
+
+				</div>
+			</div>
+<div style = "margin-left:5vw;border-bottom: 1px solid #f1f1f1;height:8vw;margin-top:3vw;">
+	<span>续租价格</span>
+	<span style = "float:right;margin-right:5vw;">￥5000</span>
+</div>
+<div style = "margin-left:5vw;">
+	<span>租期 2017-08-27 ———— 2018-02-27</span>
+</div>
+	<div>		
+		<input type="submit" style = "" value="提交"/>
+	</div>	
+</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script>
+//续期时间选择
+$(".time_choose label").click(function() {
+    $(this).next("span").addClass("active");
+    $(this).parent().siblings("div").find("span").removeClass("active");
+}); 
+</script>
+</body>
+</html>

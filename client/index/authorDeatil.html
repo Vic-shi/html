@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<title>艺术家详情</title>
+<style type="text/css">
+  	.discNone{
+  		list-style-type: none;
+  	}
+  	.am-gallery{padding:5px 5px 0;list-style:none}
+  	.artists>label{
+  		margin-left:0.6vw;
+  	}
+  	.swiper-container{margin-left:auto;margin-right:auto;position:relative;overflow:hidden;z-index:1}
+		.swiper-wrapper{position:relative;width:100%;height:100%;z-index:1;display:-webkit-box;
+display:-moz-box;display:-ms-flexbox;display:-webkit-flex;display:flex;
+-webkit-transition-property:-webkit-transform;-moz-transition-property:-moz-transform;
+-o-transition-property:-o-transform;-ms-transition-property:-ms-transform;
+transition-property:transform;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;
+box-sizing:content-box}
+    	 .swiper-wrapper,.swiper-slide{
+    		width:100%; 
+    	}
+    	.swiper-slide{
+    		width:44.5vw;
+    	}
+    	.swiper-wrapper,.swiper-slide>img{
+    		width:100%;
+    		z-index:-1;
+    	}
+    	.swiper-slide>div{
+    		position:absolute;
+    		z-index:2;
+    		left:0vw;
+    		top:49.33vw;
+    		font-size:0.1rem;
+    		width: 100%;
+    		height: 6.67vw;
+    		line-height:6.67vw;
+		    color: #fff;
+		    background-color: rgba(0,0,0,0.5);
+		    text-align: center;
+    	}
+    	    	.swiper-slide-active{pointer-events:auto}
+    	.swiper-slide-active{pointer-events:auto;visibility:visible}
+    	.author{
+    		width: 16vw;
+    		height:23vw;
+    		float: left;
+    		margin-left: 7vw;
+    		text-align: center;
+    	}
+    	.textAreaHeight{
+	width:84vw;border:none;resize:none;word-break:break-all;word-wrap:break-word;background-color: #ffffff;font-size: 14px;overflow: hidden;margin-left:8vw;
+}
+</style>
+</head>
+<body style = "margin:0">
+<div>
+    <div style="width: 100%;text-align: center;"><!--swiper容器[可以随意更改该容器的样式-->  
+	    <img id = "authorNow" style="width:100vw;height:56vw;" onerror = "javascript:this.src = '/web/commons/image/smallErr.png'">
+		<span id = "authorName"></span>
+	</div> 	
+	<div id = "productAuthorInfo" style = "border-bottom: 1px solid #cdcdcd;margin-top:6.2vw;width:84vw;padding-left:8vw;padding-bottom:5vw;">
+	</div>
+	<div id = "richText" style = "border-bottom: 1px solid #cdcdcd;margin-top:6.2vw;width:84vw;padding-left:8vw;"> 
+	</div>
+	<div style="border-bottom: 0;padding: 4vw 10vw 5% 10vw;text-align: center;" class = "addPicture">  
+	
+	</div>
+</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script src="/web/lib/swiper/swiper-3.4.2.min.js"></script>
+<script>
+var smallErr = "/web/commons/image/smallErr.png";
+var pageNo =1;
+var arr = new Array();
+$(function() {
+var authorId = sessionStorage.getItem("authorId");
+$.ajax({
+	type:'POST',
+	url:"/web/api/author/listDetail",
+	dataType:'json',
+	data:{"jsonStr":"{'authorId':"+authorId+"}"},
+	success:function(data){
+		 document.getElementById('authorNow').src=data.data.authorPicturePublicity;
+		 $("#authorName")[0].innerHTML = data.data.authorName;
+		 $("#productAuthorInfo").append(data.data.authorProfile);
+		 $("#richText").append(data.data.richText);
+		 
+	},
+	error:function(data){
+		console.log('shibai');
+	}
+})
+$.ajax({
+	type:'POST',
+	url:"/web/api/product/listSimpleByAuthorId",
+	dataType:'json',
+	data:{"jsonStr":"{'pageNo':"+pageNo+",'listLen':5,'productAuthorId':"+authorId+",'productStatus':0}"},
+	success:function(data){
+		for(var i=0;i<data.data.listProduct.length;i++){
+			arr[i] = data.data.listProduct[i].id;
+			$(".addPicture").append('<div onclick = "turnToPro('+i+')">'
+                    +'<div style="width:80vw;height:46.3vw;text-align:center;display:table;">'
+                   	+'<span style = "vertical-align:middle;display:table-cell;width:80vw;height:46.3vw;background-color:#eeeeee;">'
+					+'<img style = "max-height: 40vw;max-width:80vw;overflow:hidden;" src="'+data.data.listProduct[i].productPictureMain+'" onerror = \'javascript:this.src = "'+smallErr+'"\'>'
+					+'</span>'
+					+'</div>'
+					+'</div>'
+					+'<div style= "margin-left:5vw;width:80vw;">' 
+					+'<span style = "margin-left:1vw;margin-right:11vw;">'+data.data.listProduct[i].productName+'</span>'
+					+'<span style = "display:inherit;margin-right:10vw;">'+getMyDate(data.data.listProduct[i].productCreateTime)+'</span>'
+					+'</div>');
+		}
+	},
+	error:function(data){
+		console.log('shibai');
+	}
+})
+});
+function getMyDate(str){  
+    var oDate = new Date(str),  
+    oYear = oDate.getFullYear(),  
+    oMonth = oDate.getMonth()+1,  
+    oDay = oDate.getDate(),  
+    oHour = oDate.getHours(),  
+    oMin = oDate.getMinutes(),  
+    oSen = oDate.getSeconds(),  
+    oTime = oYear +'年'+ getzf(oMonth) +'月';//最后拼接时间  
+    return oTime;  
+};
+function getzf(num){  
+    if(parseInt(num) < 10){  
+        num = '0'+num;  
+    }  
+    return num;   
+}  
+function turnToPro(data){
+	sessionStorage.setItem("productId",arr[data]);
+	window.open('/web/client/index/share.html','_self');
+}
+
+
+</script>
+</body>
+</html>

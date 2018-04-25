@@ -1,0 +1,51 @@
+html,
+body,
+.page {
+  height: 100%;
+}
+#header {
+	height:45px;
+}
+
+#wrapper {
+/* 	position: absolute;
+	z-index: -999;
+	height: 100%;
+	width: 100%; */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  margin: 0;
+  width: 100%;
+  padding: 0 0px;
+  background-color: #f8f8f8;
+}
+
+#list .am-list {
+  margin: 0;
+}
+
+#list .am-list > li {
+  background: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.pull-action {
+  text-align: center;
+  height: 45px;
+  line-height: 45px;
+  color: #999;
+}
+
+.pull-action .am-icon-spin {
+  display: none;
+}
+
+.pull-action.loading .am-icon-spin {
+  display: block;
+}
+
+.pull-action.loading .pull-label {
+  display: none;
+}

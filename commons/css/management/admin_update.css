@@ -1,0 +1,88 @@
+body{
+	background-color: #f6f5f5;
+}
+.underline{
+	border-color: #878787; 
+	border-style: solid; 
+	border-top-width: 0px; 
+	border-right-width: 0px; 
+	border-bottom-width: 1px; 
+	border-left-width: 0px;
+	width:300px;
+	text-align:left;
+	margin-left: 10px;
+	font-size:21px;
+	color: #333333;
+	padding-left:20px;
+}
+.underline2{
+	border-color: #FFFFFF; 
+	border-style: solid; 
+	border-top-width: 0px; 
+	border-right-width: 0px; 
+	border-bottom-width: 1px; 
+	border-left-width: 0px;
+	width:300px;
+	text-align:left;
+	margin-left: 10px;
+	font-size:21px;
+	color: #333333;
+	padding-left:20px;
+}
+.arrangement{
+	display: flex;
+	flex-direction:row;
+	height:100%;
+}
+.admin_update{
+	background-color: #ffffff;
+	border-radius: 10px;
+	height:363px;
+	width :562px;
+	margin:auto;
+}
+.table{
+	margin-right:16px;
+	width:100%;
+	min-width:562px;
+}
+.adminName_column{
+	display:block;
+	margin-top:51px;
+}
+.adminName_column font{
+	font-size: 21px;
+	margin-left: 61px;
+	color:#4ec3fb;
+}
+.phoneNumber_column,.email_column{
+	display:block;
+	margin-top:46px
+}
+.phoneNumber_column font{
+	 font-size: 21px;
+	 margin-left: 83px;
+	 color:#4ec3fb;
+}
+.email_column font{
+	 font-size: 21px;
+	 margin-left: 127px;
+	 color:#4ec3fb;
+}
+.save_column{
+	display:block;
+	margin:43px 0 0 212px;
+}
+.save_column input{
+	font-size:3px;
+	width:137px;
+	height:45px;
+	border-radius: 10px;
+	background-color: #4ec3fb;
+	color:#ffffff;
+}
+#error{
+	font-size: 18px;
+	padding-left:200px;
+	color:#fe0338;
+}

@@ -1,0 +1,5 @@
+.check_div{position: fixed;bottom: 13vw;text-align: center;width: 100vw;}
+.check_add{outline:none;width: 80vw;height: 0.8rem;font-size: 0.35rem;background-color: #fea427;color: #ffffff;border-radius: 0.4rem;}
+.all{display: flex;justify-content:space-around;align-items:center;font-size: 0.28rem;}
+.money{text-align: center;margin-top: 28vw;}
+.much{font-size: 0.7rem;color: #999999;}

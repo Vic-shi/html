@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>个人信息</title>
+<style type="text/css">
+.divSpan>div{
+	height:13vw;
+	//border-bottom:0.3vw solid #999999;
+	background-color: #ffffff;
+} 
+.divSpan>div>span{
+	display:block;
+	margin-top:2.6vw;
+	margin-left:5.7vw;
+	color:#333333;
+	font-size: 16px;
+	line-height: 12vw;
+}
+.divSpan>div>div{
+	height:13vw;
+	//border-bottom:0.3vw solid #999999;
+	background-color: #ffffff;
+} 
+.divSpan>div>div>span{
+	display:block;
+	margin-top:2.6vw;
+	margin-left:5.7vw;
+	color:#333333;
+	font-size: 16px;
+	line-height: 12vw;
+}
+.gearArea { 
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding: 0px;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 998;
+}
+.changeTrue{
+background-color: #eeeeee;
+}
+</style> 
+</head>
+<body style = "margin:0;background-color: #f6f6f6;">
+<div> 
+	<div class = "divSpan">
+		<div style = "margin-top:2.6vw;">
+			<span style = "float:left;">头像</span>
+			<img id = "imgAdress" style = "height: 10vw;width:10vw;border-radius:100%; overflow:hidden;float:right;margin:2vw 9vw 0 0;" alt="" src="/web/commons/image/client/index/heads.png">
+			<img style = "height:3.2vw;float:right;position: fixed;right:5vw;top:8vw;" src="/web/commons/image/client/index/goin.png">
+		</div>
+		<div style = "height:26vw;">
+		<div onclick = "goChangeUserName()">
+			<span>用户昵称</span>
+			<span class = "nickName" style = "float:right;margin-top:-11.9vw;margin-right:10vw;">未设置</span>
+			<img style = "height:3.2vw;float:right;position: fixed;right:5vw;top:23vw;" src="/web/commons/image/client/index/goin.png">
+		</div>
+		<div style = "height:1px;background-color: #f6f6f6;width:90vw;margin-left:5vw;"></div>
+		<div style = "margin-top:0;border-top:0;height:10vw;" onclick = "changeSex()">
+			<span style = "margin-top:0;">性别</span> 
+			<span class = "sex" style = "float:right;margin-top:-11.5vw;margin-right:10vw;">请选择</span>
+			<img style = "height:3.2vw;float:right;position: fixed;right:5vw;top:36.5vw;" src="/web/commons/image/client/index/goin.png">
+		</div>
+		</div> 
+		<div onclick = "goChangeBindingPhone()"> 
+			<span>手机号</span>
+			<span class = "telNumber" style = "float:right;margin-top:-11vw;margin-right:10vw;">绑定手机号</span>
+			<img style = "height:3.2vw;float:right;position: fixed;right:5vw;top:52.3vw;" src="/web/commons/image/client/index/goin.png">
+		</div>	
+	</div>
+</div>
+<div id = "sexBom">
+
+</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script>
+var userId = sessionStorage.getItem("userId");
+var ary = new Array();
+$(function(){
+	$.ajax({
+		type:'POST', 
+		url:"/web/api/user/selectById",
+		dataType:'json',
+		data:{"jsonStr":"{'userId':"+userId+"}"},
+		success:function(data){
+			ary = data.data;
+			if(data.data.headimgUrl != null){
+				document.getElementById("imgAdress").src = data.data.headimgUrl;
+			}  
+			if(data.data.nickName != null){
+				$(".nickName")[0].innerHTML = data.data.nickName;
+			}
+			if(data.data.telNumber != null){
+				$(".telNumber")[0].innerHTML = data.data.telNumber;
+			}
+			if(data.data.sex == 1){
+				$(".sex")[0].innerHTML = "男";
+			}else if(data.data.sex == 2){
+				$(".sex")[0].innerHTML = "女";
+			}
+		},
+		error:function(data){
+			console.log('shibai');
+		}
+	})
+})
+function goChangeUserName(){
+	var nickName = $(".nickName")[0].innerHTML;
+	sessionStorage.setItem("nickName",nickName);
+	window.open('/web/client/index/changeUserName.html','_self');
+}
+function goChangeBindingPhone(){
+	if($(".telNumber")[0].innerHTML == "绑定手机号"){
+		window.open('/web/client/index/register.html','_self');
+	}else{
+		var telNumber = $(".telNumber")[0].innerHTML;
+		sessionStorage.setItem("telNumber",telNumber);
+		window.open('/web/client/index/changeBindingPhone.html','_self');
+	}
+}
+function changeSex(){
+	$("#sexBom").addClass("gearArea");
+	$("#sexBom").append('<div style = "position: fixed;height:100vh;width:100vw;" onclick = "cancel()"></div>');
+    var html = '<div style = "position: fixed;bottom: 0;background-color: #ffffff;height: 26vw;width:100vw; font-size: 18px;z-index:999;">' +
+    '<div style = "text-align:center;height:10vw;padding-top:3vw;border-bottom:1px solid #f6f6f6;" onclick = "change(1)" class = "man">男</div>'+
+    '<div style = "text-align:center;padding-top:3vw;height:10vw;" onclick = "change(0)" class = "woman">女</div>'+
+    '</div>';
+    $("#sexBom").append(html);
+}
+function cancel(){
+	$("#sexBom").removeClass("gearArea");
+	$("#sexBom").empty();
+}
+function change(data){
+	var sex = 0; 
+	if(data == "1"){
+		$(".sex")[0].innerHTML = "男";
+		sex = 1;
+	}else if(data == "0"){
+		$(".sex")[0].innerHTML = "女";
+		sex = 2;
+	}
+	$("#sexBom").removeClass("gearArea");
+	$("#sexBom").empty();
+	$.ajax({
+		type:'POST', 
+		url:"/web/api/user/update",
+		dataType:'json',
+		data:{"jsonStr":"{'userId':"+userId+",'sex':"+sex+"}"},
+		success:function(data){
+			console.log('成功');
+		},
+		error:function(data){
+			console.log('shibai');
+		}
+	})
+}
+</script>
+</body>
+</html>

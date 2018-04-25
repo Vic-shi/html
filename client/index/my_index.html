@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>我的</title>
+<style type="text/css">
+.divBorder>div{
+	height:8vw;
+	border-bottom:0.3vw solid #f1f1f1;
+	width:90vw;
+	margin-left:5vw;
+	padding-bottom: 1vw;
+	margin-top: 3vw;
+}
+.divBorder>div>span{
+//display:block;
+//margin-top:4vw;
+margin-left:2vw;
+}
+.divBorder>div>a>span{
+//display:block;
+//margin-top:4vw;
+margin-left:2vw;
+}
+body .menu{
+	width: 100%;
+	background-color:#f8f8f8;
+	border-top: #cacaca 1px solid!important;
+	display: flex;
+	align-items: center;
+	justify-content:space-around;
+	position: fixed;
+	bottom: 0;
+}
+body .menu a{
+	width:8%!important;
+	display: block;
+	text-align: center;
+	font-size: 10px!important;
+	line-height: 2;
+	margin-top: 2vw;
+	color: #999;
+	text-decoration:none;
+}
+body .menu a img{
+	width:90%;
+	display: block!important;
+	text-align: center;
+}
+</style>
+</head>
+<body style = "margin: 0 auto;background-color: #f6f6f6"> 
+<div class = "divBorder" style = "height:100%;width:100%;background-color: #ffffff">
+	<div style = "border-bottom:none;height:60vw;margin-left:0;margin-top:0;"> 
+	<img src="/web/commons/image/client/index/my-index.png" style = "width:100vw;margin-left:0;"> 
+		<div style = "border-radius: 100%;background-color: #ffffff;height:22vw;width:22vw;position: fixed;top:0;margin: 15vw 0 0 10vw;">
+			<img onclick = "bom()" style = "height: 20vw;width:20vw;border-radius:100%; overflow:hidden;float:left;margin-left:1vw;margin-top:1vw;" alt="" id = "imgAdress" src="/web/commons/image/client/index/heads.png" onerror = "/web/commons/image/smallErr.png">
+		</div>
+		<div style = "position: fixed;margin:23vw 0 0 37vw;top:0;"> 
+			<span class = "nickName" style = "color:#ffffff;font-size: 18px;font-weight: bold;">登录</span>		 
+		</div>
+		<a href="/web/client/index/setup.html"><img style = "position:fixed;top:0;right:3vw;margin-top:8vw;float:right;width:4.4vw;" src="/web/commons/image/client/index/setup.png"></a>
+	</div> 
+	<div class = "address">
+		<img style = "height:4vw;" src="/web/commons/image/client/index/address.png">
+		<a style = "text-decoration:none;color:#333333" href="/web/client/index/site.html"><span style = "color:#333333">管理收货地址</span></a>
+		<img style = "height:3.2vw;float:right;" src="/web/commons/image/client/index/goin.png">
+	</div>
+<!-- 	<div>
+		<img style = "height:4vw;" src="/web/commons/image/client/index/collection.png">
+		<a style = "text-decoration:none;col\\]or:#333333" href="/web/client/index/collection.html"><span style = "color:#333333">心愿单</span></a>
+		<img style = "height:3.2vw;float:right;" src="/web/commons/image/client/index/goin.png">
+	</div> --> 
+	<div class = "account">
+		<img style = "height:4vw;" src="/web/commons/image/client/index/money.png">
+		<a style = "text-decoration:none;color:#333333" href="/web/client/index/account.html"><span style = "color:#333333">账户</span></a>
+		<img style = "height:3.2vw;float:right;" src="/web/commons/image/client/index/goin.png">
+	</div>
+	<div class = "Raiders">
+		<img style = "height:4vw;" src="/web/commons/image/client/index/Raiders.png">
+		<a style = "text-decoration:none;color:#333333" href="/web/client/index/strategy.html"><span style = "color:#333333">攻略</span></a>
+		<img style = "height:3.2vw;float:right;" src="/web/commons/image/client/index/goin.png">
+	</div> 
+	<div class = "order"> 
+		<img style = "height:4vw;" src="/web/commons/image/client/index/order.png">
+		<a style = "text-decoration:none;color:#333333" href="/web/client/index/payment.html"><span style = "color:#333333">订单</span></a>
+		<img style = "height:3.2vw;float:right;" src="/web/commons/image/client/index/goin.png">
+	</div>
+	<div style = "border:none" class = "about">
+		<img style = "height:4vw;" src="/web/commons/image/client/index/about.png">
+		<a style = "text-decoration:none;color:#333333" href="/web/client/index/lease.html"><span style = "color:#333333">关于</span></a>
+		<img style = "height:3.2vw;float:right;" src="/web/commons/image/client/index/goin.png">
+	</div>
+</div>
+	<div style = "margin-top:5vw;" align="center">
+		<span style = "color:#999999;font-size: 15px;">客户电话:9879877</span>
+	</div>
+    <div class="menu">
+	<a href="/web/client/index/index.html" >
+		<img src="/web/commons/image/client/index/index.png">首页
+	</a>
+	<a href="/web/client/index/gallery.html" > 
+		<img src="/web/commons/image/client/index/gallerys.png">作品
+	</a> 
+	<a href="/web/client/index/my_index.html"style="color: black;" >
+		<img src="/web/commons/image/client/index/my_indexin.png">我的
+	</a>
+</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script>
+var smallErr = "/web/commons/image/smallErr.png";
+
+$(function(){
+	var userId = sessionStorage.getItem("userId"); 
+	$.ajax({
+		type:'POST', 
+		url:"/web/api/user/selectById", 
+		dataType:'json',
+		data:{"jsonStr":"{'userId':"+userId+"}"},
+		success:function(data){
+			if(data.data.headimgUrl != null){
+				document.getElementById("imgAdress").src = data.data.headimgUrl;
+			} 
+			$(".nickName")[0].innerHTML = data.data.nickName;
+		},
+		error:function(data){
+			console.log('shibai');
+		}
+	})
+}) 
+function bom(){
+	window.open('/web/client/index/user.html','_self');
+}
+$('.address').click(function(){
+	window.open('/web/client/index/site.html','_self');
+});
+$('.account').click(function(){
+	window.open('/web/client/index/account.html','_self');
+});
+$('.Raiders').click(function(){
+	window.open('/web/client/index/strategy.html','_self');
+});
+$('.order').click(function(){
+	window.open('/web/client/index/payment.html','_self');
+});
+$('.about').click(function(){
+	window.open('/web/client/index/lease.html','_self');
+}); 
+</script>
+</body>
+</html>

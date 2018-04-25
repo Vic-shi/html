@@ -1,0 +1,61 @@
+.activity_add{
+	width:651px;
+	margin: 53px auto;
+}
+.activity_add span{
+	font-size:20px;
+	color:#333;
+}
+.arrangement{
+	display: flex;
+	flex-direction:row;
+}
+.rt_wrap{
+	height:903px;
+	width:100%;
+	min-width:800px;
+	margin-right: 20px;
+}
+.activity_img{
+	height:123px;
+	width:284px;
+	border: 1px solid #999;
+	background-color: #fcfcfc;
+}
+#activity_uploadImages{
+	width:284px;
+	height:48px;
+	background-color: #4ec3fb;
+	color:#fff;
+	line-height: 48px;
+	text-align: center;
+}
+#selectfiles{
+	width:284px;
+	height:48px;
+	background-color: #4ec3fb;
+	color:#fff;
+	line-height: 48px;
+	text-align: center;
+}
+.determine_btn{
+	width:651px;
+	height:48px;
+	background-color: #4ec3fb;
+	color:#fff;
+	cursor: pointer;
+}
+.select_img{
+	cursor: pointer;
+}
+#activityStartTime,#activityEndTime{
+	cursor: pointer;
+}
+.activityStartTime_error,.time_error,.activityTitle_error,.item_name_error,.img_upload_error,.address_error,.isOffline_error{
+	color:#fe0338!important;
+	font-size: 18px!important;
+}
+.input_black{
+	background-color: #ffffff;
+	opacity: 0.3;
+}

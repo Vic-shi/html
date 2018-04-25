@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>设置</title>
+<style type="text/css">
+.divSpan>div{
+	height:13vw;
+	//border-bottom:0.3vw solid #999999;
+	background-color: #ffffff;
+} 
+.divSpan>div>span{
+	display:block;
+	margin-top:2.6vw;
+	margin-left:5.7vw;
+	color:#333333;
+	font-size: 16px;
+	line-height: 12vw;
+}
+</style>
+</head>
+<body style = "margin:0;background-color: #f6f6f6;">
+<div>
+	<div class = "divSpan">
+		<div>
+			<span>清除缓存</span>
+		</div>
+		<div onclick = "goFeedback()">
+			<span>反馈或建议</span>
+		</div>
+		<div>
+			<span>隐私协议</span> 
+		</div>  
+	</div>
+	<div align="center" style = "margin-top:13vw;">
+		<input style = "width:80vw;height:12vw;border-radius: 20px;border:none;color:#ffffff;background-color: #000000;" type = "button" value = "退出登录"/>
+	</div>
+</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script> 
+<script>
+function goFeedback(){
+	window.open('/web/client/index/feedback.html','_self');
+}
+
+
+</script>
+</body>
+</html>

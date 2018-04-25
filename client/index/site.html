@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+<title>管理地址</title>
+<style type="text/css">
+.manage{border-bottom: 1px solid #f1f1f1;color: #838383;height: 4rem;}
+.left{float: left;vertical-align: middle;}
+.name{font-size: 0.3rem;}
+.area{font-size: 0.23rem;margin-bottom: 0.25rem;}
+.location{font-size: 0.23rem;margin-bottom: 0.8rem;}
+.num{font-size: 0.25rem;padding-left: 0.4rem;margin-right:15vw;float:right;}
+.right{float: right;vertical-align: middle;}
+.check_div{position: fixed;bottom: 13vw;text-align: center;width: 100vw;top:120vw;}
+.check_add{border-radius:20px;border:none;outline:none;width: 80vw;height: 12vw;font-size: 16px;background-color: #000000;color: #ffffff;}
+.all{display: flex;justify-content:space-around;align-items:center;font-size: 0.28rem;}
+.layui-layer-btn a{font-size: 0.3rem;height: 0.35rem;color: #007eff;line-height: 0.28rem;}
+.layui-layer-btn{height: 15vw;}
+.layui-layer{height:33.47vw;border-radius: 5.3vw;}
+.layui-layer-btn{padding-top:0!important;} 
+.layui-layer-btn .layui-layer-btn0{border: none;background-color: #fff;color:#007eff;margin-right: 26.67vw;}
+.layui-layer-btn .layui-layer-btn1{border: none;background-color: #fff;color:#007eff;}
+</style>
+</head>
+<body style = "background-color: #f6f6f6;margin:0;">
+<div class = "sites">
+<!-- <div class="site" id=unpaid style = "background-color: #ffffff;margin-bottom: 2vw;">
+<div>
+	<div class="manage" onclick="changeaddress(this)" style = "width:100vw;margin-left: 2.6vw;padding-top: 4vw;">
+		<div class="name"><span class="dzname" style = "float: left;color:#333333;font-size: 15px;">王二</span><span class="num" style = "float: left;margin-left: 10vw;color:#333333;font-size: 17px;">15899338874</span></div>
+		<div style = "float: left;margin-top: 3vw;font-size: 14px;color:#999999;width:100vw;" class="location">浙江省宁波市鄞州区双东路永佳家园10栋503</div>
+	</div>
+	<div class = "manage" style=  "height: 2.5rem;">
+		<div style = "float:left;margin-top:2vw;margin-left: 2vw;"> 
+			<input type="checkbox" style="margin-right:1vw;"/> 
+			<label>默认地址</label> 
+		</div> 
+		<div style= "float:right;margin-top:2vw;"> 
+			<img src="/web/commons/image/client/index/edit.png">
+			<a href="/web/client/index/editSite.html"><input type = "button" value = "编辑"  style="margin-left:-1vw;margin-right:2.96vw;border:none;background-color: #ffffff;color:#999999;"></a>
+			<img src="/web/commons/image/client/index/delete.png">
+			<input style = "border:none;background-color: #ffffff;color:#999999;margin-left:-1vw;" type = "button" value = "删除">
+		</div>
+	</div>
+</div> 
+</div> --> 
+</div>
+	<div class="check_div all">
+		<a href="/web/client/index/reviseSite.html">
+		<input type="button" class="check_add" onclick="add()" value="新增地址">
+		</a>
+	</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script>
+var userId=sessionStorage.getItem("userId");
+var sfdefault;
+var num = 0;
+var checked = "";
+$(function(){
+	select();
+})
+function del(addressId){
+	var queryData = {"jsonStr":"{'addressId':"+addressId+"}"}
+	$.ajax({
+		type:'POST',
+		url:"/web/api/orderaddress/deleteaddress",
+		dataType:'json',
+		data:queryData,
+		success:function(data){
+			select();
+		},
+		error:function(data){
+			console.log('shibai');
+		}
+	})
+}
+function select(){
+	$.ajax({
+		type:'POST',
+		url:"/web/api/orderaddress/list",
+		dataType:'json',
+		data:{"jsonStr":"{'userId':"+userId+"}"},
+		success:function(data){
+			$(".sites").empty();
+			if(data.data == null){
+				$(".sites").append('<img id = "whereNoOrder" style = "width:100vw;" src = "/web/commons/image/client/index/nonoSite.png">');
+			}
+			for(var i in data.data){ 
+				var address = data.data[i].address + data.data[i].detailedaddress;
+/* 				if(data.data[i].sfdefault == 1){
+					checked = "checked = \"checked\" ";
+				}else{
+					checked = "";
+				} */
+				sfdefault = "sfdefault" + data.data[i].addressId;
+				l = '<div class="site" id=unpaid style = "background-color: #ffffff;margin-bottom: 2vw;">'
+					+'<div>'
+					+'<div class="manage" onclick="changeaddress('+data.data[i].addressId+')" style = "width:100vw;margin-left: 2.6vw;padding-top: 4vw;">'
+					+'<div class="name"><span class="dzname" style = "float: left;color:#333333;font-size: 15px;">'+data.data[i].name+'</span><span class="num" style = "float: left;margin-left: 10vw;color:#333333;font-size: 17px;">'+data.data[i].userMobile+'</span></div>'
+					+'<div style = "float: left;margin-top: 3vw;font-size: 14px;color:#999999;width:100vw;" class="location">'+address+'</div>'
+					+'</div>'
+					+'<div class = "manage" style=  "height: 2.5rem;">'
+					+'	<div style = "float:left;margin-top:2vw;margin-left: 2vw;"> '
+					+'	<input id = "'+sfdefault+'" type="checkbox" '+checked+' onclick = "address('+data.data[i].addressId+')" style="margin-right:1vw;"/> '
+					+'	<label>默认地址</label> '
+					+'</div> '
+					+'<div style= "float:right;margin-top:2vw;"> '
+					+'	<img style = "height:15px;" src="/web/commons/image/client/index/edit2x.png">'
+					+'	<input type = "button" value = "编辑"  onclick = "goEdit('+data.data[i].addressId+')" style="margin-left:-1vw;margin-right:2.96vw;border:none;background-color: #ffffff;color:#999999;">'
+					+'	<img style = "height:15px;" src="/web/commons/image/client/index/delete2x.png">'
+					+'	<input style = "border:none;background-color: #ffffff;color:#999999;margin-left:-1vw;" type = "button" value = "删除" onclick = "del('+data.data[i].addressId+')">'
+					+'</div>' 
+					+'</div>' 
+					+'</div>'
+					+'</div>';
+				$(".sites").append(l);
+				if(data.data[i].sfdefault == 1){
+					document.getElementById(sfdefault).checked = true;
+				}
+			} 
+		},
+		error:function(data){
+			console.log('shibai');
+		}
+	})
+}
+function goEdit(addressId){
+	sessionStorage.setItem("addressId",addressId);
+	window.open('/web/client/index/editSite.html','_self');
+}
+function address(addressId){
+	var queryData = {"jsonStr":"{'addressId':"+addressId+",'userId':"+userId+",'sfdefault':'1'}"};
+	$.ajax({
+		type:'POST',
+		url:"/web/api/orderaddress/update",
+		dataType:'json',
+		data:queryData,
+		success:function(data){
+			console.log("成功");
+			select();
+		}
+		})
+}
+function changeaddress(addressId){
+	var backShareMessage=sessionStorage.getItem("backShareMessage");
+	if(backShareMessage == "yes"){
+		sessionStorage.setItem("backShareMessage","");
+		sessionStorage.setItem("addressId",addressId);	
+		window.open('/web/client/index/share_message.html','_self');
+	}
+	
+}
+
+</script>	
+</body>
+</html>

@@ -1,0 +1,99 @@
+/*作品调整模块共有样式设置*/
+body{
+	background-color: #f1f1f1;
+	width: 100%;
+	overflow: hidden;
+}
+body>div{
+	border-bottom: 1px solid #f1f1f1;
+	background-color: white;
+	line-height:1;
+	font-size: 0.23rem;
+	color: #666;
+	padding: 3vw 5%;
+}
+body .pay_time,.pay_price{
+	color:#fea427;
+}
+body>form{
+	background-color: white;
+	height: 80vw;
+}
+/*整体的h1样式设计*/
+body div h1{
+	font-size: 0.26rem;
+	color:#333;
+	line-height:10vw;
+	height: 10vw;
+}
+#method1,#method2{display: none;}
+body div label[for="method1"]{
+	font-size: 0.26rem;
+	color:#333;
+	line-height:16vw;
+	height: 16vw;
+	width: 100%;
+	background: url(../../../image/client/payment/weixin.png) no-repeat left,url(../../../image/client/payment/radio.png) no-repeat right;
+	background-size: 10vw,6vw;
+	padding-left:12vw;
+}
+body div div .choose1{
+	background: url(../../../image/client/payment/weixin.png) no-repeat left,url(../../../image/client/payment/radio_choose.png) no-repeat right;
+	background-size: 10vw,6vw;
+}
+body div label[for="method2"]{
+	font-size: 0.26rem;
+	color:#333;
+	line-height:16vw;
+	height: 16vw;
+	width: 100%;
+	background: url(../../../image/client/payment/zhifubao.png) no-repeat left,url(../../../image/client/payment/radio.png) no-repeat right;
+	background-size: 10vw,6vw;
+	padding-left:12vw;
+}
+body div div .choose2{
+	background: url(../../../image/client/payment/zhifubao.png) no-repeat left,url(../../../image/client/payment/radio_choose.png) no-repeat right;
+	background-size: 10vw,6vw;
+}
+body div h2{
+	margin: auto;
+	line-height:3.6;
+	font-size: 0.22rem;
+	background: url(../../../image/client/payment/time.png) no-repeat left;
+	background-size: 6vw;
+	padding-left:8vw ;
+}
+/*设置成横向*/
+body div div{
+	display: flex;
+	justify-content:space-between;
+	align-items: center;
+}
+/*提交按钮设置*/
+input[type="submit"]{
+	height: 10vw;
+	background-color:#fea427;
+	border-radius:5vw;
+	color: white;
+	width: 76%;
+	position:fixed;
+	bottom:10vw;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

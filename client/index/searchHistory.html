@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>搜索</title>
+<style type="text/css">
+	.my-header{
+		width:100%;
+		height:7vw; 
+		background-color: #fff;
+		padding:2.9vw 0 6.1vw 0;
+		border-bottom:0.1vw solid #cfc9c9;
+	}
+	.search{
+		float:left;
+		display: flex;
+		flex-direction:row;
+		//border: 0.3vw solid #999;
+		border-radius: 3vw;
+		//height:7.5vw;
+		width:83vw;
+		margin-left:4vw;
+		opacity:0.5;
+	}
+		.search-input-box{
+		height:7.5vw;
+		width:83vw;
+		border-radius:2vw;
+		border:none;
+		outline:none;
+		color:#999;
+		margin-left:3vw;
+		background-image:url('/web/commons/image/client/index/index_search.png');
+		background-repeat:no-repeat;
+		background-position-x: 2vw;
+    	background-position-y: 2.5vw;
+    	background-color:#eeeeee;
+	}
+	.placehoders::-ms-input-placeholder{text-align: left;padding-left:10vw;font-size:14px;color: #808080;} 
+	.placehoders::-webkit-input-placeholder{text-align: left;padding-left:10vw;font-size: 14px;color: #808080;} 
+	.keyword{
+		color:#999999;
+		font-size: 14px;
+	}
+	.imgTime{
+		margin-top:2.5vw;border-radius:100%; overflow:hidden;margin-left:2.5vw;
+	}
+	.imgDelete{
+		border-radius:100%; overflow:hidden;margin-right:6vw;float:right;
+		margin-top:3.5vw;
+	}
+	.button{
+		border: none;
+		background-color:#ffffff;
+		color:#2f85ff;
+		font-size: 14px;
+	}
+</style> 
+</head>  
+<body style = "margin: 0 auto;">  
+<div>
+	<div class="my-header" style="width: 100vw;">
+		<div class="search">
+			<input  type="text" placeholder="艺术家/作品名/类别" class="search-input-box placehoders" id = "galleryMsg" onkeypress="prosearch()">
+      	</div>
+      	<div style = "width:3vw;float:left;margin-left:1vw">
+      		<a href="/web/client/index/index.html">
+      			<input type = "button" value = "取消" style = "height:7.5vw;width:10vw;border:none;background-color: #ffffff">    
+			</a>
+      	</div>   
+    </div>
+    <div id = "hotSearch" style = "height:20vw;margin-left:5vw;margin-top:4vw;">
+		<span>热门搜索</span>
+    </div> 
+	<div id = "history">
+		<div style = "border-bottom:1px solid #cfc9c9;">
+		<span style = "display: block;margin-bottom: 2vw;">历史搜索</span> 
+		</div>
+		<div style = "height:10vw;border-bottom:1px solid #cfc9c9;">
+			<img class = "imgTime" alt="" src="/web/commons/image/client/index/time.png">
+			<span style = "margin-left:8vw;" class = "keyword" >关键字</span>
+			<img onclick = "deleteOne()" class = "imgDelete" alt="" src="/web/commons/image/client/index/deleteHistory.png">
+		</div>
+		<div style = "height:10vw;border-bottom:1px solid #cfc9c9;">
+			<img class = "imgTime" alt="" src="/web/commons/image/client/index/time.png">
+			<span style = "margin-left:8vw;" class = "keyword" >关键字</span>
+			<img class = "imgDelete" alt="" src="/web/commons/image/client/index/deleteHistory.png">
+		</div>
+		<div style = "height:10vw;border-bottom:1px solid #cfc9c9;">
+			<img class = "imgTime" alt="" src="/web/commons/image/client/index/time.png">
+			<span style = "margin-left:8vw;" class = "keyword" >关键字</span>
+			<img class = "imgDelete" alt="" src="/web/commons/image/client/index/deleteHistory.png">
+		</div>
+		<div style = "height:10vw;border-bottom:1px solid #cfc9c9;">
+			<img class = "imgTime" alt="" src="/web/commons/image/client/index/time.png">
+			<span style = "margin-left:8vw;" class = "keyword" >关键字</span>
+			<img class = "imgDelete" alt="" src="/web/commons/image/client/index/deleteHistory.png">
+		</div>
+		<div style = "height:10vw;border-bottom:1px solid #cfc9c9;">
+			<img class = "imgTime" alt="" src="/web/commons/image/client/index/time.png">
+			<span style = "margin-left:8vw;" class = "keyword" >关键字</span>
+			<img class = "imgDelete" alt="" src="/web/commons/image/client/index/deleteHistory.png">
+		</div>
+	</div>
+</div>
+<div id = "buttonHistory" style = "margin-top:9vw;text-align: center;">
+	<input class = "button" type = "button" onclick = "deleteAll()" value= "清空历史数据"/>
+</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script>
+$(function() {
+	var userId = sessionStorage.getItem("userId");
+	$.ajax({
+		type : "POST",
+		url : "/web/api/keysearch/listDetail",
+		dataType : "json",
+		data:{"jsonStr":"{'userId':"+userId+"}"},
+		success : function(data) {
+			$("#history").hide();
+			$("#buttonHistory").hide();
+			if(data.state == 1){
+				$("#hotSearch").hide();
+			}else if(data.state == 0){
+			}
+		}
+	});
+});
+function bom(){
+	window.open('/web/client/index/searchProduct.html','_self');
+}
+function deleteAll(){
+	
+	
+}
+$("#galleryMsg").keydown(function(e) { 
+    if (e.keyCode == 13) { 
+    	var galleryMsg = document.getElementById("galleryMsg").value;
+    	sessionStorage.setItem("simsearch",galleryMsg);
+    	window.open('/web/client/index/searchProduct.html','_self');
+    }
+});  
+
+
+</script>
+</body>
+</html>

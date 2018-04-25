@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>反馈和建议</title>
+<style type="text/css">
+.divInput>textarea{
+	height:41vw;
+	width:80vw;
+	text-align: center;
+	margin-top:3vw;
+}
+textarea::-ms-input-placeholder{color:#d9d9d9;font-size: 15px;top:0;}
+textarea::-webkit-input-placeholder{color:#d9d9d9;font-size: 15px;top:0;}
+</style> 
+</head> 
+<body style = "margin:0">
+<div>
+	<div class = "divInput" align="center" style = "margin-top:5vw;">
+		<textarea style="background-color:#eeeeee;border-radius:10px;border:none;color:#333333;font-size: 15px;"placeholder="请填写您的意见"></textarea>
+		<input style = "margin-top:10vw;width: 80vw;height: 12vw;font-size: 16px;background-color: #000000;color: #ffffff;border-radius:20px;border:none;left:10vw;" type="button" onclick = "save()" value = "提交"/><br/>
+	</div>
+	<div id = "GiveSuccess" style = "width: 50vw;height:8vw;background-color: #000000;position: fixed;top:30vw;left:25vw;border-radius: 10px;text-align: center;opacity:0.5;display: none;"> 
+		<span style = "font-size: 15px;color:#ffffff;display: block;margin-top:1vw;">提交成功</span>
+	</div> 
+</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script>
+function save(){
+	var i = 2;
+	var time900 = window.setInterval(function(){
+		i--;
+		document.getElementById("GiveSuccess").style.display = "block";
+		if(i == 0){
+			document.getElementById("GiveSuccess").style.display = "none";
+			window.clearInterval(time900); 
+			window.open('/web/client/index/setup.html','_self');
+		}
+	},1000); 
+}
+</script>
+</body>
+</html>

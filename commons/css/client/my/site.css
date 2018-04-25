@@ -1,0 +1,17 @@
+.manage{border-bottom: 1px solid #f1f1f1;margin: 0.4rem 0.34rem;color: #838383;height: 1.8rem;}
+.name{font-size: 0.3rem;margin-bottom: 0.25rem;}
+.area{font-size: 0.23rem;margin-bottom: 0.25rem;}
+.location{font-size: 0.23rem;margin-bottom: 0.31rem;}
+.num{font-size: 0.25rem;padding-left: 0.4rem;}
+.right{float: right;vertical-align: middle;}
+.left{float: left;vertical-align: middle;}
+.right img{width: 4.9vw;}
+.check_div{position: fixed;bottom: 13vw;text-align: center;width: 100vw;}
+.check_add{outline:none;width: 80vw;height: 0.8rem;font-size: 0.35rem;background-color: #fea427;color: #ffffff;border-radius: 0.4rem;}
+.all{display: flex;justify-content:space-around;align-items:center;font-size: 0.28rem;}
+.layui-layer-btn a{font-size: 0.3rem;height: 0.35rem;color: #007eff;line-height: 0.28rem;}
+.layui-layer-btn{height: 15vw;}
+.layui-layer{height:33.47vw;border-radius: 5.3vw;}
+.layui-layer-btn{padding-top:0!important;}
+.layui-layer-btn .layui-layer-btn0{border: none;background-color: #fff;color:#007eff;margin-right: 26.67vw;}
+.layui-layer-btn .layui-layer-btn1{border: none;background-color: #fff;color:#007eff;}

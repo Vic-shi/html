@@ -1,0 +1,171 @@
+/* header */
+.header{
+	display: flex;
+	flex-direction:row;
+	background-color: #fff;
+	height:96px;
+	width:100%;
+	min-width:1377px;
+}
+.loge_icon{
+	width:220px;
+	height:96px;
+}
+.header_content{
+	width:100%;
+	display: flex;
+	flex-direction:row;
+	height:96px;
+	min-width:1157px;
+}
+.index_title{
+	line-height: 96px;
+	padding-left:25px;
+}
+#title{
+	color:#333;
+	font-size: 24px;
+	white-space: nowrap;
+	width:310px;
+}
+.special_title{
+	line-height: 96px;
+	padding-left:25px;
+	display: flex;
+	flex-direction:row;
+}
+.return_icon{
+	height:24px;
+	margin-top:36px;
+	cursor: pointer;
+}
+.return{
+	color:#333;
+	font-size: 24px;
+	white-space: nowrap;
+	width:50px;
+	padding-left:20px;
+	cursor: pointer;
+}
+.admin{
+	padding-top:18px;
+	width: 100%
+}
+.admin div:first-child{
+	position:relative;
+	float:right;
+}
+#personal_center{
+	height:128px;
+	width:130px;
+	background-color:#fff;
+	position: absolute;
+	top:100%;
+	left:5%;
+	box-shadow:0px 1.96px 2px 2px #ededed;
+	display: none;
+	z-index:100000000000000000;
+}
+.rt li{
+	border-bottom: 1px solid #999;
+	height:43px;
+	line-height: 43px;
+	cursor: pointer;
+}
+.rt li img{
+	margin-left:10px;
+}
+.rt li:nth-child(3){
+	border:none;
+}
+.admin_icon,.quit{
+	margin-left:18px;
+	color: #999;
+}
+.admin_icon{
+	cursor:pointer;
+}
+.set{
+	margin-left:14px;
+	color: #999;
+}
+.admin_name{
+	margin:0 120px 0 20px;
+}
+.admin_name span{
+	color:#666;
+	font-size: 16px;
+	line-height: 96px;
+	width:20px;
+	white-space: nowrap;
+}
+
+
+/* sidebar */
+.lt_aside_nav{
+	min-width:220px;
+	max-width:220px;
+	background-color: #fff;
+	height:100%;
+	cursor: pointer;
+}
+.lt_aside_nav::-webkit-scrollbar {
+		  width: 5px;
+		  border-radius: 10px;
+} /* 这是针对缺省样式 (必须的) */
+.lt_aside_nav::-webkit-scrollbar-track {
+		  background-color: #fff;
+		  border-radius: 10px;
+	} /* 滚动条的滑轨背景颜色 */
+
+	.lt_aside_nav::-webkit-scrollbar-thumb {
+		  background-color:#4ec3fb; 
+		  border-radius: 10px;
+	} /* 滑块颜色 */
+
+	.lt_aside_nav::-webkit-scrollbar-button {
+		  background-color: #7c2929;
+		  display: none
+	} /* 滑轨两头的监听按钮颜色 */
+
+	.lt_aside_nav::-webkit-scrollbar-corner {
+		  background-color: black;
+	} /* 横向滚动条和纵向滚动条相交处尖角的颜色 */
+.lt_aside_nav ul li dl{
+	margin:0px;
+}
+.lt_aside_nav ul li dl dt{
+	box-shadow:0px 0.2px 0px 0.2px #999;
+	padding-left:15px;
+	height:54px;
+	line-height: 54px;
+	font-weight:900;
+	font-size:18px;
+}
+.lt_aside_nav ul li dl dd{
+	box-shadow:0px 0.1px 0px 0.1px #999;
+	margin:0px;
+	padding-left:25px;
+	height:54px;
+	line-height:54px;
+	font-size:16px;
+}
+
+.right{
+	color:#333;
+}
+.click_dd_css{
+	background-color: #f6f5f5;
+}
+.click_a_css{
+	color:#4ec3fb;
+}
+.click_a_css:hover{
+	color:#4ec3fb;
+}
+a:focus { 
+	outline: none; 
+}
+.layui-form dd{
+	font-size: 20px;
+}

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html style = "font-size: 0.24rem">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<title>支付</title>
+<style type="text/css">
+.check_add{border-radius:20px;border:none;outline:none;width: 80vw;height: 12vw;font-size: 16px;background-color: #000000;color: #ffffff;}
+.spanMargin{
+	margin-left:9vw;
+}
+.divPadding{
+	padding-left:5vw;
+	margin-top:5vw;
+}
+</style>
+</head>
+<body style = "margin:0">
+<div style = "font-size: 15px;">
+	<div>
+		<div style = "text-align: center;height:9vw;margin-top:5vw;border-bottom: 1px solid #f1f1f1;">
+			<img style = "position: absolute;margin-left:-6vw;" src="/web/commons/image/client/index/payTime.png">
+			<span>支付剩余时间</span>
+			<span id = "times" style = "color:red;">15:00</span>
+		</div>
+		<div style = "width:100vw;" class = "divPadding">
+			<span>订单名</span>
+			<span class = "spanMargin" id = "productName">《扎木便桥》</span>
+		</div>
+		<div class = "divPadding">
+			<span>作者名:</span>
+			<span class = "spanMargin" id = "productAuthor">吴冠中</span>
+		</div>
+		<div class = "divPadding">
+			<span>订单号:</span>
+			<span class = "spanMargin" id = "orderId">153665416156</span>
+		</div>
+		<div style = "width:100vw;height:10vw;border-bottom: 1px solid #f1f1f1;" class = "divPadding">
+			<span>订单金</span>
+			<span class = "spanMargin" id = "money" style = "text-decoration: line-through;">￥109000</span>
+		</div>
+	</div>
+	<div>
+		<div class = "divPadding" style = "width:100vw;height:10vw;border-bottom: 1px solid #f1f1f1;">
+			<span>要支付</span> 
+			<span class = "spanMargin" style = "color:red" id = "payMoney">￥900</span>
+		</div>
+	</div> 
+	<div>
+		<div style = "margin-top: 5vw;height: 20vw;padding-left: 5vw;border-bottom: 1px solid #f1f1f1;">
+			<img alt="" src="/web/commons/image/client/index/wechat.png">
+			<span style = "position: absolute;margin:3vw 0 0 10vw;">微信支付</span>
+			<input style = "float: right;margin-right:5vw;margin-top:5vw;" id = "weChatPay" type = "checkbox"/>
+			
+		</div>
+	</div>
+
+</div>
+
+
+	<div class="tijiao" style = "text-align: center;margin-top:30vw;"> 
+		<input class = "check_add" type="submit" onclick = "save()" value="确认支付" />
+	</div>
+	
+	<div id = "msgts" style = "width: 50vw;height:8vw;background-color: #000000;position: fixed;top:60vw;left:25vw;border-radius: 10px;text-align: center;opacity:0.5;display: none;"> 
+		<span id="msgall" style = "font-size: 15px;color:#ffffff;display: block;margin-top:1vw;"></span>
+	</div>
+	
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script>
+function consoleAlert(){
+	var i = 2;
+	var time900 = window.setInterval(function(){
+		i--;
+		document.getElementById("msgts").style.display = "block";
+		if(i == 0){
+			document.getElementById("msgts").style.display = "none";
+			window.clearInterval(time900); 
+			falseData();
+		}
+	},1000); 
+}
+
+var productId = '';
+$(function(){
+	var orderId = sessionStorage.getItem("orderId");
+	var open_id = sessionStorage.getItem("openid");
+	document.getElementById('weChatPay').checked = true;
+	var i = 900;
+	var fen = 0;
+	var min = 0;  
+	var x = 0;
+	var time900 = window.setInterval(function(){
+		i--;  
+		if(i == 0){
+			$("#times")[0].innerHTML = "支付超时";
+			window.clearInterval(time900);
+			return;
+		}
+		if(i>60){
+			fen = (i-i%60)/(60);
+			min = i%60;
+			if(parseInt(min)<10){
+				min = "0"+min; 
+			} 
+			if(parseInt(fen)<10){
+				fen = "0"+fen;
+				x++;
+			}
+		}else if(i == 60){ 
+			fen = "01";
+			min = "00";
+		}else{
+			min = i%60;
+			if(parseInt(min)<10){
+				min = "0"+min; 
+			} 
+			fen = "00";
+		}
+		
+		$("#times")[0].innerHTML = fen +":"+min;
+	},1000); 
+	$.ajax({ 
+		type:'POST', 
+		url:"/web/api/order/listDetail",
+		dataType:'json',
+		data:{"jsonStr":"{'orderId':"+orderId+"}"},
+		success:function(data){
+			data.data.orderTotalValue = data.data.orderTotalValue/100;
+			data.data.actualPayment = data.data.actualPayment/100;
+			$("#productName")[0].innerHTML = "《"+data.data.productName+"》";
+			$("#productAuthor")[0].innerHTML = data.data.productAuthor;
+			$("#orderId")[0].innerHTML = data.data.id;
+			$("#money")[0].innerHTML = "￥"+data.data.orderTotalValue;
+			$("#payMoney")[0].innerHTML = "￥"+data.data.actualPayment;
+			productId = data.data.productId;
+		}, 
+		error:function(data){
+			console.log('shibai');
+		}
+	})
+});
+function save(){
+	var trade_no = guid();
+	var orderId = sessionStorage.getItem("orderId");
+	var open_id = "";
+	if(sessionStorage.getItem("openid") !=null && sessionStorage.getItem("openid")!="null"){
+		open_id = sessionStorage.getItem("openid");
+	}else{
+		console.log("前台openid为空");
+	}
+	$.ajax({
+        type: 'POST',
+        url: '/web/client/payfor/PayFor',
+        data: {'order_id':orderId,'trade_no':trade_no,'open_id':open_id},
+        success: function(map){
+        if(map==null){
+        	$("#msgall")[0].innerHTML = "支付失败";
+        	consoleAlert();
+        	return;
+        }else{
+        	if(map.ERROR!=null){
+        		$("#msgall")[0].innerHTML = map.ERROR;
+            	consoleAlert();
+        		return;
+        	}
+        	var appId=map.appId;
+            var timeStamp=map.timeStamp;
+            var nonceStr=map.nonceStr;
+            var package=map.package;
+            var paySign=map.paySign;
+            WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest', {
+                        "appId":appId,     //公众号名称，由商户传入
+                        "timeStamp":timeStamp,         //时间戳，自1970年以来的秒数
+                        "nonceStr":nonceStr, //随机串
+                        "package":package,
+                        "signType":"MD5",         //微信签名方式：
+                        "paySign":paySign //微信签名
+                    },
+                    function(res){
+                        WeixinJSBridge.log(res.err_msg);
+                        if(res.err_msg == "get_brand_wcpay_request:ok"){
+                            <!--支付成功调用-->
+                            <!--history.go(0);   -->
+                            
+                            /* window.location.href="<%=request.getContextPath()%>/client/payfor/PayForResult?msg=success&trade_no=trade_no&order_id=orderId"; */
+                            $.ajax({
+								type:'POST', 
+								url:"/web/client/payfor/wxPay/queryOrder", 
+								dataType:'json',
+								data:{"orderId":orderId,"trade_no":trade_no},
+								success:function(data){
+									if(data.ERROR!=null){
+										$("#msgall")[0].innerHTML = data.ERROR;
+						            	consoleAlert();
+									}else{
+										sessionStorage.setItem("paySuccess","yes");
+										window.open('/web/client/index/payment.html','_self');
+									}
+								},
+								error:function(data){
+									console.log('shibai');
+								}
+							})
+                        }else if(res.err_msg == "get_brand_wcpay_request:cancel"){
+                            <!--取消支付调用-->
+                            alert("取消");
+                        }else{
+                            <!--支付失败-->
+                            //alert("失败");
+
+                        }
+                    }
+            );
+        }
+        
+    } ,
+       dataType: "json"});
+	
+	
+}
+function S4() {
+	return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+}
+function guid() {
+	return (S4()+S4()+S4()+S4()+S4()+S4()+S4()+S4());
+}
+</script>
+</body>
+</html>

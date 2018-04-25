@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>作品详情</title>
+<style type="text/css">
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+.head ul{
+	display: flex;
+	justify-content:space-around;
+}
+.head ul li{
+	padding: 0 2vw;
+	font-size:0.24rem;
+	line-height: 2.8;
+	color: #666;
+	transition: border-bottom-color .2s;
+	list-style-type: none;
+}
+.head ul .nav_bottom{
+	color:#fea427;
+	border-bottom: 1px solid #fea427;
+	/*transition: all .2s;*/
+}
+.head ul .nav_bottom{
+	color:#fea427;
+	border-bottom: 1px solid #fea427;
+	/*transition: all .2s;*/
+}
+body .menu{
+	width: 100%;
+	background-color:#f8f8f8;
+	border-top: #cacaca 1px solid!important;
+	display: flex;
+	align-items: center;
+	justify-content:space-around;
+	position: fixed;
+	bottom: 0;
+}
+body .menu a{
+	width:8%!important;
+	display: block;
+	text-align: center;
+	font-size: 0.24rem!important;
+	line-height: 2;
+	margin-top: 2vw;
+	color: #999;
+}
+body .menu a img{
+	width:90%;
+	display: block!important;
+	text-align: center;
+}
+  	.am-avg-sm-2>li{width:50%;float:left;}
+	.am-avg-sm-2>li:nth-of-type(n){clear:none}
+	.am-avg-sm-2>li:nth-of-type(2n+1){clear:both}
+	  	.discNone{
+  		list-style-type: none;
+  	}
+  	/*作品调整模块共有样式设置*/
+body{
+	background-color:white;
+	width: 100%;
+}
+body>div{
+	border-bottom: 1px solid #f1f1f1;
+	background-color: white;
+	line-height:1;
+	font-size: 0.23rem;
+	color: #666;
+	padding: 4vw 10vw 5% 10vw;
+	//margin: 4vw 10vw 5% 10vw;
+}
+body>form{
+	background-color: white; 
+/*	height: 50vw;*/
+}
+body .tijiao{
+	background-color: white;
+	padding: 0 0 1vw 0;
+	border-bottom: 0;
+/*	height: 50vw;*/
+}
+/*页头图片设置*/
+body div:nth-child(1) img{
+	max-width: 100vw;
+	max-height:73.3vw;
+}
+/*全局设置成横向*/
+body div div{
+	display: flex;
+	justify-content:space-between;
+	align-items: center;
+}
+/*整体的h1样式设计*/
+body div h1{
+	font-size: 16px;
+	color:#666;
+	margin-bottom: 1vw;
+	line-height: 1.4;
+}
+body div h2{
+	font-size: 14px;
+	color:#999;
+	line-height:1.8; 
+}
+body div h3{
+	font-size: 15px;
+	color:#fea427;
+	line-height:0;
+}
+body div h6{
+	font-size: 0.3rem;
+	color: #333;
+	text-align: center;
+}
+/*时间单选框*/
+.time_choose>div{
+    position: relative;
+    width: 16vw;
+    height: 6vw;
+    z-index: 1;
+}
+.time_choose label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    opacity: 0;
+    display: inline-block;
+    cursor: pointer;
+}
+.time_choose input {
+    display: inline-block;
+    vertical-align: middle;
+    height:6vw;
+    width: 16vw;
+    font-size:14px;
+}
+.time_choose .btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16vw;
+    height: 6vw;
+    z-index: 2;
+    display: inline-block;
+    line-height:6vw;
+    text-align: center;
+    border: 1px solid #f1f1f1;
+    color: #999999;
+    border-radius: 4px;
+}
+.buyAndRent {
+    top: 0;
+    left: 0;
+    width: 16vw;
+    height: 6vw;
+    z-index: 2;
+    display: inline-block;
+    line-height:6vw;
+    text-align: center;
+    border: 1px solid #f1f1f1;
+    color: #999999;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.buyAndRent2 {
+    top: 0;
+    left: 0;
+    width: 16vw;
+    height: 6vw;
+    z-index: 2;
+    display: inline-block;
+    line-height:6vw;
+    text-align: center;
+    border: 1px solid #f1f1f1;
+    color: #999999;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.labels{
+    top: 0;
+    left: 0;
+    width: 16vw;
+    height: 6vw;
+    z-index: 2;
+    display: inline-block;
+    line-height:6vw;
+    text-align: center;
+    border: 1px solid #f1f1f1;
+    color: #666666;
+    background-color:#e9e9e9;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.buyAndRentActive{
+	background-color: #333333;
+    color: #fff;
+}
+.time_choose span.active{ 
+	background-color: #333333;
+    color: #fff;
+}  
+body .tijiao{
+	background-color: white;
+	padding: 0 0 1vw 0;
+	border-bottom: 0;
+/*	height: 50vw;*/
+}
+/*立即共享按钮*/
+/* input[type="submit"]{
+	color: white;
+	background-color:#333333;
+	line-height: 3; 
+	font-size: 15px;
+	width: 100%;
+	z-index:999;
+	border-radius: 0;
+} */
+.inputSubmit{
+	color: white;
+	background-color:#333333;
+	line-height: 3; 
+	font-size: 15px;
+	width: 100%;
+	z-index:998;
+	border-radius: 0;
+	color:#ffffff;background-color: #333333;
+}
+.Collection{
+color: #fea427;
+}
+/*轮播样式*/
+	.swiper-wrapper{position:relative;width:100%;height:100%;z-index:1;display:-webkit-box;
+display:-moz-box;display:-ms-flexbox;display:-webkit-flex;display:flex;
+-webkit-transition-property:-webkit-transform;-moz-transition-property:-moz-transform;
+-o-transition-property:-o-transform;-ms-transition-property:-ms-transform;
+transition-property:transform;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;
+box-sizing:content-box}
+.swiper-container{margin-left:auto;margin-right:auto;position:relative;overflow:hidden;z-index:1}
+    	 .swiper-wrapper,.swiper-slide{
+    	 	height:73.3vw;
+    		width:100vw;
+    	}
+    	.swiper-wrapper,.swiper-slide>img{
+    		width:100%;
+    		z-index:-1;
+    	}
+    	.swiper-slide>div{
+    		position:absolute;
+    		z-index:2;
+    		left:0vw;
+    		top:49.33vw;
+    		font-size:0.1rem;
+    		width: 100%;
+    		height: 6.67vw;
+    		line-height:6.67vw;
+		    color: #fff;
+		    background-color: rgba(0,0,0,0.5);
+		    text-align: center;
+    	} 
+    	.swiper-pagination{position:absolute;text-align:center;-webkit-transition:.3s;-moz-transition:.3s;-o-transition:.3s;transition:.3s;-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-o-transform:translate3d(0,0,0);transform:translate3d(0,0,0);z-index:10}
+.swiper-pagination-bullet{width:8px;height:8px;margin-left:1.33vw;display:inline-block;border-radius:100%;background:#ffffff;}
+.swiper-pagination-bullet-active{background:#333333;width:4vw;border-radius:5px;}
+.authorHeight{
+height:100%;
+}
+.AuthorProfile{
+	padding-bottom: 100%;
+	height:5vw;
+}
+.textAreaHeight{
+	width:63vw;border:none;resize:none;height:15vw;word-break:break-all;word-wrap:break-word;background-color: #ffffff;font-size: 14px;overflow: hidden;
+}
+.cantBuy{
+background-color:#eeeeee;
+color:#333333;
+
+}
+.activityMoney{
+	color:#red;
+}
+</style>
+</head>
+<body class = "getHeight">
+<!-- <div id = "banner">
+		<div style="padding: 0;border: 0;">
+		动态获取
+			<img src="/web/commons/image/client/index/circular.jpg"  id="imgUrl">
+		</div>
+		</div> -->
+		<a id = "showBack" style = "display: none" onClick="goIndex()"><img style = "height:8vw;z-index:2;margin-left:2.6vw;position: fixed;"src="/web/commons/image/client/index/back.png"></a>
+	<div class="swiper-container"style="width: 100%;padding: 0;border: 0;"><!--swiper容器[可以随意更改该容器的样式-->  
+    	<div id="banner" class="swiper-wrapper"> 
+<!--     		 <div class="swiper-slide">
+	        	<img src="/web/commons/image/client/index/product.png"  id="imgUrl">
+	        </div>   
+	        <div class="swiper-slide">
+	        	<img src="/web/commons/image/client/index/product.png"  id="imgUrl">
+	        </div>  
+	        <div class="swiper-slide">
+	        	<img src="/web/commons/image/client/index/product.png"  id="imgUrl">
+	        </div>  
+    		 <div class="swiper-slide">
+	        	<img src="/web/commons/image/client/index/product.png"  id="imgUrl">
+	        </div>  
+ -->	    </div>     
+	    <div class="swiper-pagination" style = "margin-top:-5vw;margin-left:42vw;"></div>
+	</div> 
+		<div class="head">
+		<!-- <h6 style = "margin-top:4vw;font-size:0.36rem;color:#333333">《扎木便桥》</h6> -->
+		<span style = "display:block;margin-top:4vw;font-size:0.9rem;color:#333333;text-align: center;" class = "productName"></span>
+				<h2 style="text-align: center;margin-top:2.3vw;color:#666666" class = "productAuthor"></h2>
+				<h1 style="margin-top:9.5vw;" class = "productProfile">简介: 《扎木便桥》是一副国家级的油画作品,是中国著名画家张道所作</h1>
+		</div>
+		<div class="pic_lable" style = "height:11.5vw;">  
+			<h1>标签</h1> 
+			<span class = "labels productType">人物</span>
+		</div>
+		<div style= "height:11.5vw;">
+			<h1>选择共享方式</h1>
+				<div class = "rent" style= "height: 8vw;width: 20vw;float:left;">
+					<span class = "buyAndRent">租</span>
+				</div>
+				<div class = "buy" style= "height: 8vw;width: 20vw;float:left;">
+					<span class = "buyAndRent2">购</span>
+				</div>
+		</div>
+		<div class = "rentTimes" style = "display: none;height:11.5vw;">
+			<div style = "display: block;">
+				<h1>选择租借时间</h1>
+				<!--时间选择-->
+				<div class="time_choose" style = "display: block;">
+			        <div style = "float:left"> 
+			            <label for="time1">                        
+			                <input type="radio" name="1" id="time1" class = "halfAYear" checked>
+			            </label>
+			            <span class="btn half">半年</span>
+			        </div>
+			        <div style = "float:left;margin-left:4vw;">
+			            <label for="time2">
+			                <input type="radio" name="2" id="time2" class = "AYear">
+			            </label>
+			            <span class="btn one active">一年</span>
+			        </div>
+				</div>
+			</div>
+		</div>
+		<div style="border-bottom: 0;padding-top:2.5vw;" id='priceList'>
+			<div>
+				<h2>市场价格</h2><h2 style='text-decoration: line-through;' class = "productMarketValue">100$</h2>
+			</div>
+			<div>
+				<h1 class = "shareName">共享价格</h1><h3 class = "productSharingValue" style = "text-decoration: line-through;color:#9999;">100$</h3>
+			</div>
+			<div>
+				<h1 class = "activePricess">活动价格</h1><h3 class = "activePrice" style = "color:red;">100$</h3>
+			</div>
+<!-- 			<div style = "margin-top:2vw;">
+				<h2 style = "color:#666666">明细</h2><h2><img class = "openAndClose" style = "height:2.6vw;width:5.3vw;" src="/web/commons/image/client/index/close.png"></h2>
+			</div> --> 
+			<div class = "hide1" id = "hide1s" style= "display: none">
+				<h2>装裱费</h2><h2 class = "productMountedValue">100$</h2>
+			</div>
+			<div class = "hide2" style=  "display: none">
+				<h2>租金</h2><h2 id='rentprice' class = "rentprice">0.5元/天*100$</h2> 
+			</div>
+			<div class = "hide3" style=  "display: none">
+				<h2>保证金</h2><h2 id='deposit' class = "productDeposit">100$</h2>
+			</div>
+			<div class = "hide4" style=  "display: none">
+				<h2>润笔费</h2><h2 id='overOrderCost' class = "overOrderCost">100$</h2>
+			</div>
+			</div>
+			
+			<div style = "height:4vw;background-color:#f6f6f6;margin:0;padding:0;"></div>
+			<div style="border-bottom: 0;" class = "addPicture">
+			<div style = "margin-top:5vw;border-bottom: 1px solid #f1f1f1;height:8vw;">
+				<h1>详细介绍</h1>
+			</div> 
+			
+			<div id = "authorHeight" class = "authorHeight" style = "display:block;margin-top:-3vw;height:25vw;">
+			<div style = "width:15vw;">
+				<img id = "productAuthorPicture" style = "height: 13vw;width:13vw;overflow:hidden;border-radius:100%;float:left;margin-top:5vw;margin-left:-1vw;" alt="">
+			</div>
+			<div style = "margin-left:1vw;position: absolute;"> 
+					<h1 class = "productAuthor2"></h1>
+			</div>
+			<div style = "float:right;width:63vw;margin-top:-12vw;">
+				<textarea readonly="readonly" disabled="disabled" cols="" class = "productAuthorInfo textAreaHeight"></textarea>
+			<!-- 	<div class = "productAuthorInfo"></div> -->
+			</div> 
+			</div>
+			<div style = "height:5.5vw;border-bottom: 1px solid #f1f1f1;margin:0;"></div>
+			<div>
+				<h2>艺术家:</h2><h2 class = "productAuthor3">张道</h2>
+			</div>
+			<div>
+				<h2>作品名称:</h2><h2 class = "productName3">张道</h2>
+			</div>
+			<div>
+				<h2>作品类型:</h2><h2 class = "productStyle3">张道</h2>
+			</div>
+			<div>
+				<h2>作品状态:</h2><h2 class = "productMountedStatus3">张道</h2>
+			</div>
+			<div>
+				<h2>作品尺寸:</h2><h2 class = "productSize3">张道</h2>
+			</div>
+			<div>
+				<h2>内容类型:</h2><h2 class = "productType3">张道</h2>
+			</div>
+			<div>
+				<h2>创作时间</h2><h2 class = "productCreateTime">张道</h2>
+			</div>
+			<div style = "height:5.5vw;border-bottom: 1px solid #f1f1f1;margin:0;"></div> 
+		</div>  
+		<span id = "activePrices" style = "z-index:999;position:fixed;bottom:3.6vw;color:red;right:23vw;font-size:20px;font-weight: bold;"></span>	 
+		<div class="tijiao" style = "margin:0;">
+			<input id = "imgssssss" onclick = "share()" style = "-webkit-appearance:none;border:none;float:right;width:100vw;height:13vw;border:0;position: fixed;bottom:0;" class = "inputSubmit" type="button" value="立即下单">
+			<!-- <img class = "imgssssss" onclick = "share()" style = "z-index:998;width:100vw;height:13vw;position: fixed;bottom:0;" src="/web/commons/image/client/index/sharing.png"> -->
+			<!-- <span id = "activePrice" style = "z-index:999;position: fixed;bottom:0;font-size: 15px;height:8vw;width:100vw;text-align:center;color:#ffffff;">立即共享</span> -->
+		</div>  
+		 <div id = "getHeight2" onclick = "changeTrue()" style = "display: none;width:100vw;height:100vh;position: fixed;top:0;left: 0;padding:0;background-color: rgba(0,0,0,.15);z-index: 998">
+		<div id = "message" class = "am-offcanvas" style = "width: 72vw;height:28vw;background-color: #f6f6f6;position: fixed;top:60vw;left:14vw;border-radius: 12px;z-index:999;background-color: #ffffff;color:#333333;">
+		<div style = "border-bottom: 1px solid #e4e4e4;height:11vw;display: block;text-align:center;position: absolute;top:4vw;width:72vw;">
+			<span id = "AllMessage" style = "display: block;margin-top:5vw;font-size: 15px;font-weight: bold;text-align:center;">尚未开放租赁业务,敬请期待。</span>
+		</div>
+		<div style = "font-size: 17px;height:12vw;display:block;text-align: center;width:72vw;position: absolute;bottom:0;">
+			<span style = "display: block;margin-top:2vw;text-align: center;" onclick = "changeTrue()">确定</span>
+		</div>  
+		</div>
+		</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script> 
+<script src="/web/lib/swiper/swiper-3.4.2.min.js"></script> 
+<script>
+var ary = new Array();
+var smallErr = "/web/commons/image/smallErr.png";
+var showBack = "";
+var rentprice;
+$(function() { 
+	var queryString = window.top.location.search.substring(1);
+	var productId = '';
+	var jsonData = '';
+	var parameterName = "productId=";
+	var parameteropenid = "openid=";
+	if ( queryString.length > 0 ) {
+	   begin = queryString.indexOf ( parameterName );
+	   if ( begin != -1 ) {
+	     begin += parameterName.length;
+	     end = queryString.indexOf ( "&" , begin );
+	       if ( end == -1 ) {
+	         end = queryString.length
+	       }
+	       productId = queryString.substring ( begin, end );
+	       showBack = productId;
+	  }
+	}
+	if ( queryString.length > 0 ) {
+		   begin = queryString.indexOf ( parameteropenid );
+		   if ( begin != -1 ) {
+		     begin += parameteropenid.length;
+		     end = queryString.indexOf ( "&" , begin );
+		       if ( end == -1 ) {
+		         end = queryString.length
+		       }
+		       parameteropenid = queryString.substring ( begin, end );
+		  }
+		}
+	var proId = sessionStorage.getItem('productId');
+	if(sessionStorage.getItem("openid")==null || sessionStorage.getItem("openid")=="null"){
+		if(parameteropenid!=null && parameteropenid!="openid="){
+			console.log(parameteropenid);
+			sessionStorage.setItem("openid",parameteropenid);
+		}
+	}
+	if(productId!=null && productId != ""){
+		console.log(productId);
+		sessionStorage.setItem("productId",productId); 
+		jsonData = {"jsonStr":"{'productId':'"+productId+"'}"}
+	}else{
+		jsonData = {"jsonStr":"{'productId':'"+proId+"'}"}
+	}
+	/*默认选择购*/
+	$(".shareName")[0].innerHTML = "共享价格&nbsp;(购)";
+	/*页面默认加载（热门书画）*/ 
+	$.ajax({
+	type:'POST',
+	url:"/web/api/product/listDetail",
+	dataType:'json',
+	data:jsonData,
+	success:function(data){
+		$("#activePrices")[0].innerHTML = "￥"+data.data.activePrice/100;
+		$("#activePrices").addClass("activityMoney");
+/*  		if(data.data.activePrice == "" || data.data.activePrice == null){
+		}else{
+			document.getElementById("imgssssss").value= "￥"+data.data.activePrice;
+		} */
+		if(data.data.productStatus == 2 || data.data.productStatus == 3){
+			$('#imgssssss').attr("disabled",true);
+			$('#imgssssss').attr("readonly",true);
+			$("#imgssssss").addClass("cantBuy"); 
+			document.getElementById("imgssssss").value = "作品已被他人收藏"; 
+			document.getElementById("activePrices").style.display = "none";
+		} 
+		data.data.activePrice = data.data.activePrice/100;
+		data.data.productMarketValue = data.data.productMarketValue/100;
+		data.data.productSharingValue = data.data.productSharingValue/100;
+		data.data.productMountedValue = data.data.productMountedValue/100;
+		data.data.rent = data.data.rent/100;
+		data.data.productDeposit = data.data.productDeposit/100;
+		data.data.overOrderCost = data.data.overOrderCost/100;
+		ary = data.data;
+		/*作品信息赋值*/
+		$(".productAuthor")[0].innerHTML = "作者:&nbsp;"+data.data.productAuthor;
+		$(".productAuthor2")[0].innerHTML = data.data.productAuthor;
+		$(".productName")[0].innerHTML = "《"+data.data.productName+"》";
+		$(".productProfile")[0].innerHTML = "简介:&nbsp;"+data.data.productPictureMainDescribe;
+		$(".productAuthorInfo")[0].innerHTML = data.data.productAuthorInfo;
+		$(".productAuthorInfo")[0];
+		if ($(".productAuthorInfo")[0].clientHeight < $(".productAuthorInfo")[0].scrollHeight){
+			$(".productAuthorInfo")[0].style.height = $(".productAuthorInfo")[0].scrollHeight+'px';
+			$("#authorHeight")[0].style.height = $(".productAuthorInfo")[0].scrollHeight+ 30 + 'px';
+          }
+		/*作品价格*/ 
+		$(".productMarketValue")[0].innerHTML = "￥"+data.data.productMarketValue;
+		$(".activePrice")[0].innerHTML = "￥"+data.data.activePrice;
+		$(".productSharingValue")[0].innerHTML = "￥"+data.data.productSharingValue;
+		$(".productMountedValue")[0].innerHTML = "￥"+data.data.productMountedValue;
+		rentprice = data.data.rent;
+		$(".rentprice")[0].innerHTML = data.data.rent+"元/天*365";
+		$(".productDeposit")[0].innerHTML = "￥"+data.data.productDeposit;
+		$(".overOrderCost")[0].innerHTML = "￥"+data.data.overOrderCost;
+		/*作者信息赋值*/
+		document.getElementById('productAuthorPicture').src=data.data.productAuthorPicture;
+		$(".productAuthor3")[0].innerHTML = data.data.productAuthor;
+		$(".productName3")[0].innerHTML = data.data.productName;
+		$(".productStyle3")[0].innerHTML = changeByNumber(data.data.productStyle,"productStyle");
+		$(".productMountedStatus3")[0].innerHTML = changeByNumber(data.data.productMountedStatus,"productMountedStatus");
+		$(".productSize3")[0].innerHTML = changeByNumber(data.data.productSize,"productSize");
+		$(".productType3")[0].innerHTML = changeByNumber(data.data.productType,"productType");
+		$(".productType")[0].innerHTML = changeByNumber(data.data.productType,"productType");
+		$(".productCreateTime")[0].innerHTML = getMyDate(data.data.productCreateTime);
+		$("#banner").append('<div class="swiper-slide" style = "height:73.3vw;width:100vw;background-color:#eeeeee;">'
+				+'<span style = "vertical-align:middle;background-color:#eeeeee;text-align:center;width:100vw;height:73.3vw;display:table-cell;">'
+	        	+'<img style = "max-height: 73.3vw;max-width:100vw;overflow:hidden;" src="'+data.data.productPictureMain+'" onerror = \'javascript:this.src = "'+smallErr+'"\'  id="imgUrl">'
+		       	+'</span>' 
+	        	+'</div>   ');
+		if(data.data.productPictureFirst != null && data.data.productPictureFirst != ""){
+			$(".addPicture").append('<div style = "height:45vw;width:80vw;display:table;">'
+					+'<span style = "display:table-cell;vertical-align:middle;background-color:#eeeeee;text-align:center;">'
+					+'<img style = "max-height: 40vw;max-width:80vw;overflow:hidden;" src="'+data.data.productPictureFirst+'" onerror = \'javascript:this.src = "'+smallErr+'"\'>'
+					+'</span>'
+					+'</div>'
+					+'<div style= "margin-left:5vw;width:80vw;">' 
+					+'<h1>'+data.data.productPictureFirstDescribe+'</h1>'
+					+'</div>');
+			$("#banner").append('<div class="swiper-slide" style = "height:73.3vw;width:100vw;background-color:#eeeeee;">'
+					+'<span style = "vertical-align:middle;background-color:#eeeeee;text-align:center;width:100vw;height:73.3vw;display:table-cell;">'
+		        	+'<img style = "max-height: 73.3vw;max-width:100vw;overflow:hidden;" src="'+data.data.productPictureFirst+'" onerror = \'javascript:this.src = "'+smallErr+'"\'  id="imgUrl">'
+		        	+'</span>'
+		        	+'</div>   ');
+		} 
+		if(data.data.productPictureSecond != null && data.data.productPictureSecond != ""){
+			$(".addPicture").append('<div style = "height:45vw;width:80vw;display:table;">'
+					+'<span style = "display:table-cell;vertical-align:middle;background-color:#eeeeee;text-align:center;">'
+					+'<img style = "max-height: 40vw;max-width:80vw;overflow:hidden;" src="'+data.data.productPictureFirst+'" onerror = \'javascript:this.src = "'+smallErr+'"\'>'
+					+'</span>'
+					+'</div>'
+					+'<div style= "margin-left:5vw;width:80vw;">' 
+					+'<h1>'+data.data.productPictureSecondDescribe+'</h1>'
+					+'</div>');
+			$("#banner").append('<div class="swiper-slide" style = "height:73.3vw;width:100vw;background-color:#eeeeee;">'
+					+'<span style = "vertical-align:middle;background-color:#eeeeee;text-align:center;width:100vw;height:73.3vw;display:table-cell;">'
+		        	+'<img style = "max-height: 73.3vw;max-width:100vw;overflow:hidden;" src="'+data.data.productPictureSecond+'" onerror = \'javascript:this.src = "'+smallErr+'"\'  id="imgUrl">'
+		        	+'</span>'
+		        	+'</div>   ');
+		} 
+		if(data.data.productPictureThird != null && data.data.productPictureThird != ""){
+			$(".addPicture").append('<div style = "height:45vw;width:80vw;display:table;">'
+					+'<span style = "display:table-cell;vertical-align:middle;background-color:#eeeeee;text-align:center;">'
+					+'<img style = "max-height: 40vw;max-width:80vw;overflow:hidden;" src="'+data.data.productPictureFirst+'" onerror = \'javascript:this.src = "'+smallErr+'"\'>'
+					+'</span>'
+					+'</div>'
+					+'<div style= "margin-left:5vw;width:80vw;">' 
+					+'<h1>'+data.data.productPictureThirdDescribe+'</h1>' 
+					+'</div>');
+			$("#banner").append('<div class="swiper-slide" style = "height:73.3vw;width:100vw;background-color:#eeeeee;">'  
+					+'<span style = "vertical-align:middle;background-color:#eeeeee;text-align:center;width:100vw;height:73.3vw;display:table-cell;">'
+		        	+'<img style = "max-height: 73.3vw;max-width:100vw;overflow:hidden;" src="'+data.data.productPictureThird+'" onerror = \'javascript:this.src = "'+smallErr+'"\'  id="imgUrl">'
+		        	+'</span>'
+		        	+'</div>   ');
+		}
+		$(".addPicture").append('<div style = "height:10vw"></div>');
+
+		
+	},
+	error:function(data){
+		console.log('shibai');
+	}
+})
+	var mySwiper = new Swiper(".swiper-container",{  
+        direction:"horizontal",/*横向滑动*/  
+        initialSlide :0,
+        observer:true,//修改swiper自己或子元素时，自动初始化swiper
+        observeParents:true,//修改swiper的父元素时，自动初始化swiper
+        pagination : '.swiper-pagination',
+        paginationType : 'bullets',
+       	//paginationType : 'fraction'
+    });  
+	$(".buyAndRent2").addClass("buyAndRentActive");
+	
+	if(showBack==""){
+		document.getElementById("showBack").style.display = "block";
+	}
+});
+//续期时间选择
+$(".time_choose label").click(function() {
+    $(this).next("span").addClass("active");
+    $(this).parent().siblings("div").find("span").removeClass("active");
+}); 
+//收藏样式
+/* $("#collection").click(function() {
+	if($("#collection")[0].src	== "http://localhost:8089/web/commons/image/client/index/collectionTrue.png"){
+		$("#collection")[0].src = "/web/commons/image/client/index/collectionFalse.png";
+	}else{
+		$("#collection")[0].src	= "/web/commons/image/client/index/collectionTrue.png";
+	}
+}); */
+//租借点击-显示隐藏
+/*   $(".rent").click(function(){
+	$(".buyAndRent").addClass("buyAndRentActive");
+	$(".buyAndRent2").removeClass("buyAndRentActive");
+	$(".rentTimes").show();
+	//$(".hide2").show(); 
+	$(".hide4").hide();
+	$(".shareName")[0].innerHTML = "共享价格&nbsp;(租)";
+	if($(".half")[0].className.indexOf("active")>0){
+		var productSharingValue = ary.productMountedValue + ary.rent*182 + ary.productDeposit;
+		$(".productSharingValue")[0].innerHTML = "￥"+productSharingValue;
+	}else{
+		var productSharingValue = ary.productMountedValue + ary.rent*365 + ary.productDeposit;
+		$(".productSharingValue")[0].innerHTML = "￥"+productSharingValue;
+	}
+	if($("#hide1s").is(":hidden")){
+	}else{
+		$(".hide1").show();
+		$(".hide2").show(); 
+		$(".hide3").show();
+		$(".hide4").hide();
+	}
+});   */
+$(".rent").click(function(){
+	document.getElementById("getHeight2").style.display = "block";
+	$(document.body).css({
+		   "overflow-x":"hidden",
+		   "overflow-y":"hidden"
+		 });
+	$("body").on("touchmmove",function(event){//移动端禁用滚动条
+		event.preventDefault();
+		},false)
+		
+});
+$(".buy").click(function(){
+	$(".buyAndRent").removeClass("buyAndRentActive");
+	$(".buyAndRent2").addClass("buyAndRentActive");
+	$(".rentTimes").hide(); 
+	$(".hide2").hide();
+	$(".shareName")[0].innerHTML = "共享价格&nbsp;(购)";
+	$(".productSharingValue")[0].innerHTML = "￥"+ary.productMountedValue;
+	if($(".buyAndRent2")[0].className.indexOf("buyAndRentActive")>0){
+		$(".hide2").hide(); 
+	}
+	if($("#hide1s").is(":hidden")){
+	}else{
+		$(".hide1").show();
+		$(".hide2").hide(); 
+		$(".hide3").hide();
+		$(".hide4").show();
+	}
+});
+$(".halfAYear").click(function(){
+	$(".rentprice")[0].innerHTML = rentprice+"元/天*182";
+	if($(".half")[0].className.indexOf("active")>0){
+		var productSharingValue = ary.productMountedValue + ary.rent*365 + ary.productDeposit;
+		$(".productSharingValue")[0].innerHTML = "￥"+productSharingValue;
+	}else{
+		var productSharingValue = ary.productMountedValue + ary.rent*182 + ary.productDeposit;
+		$(".productSharingValue")[0].innerHTML = "￥"+productSharingValue;
+	} 
+});
+$(".AYear").click(function(){
+	$(".rentprice")[0].innerHTML = rentprice+"元/天*365";
+	if($(".half")[0].className.indexOf("active")>0){
+		var productSharingValue = ary.productMountedValue + ary.rent*365 + ary.productDeposit;
+		$(".productSharingValue")[0].innerHTML = "￥"+productSharingValue;
+	}else{
+		var productSharingValue = ary.productMountedValue + ary.rent*182 + ary.productDeposit;
+		$(".productSharingValue")[0].innerHTML = "￥"+productSharingValue;
+	}
+});
+//展开收起明细
+$(".openAndClose").click(function(){
+	if($("#hide1s").is(":hidden")){
+		$(".openAndClose")[0].src = "/web/commons/image/client/index/open.png"
+			$(".hide1").show();
+			$(".hide2").show();  
+			$(".hide3").show();
+			if($(".buyAndRent2")[0].className.indexOf("buyAndRentActive")>0){
+				$(".hide2").hide(); 
+				$(".hide3").hide(); 
+				$(".hide4").show();
+			}
+			if($(".buyAndRent")[0].className.indexOf("buyAndRentActive")>0){ 
+				$(".hide2").show(); 
+			}
+	}else{
+		$(".openAndClose")[0].src = "/web/commons/image/client/index/close.png"
+			$(".hide1").hide();
+			$(".hide2").hide();
+			$(".hide3").hide();
+			$(".hide4").hide();
+	}
+	
+	if($(".openAndClose")[0].src == "http://localhost:8089/web/commons/image/client/index/close.png"){
+
+	}else{
+
+	}
+});
+function changeByNumber(index,type){
+	if(type == "productMountedStatus"){
+		switch (parseInt(index)) {
+		case 0:
+			return "轴";
+		case 1:
+			return "芯";
+		case 2:
+			return "框";
+		default:
+			break;
+		}		
+	}
+	if(type == "productSize"){
+		switch (parseInt(index)) {
+		case 0:
+			return "四尺";
+		case 1:
+			return "六尺";
+		case 2:
+			return "八尺";
+		case 3:
+			return "四轴屏";
+		case 4:
+			return "斗方";
+		default:
+			break; 
+		}
+	}
+	if(type == "productType"){
+		switch (parseInt(index)) {
+		case 0:
+			return "国画";
+		case 1:
+			return "书法";
+		default:
+			break;
+		}
+	}
+	if(type == "productStyle"){
+		switch (parseInt(index)) {
+		case 0:
+			return "山水";
+		case 1:
+			return "花鸟";
+		case 2:
+			return "走兽";
+		case 3:
+			return "人物";
+		case 4:
+			return "国画其他";
+		case 5:
+			return "四字榜书";
+		case 6:
+			return "诗词";
+		case 7:
+			return "其他书法";
+		default:
+			break;
+		}
+	}
+	if(type == "orderStatus"){
+		switch (parseInt(index)) {
+		case 0:
+			return "未付款";
+		case 1:
+			return "未发货";
+		case 2:
+			return "已发货";
+		case 3:
+			return "租赁中";
+		case 4:
+			return "还画中";
+		case 5:
+			return "交易完成";
+		case 6:
+			return "取消订单";
+		case 7:
+			return "已删除";
+		default:
+			break;
+		}
+	}
+}
+function getMyDate(str){  
+    var oDate = new Date(str),  
+    oYear = oDate.getFullYear(),  
+    oMonth = oDate.getMonth()+1,  
+    oDay = oDate.getDate(),  
+    oHour = oDate.getHours(),  
+    oMin = oDate.getMinutes(),  
+    oSen = oDate.getSeconds(),  
+    oTime = oYear +'年'+ getzf(oMonth) +'月';//最后拼接时间  
+    return oTime;  
+};
+function getzf(num){  
+    if(parseInt(num) < 10){  
+        num = '0'+num;  
+    }  
+    return num;   
+}  
+function openAuthor(){
+	
+	if($(".productAuthorInfo").attr("class").substring($(".productAuthorInfo").attr("class").length-13) == "AuthorProfile"){
+		document.getElementById('openAuthor').src = "/web/commons/image/client/index/openAuthor.png";
+		$(".productAuthorInfo").removeClass("AuthorProfile");
+		$("#authorHeight").removeClass("authorHeight");
+	}else{
+		document.getElementById('openAuthor').src = "/web/commons/image/client/index/openAuthor2.png";
+		$(".productAuthorInfo").addClass("AuthorProfile");
+		$("#authorHeight").addClass("authorHeight");
+	}
+}
+$(".tijiao").click(function(){
+	share(); 
+});
+function share(){
+	ary
+	var productSharingValue = $(".productSharingValue")[0].innerHTML.substring(1);
+	if($(".buyAndRent2")[0].className.indexOf("buyAndRentActive")>0){
+		/*共享价格*/
+		sessionStorage.setItem("productSharingValue",productSharingValue);
+		/*租金*/
+		sessionStorage.setItem("rent",0);
+		/*几个月*/
+		sessionStorage.setItem("timeType",0);
+	}else{
+		if($(".half")[0].className.indexOf("active")>0){
+			/*共享价格*/
+			sessionStorage.setItem("productSharingValue",productSharingValue);
+			/*租金*/
+			sessionStorage.setItem("rent",ary.rent*182);
+			/*几个月*/
+			sessionStorage.setItem("timeType",6);
+		}else{
+			/*共享价格*/
+			sessionStorage.setItem("productSharingValue",productSharingValue);
+			/*租金*/
+			sessionStorage.setItem("rent",ary.rent*365);
+			/*几个月*/
+			sessionStorage.setItem("timeType",12);
+		}
+	}
+	/*活动价*/
+	sessionStorage.setItem("activePrice",ary.activePrice);
+	/*润笔费*/
+	sessionStorage.setItem("overOrderCost",ary.overOrderCost);
+	/*装裱费*/
+	sessionStorage.setItem("productMountedValue",ary.productMountedValue);
+	/*保证金*/
+	sessionStorage.setItem("productDeposit",ary.productDeposit);
+	/*作品ID*/
+	if(sessionStorage.getItem('productId') !=null ){
+		sessionStorage.setItem("productId",sessionStorage.getItem('productId'));
+		console.log(sessionStorage.getItem('productId'));
+	}
+	/*作品名称*/
+	sessionStorage.setItem("productName",ary.productName);
+	/*作品图片*/
+	sessionStorage.setItem("productPictureMain",ary.productPictureMain);
+	/*作者名称*/
+	sessionStorage.setItem("productAuthor",ary.productAuthor);
+	/*作者ID*/
+	sessionStorage.setItem("productAuthorId",ary.productAuthorId);
+	var userId = sessionStorage.getItem("userId");
+	var openId = sessionStorage.getItem("openid");
+	if(openId == null || openId == "null"){
+		alert("用户授权失败");
+	}else{
+		$.ajax({
+			type : "get",
+			url : "/web/user/wechat/getUser",
+			dataType : "json",
+			data:{"jsonStr":"{'openId':'"+openId+"'}"},
+			success:function(data){
+				var userIds = data.SUCCESS;
+				sessionStorage.setItem("userId",userIds);
+				$.ajax({
+					type:'POST', 
+					url:"/web/api/user/selectById", 
+					dataType:'json',
+					data:{"jsonStr":"{'userId':"+userIds+"}"},
+					success:function(data){
+						if(data.data.telNumber == null || data.data.telNumber == ""){
+							window.open('/web/client/index/register.html','_self');
+						}else{
+							window.open('/web/client/index/share_message.html','_self');
+						}
+						
+					},
+					error:function(data){
+						console.log('shibai');
+					}
+				})
+			},
+			error:function(data){
+				console.log('shibai');
+			}
+		});
+	}
+}
+function goIndex(){
+	window.open('/web/client/index/index.html','_self');
+}
+function changeTrue(){
+	 $(document.body).css({
+		   "overflow-x":"auto",
+		   "overflow-y":"auto"
+		 });
+	 $("body").off("touchmove");//解除禁用滚动条
+	document.getElementById("getHeight2").style.display = "none";
+} 
+</script>
+</body>
+</html>

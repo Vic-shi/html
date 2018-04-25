@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="stylesheet" href="/web/lib/amazeui/css/amazeui.min.css"/>
+<link rel="stylesheet" href="/web/lib/layui/css/layui.css">
+<link rel="stylesheet" href="/web/commons/css/wrapperuser.css"/>
+<title>作品</title>
+<style type="text/css">
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+	.head{padding: 0 5%;background-color: white;border-bottom: 1px solid #f1f1f1;list-style-type: none;}
+.head ul{
+	display: flex;
+	justify-content:space-around;
+}
+.head ul li{
+	padding: 0 2vw;
+	font-size:15px;
+	line-height: 2.8;
+	color: #666;
+	transition: border-bottom-color .2s;
+	list-style-type: none;
+}
+.head ul .nav_bottom{
+	color:#fea427;
+	border-bottom: 1px solid #fea427;
+	/*transition: all .2s;*/
+}
+.head ul .nav_bottom{
+	color:#fea427;
+	border-bottom: 1px solid #fea427;
+	/*transition: all .2s;*/
+}
+body .menu{
+	width: 100%;
+	background-color:#f8f8f8;
+	border-top: #cacaca 1px solid!important;
+	display: flex;
+	align-items: center;
+	justify-content:space-around;
+	position: fixed;
+	bottom: 0;
+}
+body .menu a{
+	width:8%!important;
+	display: block;
+	text-align: center;
+	font-size: 10px!important;
+	line-height: 2;
+	margin-top: 2vw;
+	color: #999;
+	text-decoration:none;
+}
+body .menu a img{
+	width:90%;
+	display: block!important;
+	text-align: center;
+}
+  	.am-avg-sm-2>li{width:50%;float:left;}
+	.am-avg-sm-2>li:nth-of-type(n){clear:none}
+	.am-avg-sm-2>li:nth-of-type(2n+1){clear:both}
+	  	.discNone{
+  		list-style-type: none;
+  	}
+/*   	    		.am-avg-sm-2 li:nth-child(even){
+	margin-left: 3.5vw;
+	}  */
+	#head{
+		height:45px;
+	}
+	#wrapper {
+    position: absolute;
+    top: 45;
+    bottom: 60;
+    overflow: hidden;
+    margin: 0;
+    width: 100%;
+    padding: 0 0px;
+    background-color: #f8f8f8;
+}
+</style>
+</head>
+<body style="font-size: 15px;">
+<div>
+		<div class="head" style="z-index:999!important;position: relative;border-bottom: 0.8vw solid #ededed;">
+			<ul>
+				<li class="nav_bottom">大千世界</li> 
+				<li>横看成岭</li>
+				<li>飞流直下</li>
+			</ul>
+		</div>
+		 
+		<div id="wrapper" style = "top:6vh;margin-top:-7vw;">
+			<div id="scroller">
+				 	<!--  <div id = "goHead" style = "height:1vw;"></div> -->
+				 <div id="pullDown" class="loading">
+					<span class="pullDownIcon"></span><span class="pullDownLabel">加载中...</span>
+				</div> 
+			<div id = "flyRiver" class="list am-cf am-g" style = "margin-left:0;display:table;padding-bottom:10vw;">
+				 
+				<ul class="am-avg-sm-2 am-gallery discNone" style = "padding:0;margin-top:6vw;" id="events-list">
+				 
+		        </ul>  
+		      
+		   		 </div> 
+				<div id="noRecord" style="display:none;">
+					<span class="no-record-pic"></span>
+					<span class="no-msg">我们也是有底线的</span>
+				</div>  
+		        <div id="pullUp" style="display:none;margin-top:2px">
+						<span class="pullUpIcon"></span><span class="pullUpLabel">加载更多...</span>
+				</div> 
+			</div> 
+		</div>
+</div>
+<div class="menu">
+	<a href="/web/client/index/index.html"> 
+		<img src="/web/commons/image/client/index/index.png">首页
+	</a>
+	<a href="/web/client/index/gallery.html" style="color: black;" >
+		<img src="/web/commons/image/client/index/gallerysin.png">作品
+	</a>
+	<a href="/web/client/index/my_index.html" >
+		<img src="/web/commons/image/client/index/my_index.png">我的
+	</a>
+</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/web/commons/js/iscroll.js"></script>
+<script type="text/javascript" src="/web/commons/js/pullrefresh.js"></script>
+<script>
+var footer = false; 
+var pageNo = 1;
+var type = "大千世界";
+var arr = new Array();
+var arrActivty = new Array();
+var arrInformation = new Array();
+index = 0;
+var smallErr = "/web/commons/image/smallErr.png";
+var heads = "/web/commons/image/client/index/heads.png";
+//导航栏的下滑线
+$(".head li").click(function(){
+	$(this).addClass("nav_bottom");
+	$(this).siblings().removeClass("nav_bottom");
+	var data = $(this).html();
+	type = data;
+	pageNo = 1
+	footer = false; 
+	$("#events-list").empty();
+	//document.querySelector("#goHead").scrollTop = 100;
+	pull(type);
+})
+//上拉
+var pullUp = function() {
+	if(footer==true){
+		document.getElementById('noRecord').innerHTML = "showType";
+		myScroll.refresh();
+		return false;
+	}
+	pull(type);
+}
+// 下拉
+var pullDown = function() {
+	$("#events-list").empty();
+	pageNo = 1
+	start = 0;
+	footer = false;
+	//document.getElementById('noRecord').innerHTML = "noShowType";
+	index = 0;
+	pull(type);
+}
+function pull(type){
+	if(type == "大千世界"){
+		findActivityInfo();
+	}else if(type == "横看成岭"){
+		$.ajax({
+			type:'POST',
+			url:"/web/api/product/listSimpleSort",
+			dataType:'json',
+			data:{"jsonStr":"{'pageNo':"+pageNo+",'listLen':10,'isCross':0,'draw':1}"},
+			success:function(data){
+				$("#flyRiver").empty();
+				$("#flyRiver").append( '<ul class="am-avg-sm-2 am-gallery discNone" style = "padding:0;" id="events-list"> </ul>  ');
+				pageNo++;
+				var li,l;
+				if(pageNo*10>data.data.page.totalCount){
+					footer = true;
+				}
+				for(var i=0;i<data.data.listProduct.length;i++){
+					arr[i] = data.data.listProduct[i].id;
+					data.data.listProduct[i].productSharingValue = data.data.listProduct[i].productSharingValue/100;
+					li = '<li onclick="turnToPro('+i+')" style="width:100vw;margin-top:2.6vw;" >'
+			        	+'<div class="am-panel am-panel-default">'
+			        	+'<div style = "position:relative;">'
+			        	+'  	<img class="am-img-responsive" src="'+data.data.listProduct[i].productPictureMain+'" onerror = \'javascript:this.src = "'+smallErr+'"\' style="width:100vw;height:40vw;">'
+			        	+'	<img style = "height: 15vw;width:15vw;border-radius:100%; overflow:hidden;float:left;margin-left:1.8vw;margin-top:-10vw;position:absolute;" alt="" src="'+data.data.listProduct[i].productAuthorPicture+'" onerror = \'javascript:this.src = "'+heads+'"\' >'
+			        	+'	<div style="margin-top:3vw;">'
+			        	+'    	<input type="text" readonly="readonly" style="font-size:18px;margin-left:1vw;color:#666;border:none;width:100vw;font-weight:bold;text-align:center;"class="name" value = "'+data.data.listProduct[i].productName+'"/>'
+			        	+'    	<input type="text" readonly="readonly" style="font-size:15px;margin-top: 2vw;margin-right:1vw;color:#f76a65;border:none;width:100vw;text-align:center;"class="name" value = "￥'+data.data.listProduct[i].productSharingValue+'"/>'
+			        	+'	</div>'
+			        	+'</div> '
+			        	+'</div>' 
+			        	+'</li>';
+						$("#events-list").append(li);
+				}
+				setTimeout(() => {
+					myScroll.refresh();
+					if(pageNo == 2){
+						myScroll.scrollTo(0, 0);
+					}
+				}, 1000);
+			},
+			error:function(data){
+				console.log('shibai');
+			}
+		})
+	}else if(type == "飞流直下"){
+		$.ajax({
+			type:'POST',
+			url:"/web/api/product/listSimpleSort",
+			dataType:'json',
+			data:{"jsonStr":"{'pageNo':"+pageNo+",'listLen':10,'isCross':1,'draw':1}"},
+			success:function(data){
+				var li,l;
+				pageNo++;
+				if(pageNo*10>data.data.page.totalCount){
+					footer = true;
+				}
+				//$("#flyRiver").empty(); 
+				$("#flyRiver").append( '<div id = "flyRiverProduct" style="position: relative;"></div>');
+				$("#flyRiverProduct").append('<div id = "flyRiverProductLeft" style="width: 48.7%; display:inline-block; float:left;"></div>');
+				$("#flyRiverProduct").append('<div id = "flyRiverProductRight"  style="width: 48.7%; float: right; "></div>');
+				for(var i=0;i<data.data.listProduct.length;i++){
+					arr[i] = data.data.listProduct[i].id;
+					data.data.listProduct[i].productSharingValue = data.data.listProduct[i].productSharingValue/100;
+	/* 				li = '		 	<li onclick="turnToPro('+i+')" style="width:46vw;margin-left:2.6vw;margin-top:2.6vw;" >'
+			        	+'<div class="am-panel am-panel-default">'
+			        	+'<div>'
+			        	+'<img class="am-img-responsive" src="'+data.data.listProduct[i].productPictureMain+'" onerror = \'javascript:this.src = "'+smallErr+'"\' style="max-width:46vw;">'
+			        	+'	<img style = "height: 15vw;width:15vw;border-radius:100%; overflow:hidden;float:left;margin-left:1.8vw;margin-top:-10vw;position:absolute;" alt="" src="'+data.data.listProduct[i].productAuthorPicture+'" onerror = \'javascript:this.src = "'+smallErr+'"\'>'
+			        	+'<div style="margin-top:3vw;">'
+			        	+'<input type="text" readonly="readonly" style="font-size:15px;margin-left:20vw;color:#666;border:none;width:100vw;"class="name" value = "'+data.data.listProduct[i].productName+'"/>'
+			        	+'	<input type="text" readonly="readonly" style="font-size:15px;margin-top: 2vw;margin-left:20vw;margin-right:1vw;color:#666;border:none;width:100vw;"class="name" value = "￥'+data.data.listProduct[i].productSharingValue+'"/>'
+			        	+'</div>'
+			        	+'	</div> '
+			        	+'</div>'
+			        	+' 	</li>'; */
+			        	if(i%2==0||i==0){
+			        		$("#flyRiverProductLeft").append('<div onclick="turnToPro('+i+')" style="display: inline-block; width: 100%; background-color: white;; margin-bottom: 10px;>'
+			                +'  <div  style="margin: 0; width: 100%; position: relative;z-index;">'
+			                +'    <img src="'+data.data.listProduct[i].productPictureMain+'" onerror = \'javascript:this.src = "'+smallErr+'"\' style="min-width: 100%;width:46vw;" />'
+			                +' <img src="'+data.data.listProduct[i].productAuthorPicture+'" onerror = \'javascript:this.src = "'+heads+'"\' style="position: relative; bottom: 32px; left: 5px; height:50px; width: 50px; border-radius:50%; overflow:hidden; border: solid white 2px">'
+			                +'<div style="width: 30vw; text-align: left;float:right;">' 
+			                +'  <div style=" padding-left: 2px; padding-top: 5px; padding-bottom: 1px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><strong>'+data.data.listProduct[i].productName+'</strong></div>'
+			                +'  <div style="color: #f76a65; padding-bottom: 5px">￥'+data.data.listProduct[i].productSharingValue+'</div>'
+			                +'</div>'
+			                +'</div>'
+			                +' </div>');
+			        	}else{ 
+			        		$("#flyRiverProductRight").append('<div onclick="turnToPro('+i+')" style="display: inline-block; width: 100%; margin-bottom: 10px; background-color: white;" *ngFor="let item of rightVerticals" >'
+			                +' <div style="margin: 0; width: 100%; position: relative;z-index;">'
+			                +'  <img src="'+data.data.listProduct[i].productPictureMain+'" onerror = \'javascript:this.src = "'+smallErr+'"\' style="min-width: 100%;width:46vw;"/>'
+			                +'  <img src="'+data.data.listProduct[i].productAuthorPicture+'" onerror = \'javascript:this.src = "'+heads+'"\' style="position: absolute; bottom: 32px; left: 5px; height:50px; width: 50px; border-radius:50%; overflow:hidden; border: solid white 2px"">'
+			                +' <div style="width: 100%; padding-left: 58px; text-align: left;">'
+			                +'   <div style=" text-overflow: ellipsis; padding-top: 5px; padding-bottom: 1px; overflow: hidden; white-space: nowrap;"><strong>'+data.data.listProduct[i].productName+'</strong></div>'
+			                +'  <div style="color:  #f76a65; padding-bottom: 5px">￥'+data.data.listProduct[i].productSharingValue+'</div>'
+			                +' </div>'
+			                +' </div>'
+			                +'</div>');
+			        	} 
+				}
+				setTimeout(() => {
+					myScroll.refresh();
+					if(pageNo == 2){
+						myScroll.scrollTo(0, 0);
+					}
+				}, 1000);
+			},
+			error:function(data){
+				console.log('shibai');
+			}
+		})
+	}
+}
+$(function(){
+	pull("大千世界");  
+	//findActivityInfo();
+	var i = 2;
+	var time900 = window.setInterval(function(){
+		i--;
+		if(i == 0){
+			(function OnPrinterStateChanged() {
+			    var evt = new CustomEvent('printerstatechanged');
+			    window.dispatchEvent(evt);
+			})()
+			window.clearInterval(time900); 
+		}
+	},1000); 
+}) 
+function findActivityInfo(){
+	//pull("大千世界");
+	$.ajax({
+		type:'POST', 
+		url:"/web/api/information/findActivityInfo",
+		dataType:'json',
+		data:{"jsonStr":"{'pageNo':"+pageNo+",'pageSize':10,'draw':1,'status':'显示'}"},
+		success:function(data){
+			$("#flyRiver").empty();
+			$("#flyRiver").append( '<ul class="am-avg-sm-2 am-gallery discNone" style = "padding:0;" id="events-list"> </ul>  ');
+			pageNo++;
+			if(pageNo*10>data.data.page.totalCount){
+				footer = true;
+			}
+			var result = data.data.page.result;
+			var li = '', l;
+			for(var i=0;i<result.length;i++){
+				arrActivty[i] = result[i].id;
+				arrInformation[i] = result[i].sign;
+				var l='<li onclick = "goActivity('+i+')" style = "width:100vw;height:57.3vw;margin-top:2vw;">'
+				+'<div>'
+				+'<img style = "width:100vw;height:57.3vw;" src = "'+result[i].imageAddress+'">'
+				+'<span style = "z-index:998;display:block;margin-top:-6vw;text-align:center;">'+result[i].title+'</span>'
+				+'</div>'
+				+'</li>'
+    			li+=l;
+			}
+			$("#events-list").append(li); 
+			setTimeout(() => {
+				myScroll.refresh();
+				if(pageNo == 2){
+					myScroll.scrollTo(0, 0);
+				}
+			}, 1000);
+		},
+		error:function(data){ 
+			console.log('shibai');
+		}
+	})
+}
+function turnToPro(data){
+	sessionStorage.setItem("productId",arr[data]);
+	window.open('/web/client/index/share.html','_self');
+}
+function goActivity(data){
+	sessionStorage.setItem("ActivtyId",arrActivty[data]);
+	window.open('/web/client/index/activty.html','_self');
+}
+function goActivity(data){
+	if(arrInformation[data] == "activity"){
+		sessionStorage.setItem("ActivtyId",arrActivty[data]);
+		window.open('/web/client/index/activty.html','_self');
+	}else if(arrInformation[data] == "information"){ 
+		sessionStorage.setItem("informationId",arrActivty[data]);
+		window.open('/web/client/index/information.html','_self');
+	}
+}
+</script>
+</body>
+</html>

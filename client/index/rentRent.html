@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>租借中-租</title>
+<style type="text/css">
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+body{
+	background-color: #f1f1f1;
+	width: 100%;
+}
+
+.head{padding: 0 5%;background-color: white;border-bottom: 1px solid #f1f1f1;list-style-type: none;}
+.head ul{
+	display: flex;
+	justify-content:space-around;
+}
+.head ul li{
+	padding: 0 2vw;
+	font-size:0.24rem;
+	line-height: 2.8;
+	color: #666;
+	transition: border-bottom-color .2s;
+	list-style-type: none;
+}
+.head ul .nav_bottom{
+	color:#fea427;
+	border-bottom: 1px solid #fea427;
+	/*transition: all .2s;*/
+}
+/*正文订单样式设置*/
+/*整体样式*/
+.article >div{
+	//margin-bottom: 3vw;
+	background-color: white;
+}
+.article >div li{
+	padding:0 5%;
+	display: flex;
+	align-items: center;
+	justify-content:space-between;
+}
+.article >div li:nth-child(2){
+	border-bottom: 1px solid #f1f1f1;
+	padding-bottom: 3vw;
+} 
+/*作者 付款状态*/
+.article >div li h1{
+	font-size: 0.24rem;
+	background: url(../../../image/client/payment/in.png) no-repeat right;
+	background-size: 2vw;
+	padding-right: 8vw;
+	line-height:3.5; 
+}
+.article >div li h2{
+	font-size: 0.24rem;
+	color:#fea427;
+	line-height:3.5;
+}
+/*作品 订单信息*/
+.article >div li .img_show{
+	width:28vw;
+	height:28vw;
+	border-radius:1vw ;
+	overflow: hidden;
+}
+/*图片的高度还需修改*/
+.article >div li .img_show img{
+	height: 100%;
+}
+.article >div li .detail{
+	width: 55vw;
+	height: 28vw;
+}
+.article >div li .detail h3{
+	display: block;
+	height:24vw;
+	width:55vw;
+	font-size: 0.7rem;
+	overflow: hidden;
+	color: #999;
+	line-height:1.4;
+}
+.article >div li .detail h4{
+	height:10vw;
+	line-height: 0.6;
+	font-size: 0.26rem;
+	color:#fea427;
+	float:left;
+	width:20vw;
+	margin-top:10vw;
+}
+/*日期 订单操作*/
+.time h5{
+	width: 50vw;
+	line-height: 10vw;
+	color: #999;
+}
+.time{
+height:10vw;
+}
+.time input[type="button"]{
+	border: 1px solid #999;
+	border-radius: 2px;
+	color: #999;
+	font-size: 0.22rem;
+	padding: 4px 8px;
+	line-height:1;
+	height:8vw;
+	width:19vw;
+}
+.time input[type="submit"]{
+	border: 1px solid #fea427;
+	border-radius: 2px;
+	color: #fea427;
+	font-size: 0.22rem;
+	padding: 4px 8px;
+	line-height:1;
+}
+/*已逾期设置*/
+.accomplish .detail{
+	position: relative;
+}
+.accomplish .detail h6{
+	position:absolute;
+	right: 0;
+	bottom: 0;
+	color: red;
+	line-height: 0.6;
+	font-size: 0.24rem;
+}
+.button input[type="button"]{
+	border: 1px solid #999;
+	border-radius: 2px;
+	color: #999;
+	font-size: 0.22rem;
+	padding: 4px 8px;
+	line-height:1;
+	height:8vw;
+	width:21vw;
+}
+</style>
+</head>
+<body style = "background-color: white;">
+<div> 
+<div style = "background-color: white;">
+	<span style = "display:block;margin:3vw 0 5vw 5vw">李察&nbsp;15365893339</span>
+	<span style = "display:block;margin:0 0 5vw 5vw">浙江省宁波市鄞州区双东路永红家园10幢502室</span>
+</div>
+<div class= "article" style = "border-top: 1px solid #f1f1f1;">
+				<div class="unpaid">
+				<ul>
+				<li><h1>订单号码：123456789123456790</h1><h2>租借中</h2></li>
+				<li>
+					<div class="img_show">
+						<img src="/web/commons/image/client/index/circular.jpg">
+					</div>
+					<div class="detail">
+						<h3> 
+						《扎木便桥》<br>
+							张道 <br>
+							尺寸: 四尺&nbsp;;类型:山水&nbsp;状态:轴	<br>
+							租期:一年<br>
+							2017.4.12-2018.4.12<br>
+						</h3>
+						<h3>剩余租期170天</h3>
+					</div> 
+				</li> 
+				</ul>
+	</div>
+	<div style= "height:100vw;border-bottom: 1px solid #f1f1f1;">
+		<div style = "width:90vw;height:6vw;margin-left:5vw;">
+			<span style = "display:block;float:left;">市场价</span>
+			<span style = "display:block;float:right;text-decoration:line-through;">￥350000</span>
+		</div>
+		<div style = "width:90vw;height:6vw;margin-left:5vw;">
+			<span style = "display:block;float:left;">装裱费</span>
+			<span style = "display:block;float:right;">￥300</span>
+		</div> 
+		<div style = "width:90vw;height:6vw;margin-left:5vw;">
+			<span style = "display:block;float:left;">租金</span>
+			<span style = "display:block;float:right;">￥200</span> 
+		</div> 
+		<div style = "width:90vw;height:6vw;margin-left:5vw;">
+			<span style = "display:block;float:left;">保证金</span>
+			<span style = "display:block;float:right;">￥200</span> 
+		</div> 
+		<div style = "width:90vw;height:6vw;margin-left:5vw;">
+			<span style = "display:block;float:left;">共享价格(租)</span>
+			<span style = "display:block;float:right;">￥1000</span> 
+		</div>
+	</div> 
+	<div class = "button" style = "margin-left:10vw;">		
+		<input type="button" style = "" value="售后"/>
+		<input type="button" style = "" value="还画"/>
+		<input type="button" style = "" value="续租"/>
+		<input type="button" style = "" value="结单"/>
+	</div>		
+</div>
+</div>
+</body>
+</html>

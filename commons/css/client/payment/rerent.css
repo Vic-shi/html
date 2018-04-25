@@ -1,0 +1,49 @@
+/*时间单选框*/
+.time_choose>div{
+    position: relative;
+    width: 16vw;
+    height: 6vw;
+    z-index: 1;
+    margin-left: 2vw;
+}
+.time_choose label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    opacity: 0;
+    display: inline-block;
+    cursor: pointer;
+}
+.time_choose input {
+    display: inline-block;
+    vertical-align: middle;
+    height:6vw;
+    width: 16vw;
+}
+.time_choose .btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16vw;
+    height: 6vw;
+    z-index: 2;
+    display: inline-block;
+    line-height:6vw;
+    text-align: center;
+    border: 1px solid #f1f1f1;
+    color: #999999;
+}
+.time_choose span.active{
+    background-color:#fea427;
+    color: #fff;
+}
+/*顶掉return里面的form*/
+body>form{
+	background-color: white;
+	height: 100vw;
+} 
+body .tijiao{
+	background-color: white;
+	height: 100vw;
+}   

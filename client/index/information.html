@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>资讯</title>
+<style type="text/css">
+div>p>img{
+max-width: 99vw !important;
+}
+div>img{
+max-width: 99vw !important;
+}
+img{
+max-width: 99vw !important;
+}
+</style> 
+</head>
+<body style = "margin:0;background-color: #f6f6f6;">
+<div id = "activty" class = "activty" style = "padding:0 1vw 0 1vw;width:98vw;" > 
+</div>
+<script type="text/javascript" src="/web/lib/jquery/jquery-3.2.1.min.js"></script>
+<script>
+var informationId = sessionStorage.getItem("informationId");
+$(function(){
+	$.ajax({
+		type:'POST', 
+		url:"/web/api/information/loadByInformationId",
+		dataType:'json',
+		data:{"jsonStr":"{'informationId':"+informationId+"}"},
+		success:function(data){
+			data.data.information.informationDetail
+			$("#activty").append(data.data.information.informationDetail);
+		},
+		error:function(data){
+			console.log('shibai');
+		}
+	})
+})
+</script>
+</body>
+</html>

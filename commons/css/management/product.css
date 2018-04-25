@@ -1,0 +1,62 @@
+.product_edit{
+	width:800px;
+	margin: 53px auto;
+}
+.product_edit span{
+	font-size:16px;
+	color:#333;
+}
+.arrangement{
+	display: flex;
+	flex-direction:row;
+}
+.layui-form{
+	width:100%;
+}
+.rt_wrap{
+	height:903px;
+	width:100%;
+	min-width:800px;
+	margin-right: 20px;
+}
+#product_code_error,#product_author_error,#product_name_error,#product_cost_error,#packing_costs_errorm,#accumulated_rent_error,#product_deposit_error,#product__market_value_error,#product_sharing_value_error,#product_mounted_error,#product_size_error,#product_style_error,#product_level_error,#product_status_error,#product_type_error,#productCreateTime_error,.uploadImages,.product_introduction_error,#product_plate_error,.product_edit .error{
+	color:#fe0338;
+	font-size: 18px;
+}
+.product_introduction_error{
+	height:30px;
+}
+.input_color{
+	background-color: #e8e8e8;
+}
+.product_img{
+	height:123px;
+	width:284px;
+	border: 1px solid #999;
+	background-color: #fcfcfc;
+}
+.productUpload{
+	width:651px;
+	height:48px;
+	background-color: #4ec3fb;
+	color:#fff;
+	cursor: pointer;
+	margin-top: 50px;
+}
+.select_img{
+	cursor: pointer;
+}
+
+.flex{display: flex;justify-content: space-between;align-items: flex-end;}
+.popup_textarea{width: 300px; height: 180px;}
+.popup_text{text-align: center; font-size: 14px;padding-top: 35px;line-height: 30px;}
+.vertical_arrangement{
+		 display: flex;
+		 margin-left:50px;
+	}
+.lateral_alignment .vertical_arrangement:nth-child(1){
+		margin-left:0px;
+	}
+#img_upload,#img_upload1,#img_upload2 {
+    width: 80%;
+}

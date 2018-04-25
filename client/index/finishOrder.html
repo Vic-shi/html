@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<!-- <meta name="renderer" content="webkit"> -->
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>结单</title>
+<style type="text/css">
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+body{
+	background-color: #f1f1f1;
+	width: 100%;
+}
+
+.head{padding: 0 5%;background-color: white;border-bottom: 1px solid #f1f1f1;list-style-type: none;}
+.head ul{
+	display: flex;
+	justify-content:space-around;
+}
+.head ul li{
+	padding: 0 2vw;
+	font-size:0.24rem;
+	line-height: 2.8;
+	color: #666;
+	transition: border-bottom-color .2s;
+	list-style-type: none;
+}
+.head ul .nav_bottom{
+	color:#fea427;
+	border-bottom: 1px solid #fea427;
+	/*transition: all .2s;*/
+}
+/*正文订单样式设置*/
+/*整体样式*/
+.article >div{
+	//margin-bottom: 3vw;
+	background-color: white;
+}
+.article >div li{
+	padding:0 5%;
+	display: flex;
+	align-items: center;
+	justify-content:space-between;
+}
+.article >div li:nth-child(2){
+	border-bottom: 1px solid #f1f1f1;
+	padding-bottom: 3vw;
+} 
+/*作者 付款状态*/
+.article >div li h1{
+	font-size: 0.24rem;
+	background: url(../../../image/client/payment/in.png) no-repeat right;
+	background-size: 2vw;
+	padding-right: 8vw;
+	line-height:3.5; 
+}
+.article >div li h2{
+	font-size: 0.24rem;
+	color:#fea427;
+	line-height:3.5;
+}
+/*作品 订单信息*/
+.article >div li .img_show{
+	width:20vw;
+	height:20vw;
+	border-radius:1vw ;
+	overflow: hidden;
+}
+/*图片的高度还需修改*/
+.article >div li .img_show img{
+	height: 100%;
+}
+.article >div li .detail{
+	width: 70vw; 
+	height: 20vw;
+}
+.article >div li .detail h3{
+	display: block;
+	width:55vw;
+	font-size: 0.7rem;
+	overflow: hidden;
+	color: #999;
+	line-height:1.4; 
+}
+.article >div li .detail h4{
+	height:10vw;
+	line-height: 0.6;
+	font-size: 0.26rem;
+	color:#fea427;
+	float:left;
+	width:20vw;
+	margin-top:10vw;
+}
+/*日期 订单操作*/
+.time h5{
+	width: 50vw;
+	line-height: 10vw;
+	color: #999;
+}
+.time{
+height:10vw;
+}
+.time input[type="button"]{
+	border: 1px solid #999;
+	border-radius: 2px;
+	color: #999;
+	font-size: 0.22rem;
+	padding: 4px 8px;
+	line-height:1;
+	height:8vw;
+	width:19vw;
+}
+.time input[type="submit"]{
+	border: 1px solid #fea427;
+	border-radius: 2px;
+	color: #fea427;
+	font-size: 0.22rem;
+	padding: 4px 8px;
+	line-height:1;
+}
+/*已逾期设置*/
+.accomplish .detail{
+	position: relative;
+}
+.accomplish .detail h6{
+	position:absolute;
+	right: 0;
+	bottom: 0;
+	color: red;
+	line-height: 0.6;
+	font-size: 0.24rem;
+}
+input[type="submit"]{
+	height: 10vw;
+	background-color:#fea427;
+	border-radius:5vw;
+	color: white;
+	width: 76%;
+	position:fixed;
+	//bottom:10vw;
+	left: 50%;
+	transform: translateX(-50%);
+	margin-top:75vw;
+}
+</style>
+</head>
+<body style = "background-color: white;">
+<div> 
+<div class= "article" style = "border-top: 1px solid #f1f1f1;">
+<div style = "border-bottom: 1px solid #f1f1f1;height:10vw;">
+	<span style = "display:block;margin-left:5vw;margin-top:4vw;font-size:0.75rem;color:#333333">订单号码：123456789123456790</span>
+</div>
+				<div class="unpaid">
+				<ul>
+				<li></li>
+				<li style = "margin-top:4vw;">
+					<div class="img_show">
+						<img style= "height:16vw;width:16vw;border-radius: 15px" src="/web/commons/image/client/index/circular.jpg">
+					</div>
+					<div class="detail">
+							<h3 style = "font-size: 0.9375rem;"> 
+							《烟雨湖光山水景色图》
+							</h3>
+							<h3 style = "font-size: 0.9375rem;margin-top:1.4vw;">
+							史树青 
+							</h3>
+							<h3 style = "font-size: 0.75rem;margin-top:1.4vw;">
+							尺寸: 四尺&nbsp;;类型:山水&nbsp;状态:轴		
+						</h3>
+					</div> 
+				</li> 
+				</ul>
+	</div>  
+</div>
+<div style= "margin-left: 5vw;border-bottom: 1px solid #f1f1f1;height:20vw;">
+	<h5>结单规则</h5>
+	<span>结单后,该画作归您所有,平台将收取您的押金,作为结单费用,不用需要额外支付其他费用</span>
+</div>
+	<div>		
+		<input type="submit" style = "" value="提交"/>
+	</div>	
+</div>
+</body>
+</html>

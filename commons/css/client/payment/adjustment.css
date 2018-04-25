@@ -1,0 +1,124 @@
+body{
+	background-color: #f1f1f1;
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+/*设置每一个一级div的共同属性*/
+body>div{
+	border-bottom: 1px solid #f1f1f1;
+	background-color: white;
+	line-height:1;
+	font-size: 0.23rem;
+	color: #666;
+	padding: 3vw 5%;
+}
+body .tijiao{
+	background-color: white;
+	height: 100vw;
+}
+/*页头设置*/
+.head{padding: 0 5%;background-color: white;}
+.head ul{
+	display: flex;
+	justify-content:space-around;
+}
+.head ul li{
+	padding: 0 2vw;
+	font-size:0.24rem;
+	line-height: 2.8;
+	color: #666;
+	transition: border-bottom-color .2s;
+}
+.head ul .nav_bottom{
+	color:#fea427;
+	border-bottom: 1px solid #fea427;
+	/*transition: all .2s;*/
+}
+/*画作信息*/
+.paint{
+	padding: 5vw 0 5vw 10vw;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.paint div{
+	height: 20vw;
+	width: 20vw;
+	overflow: hidden;
+	margin-right: 5vw;
+}
+.paint div img{
+	width:100%;
+}
+/*整体的h1样式设计*/
+body div h1{
+	font-size: 0.24rem;
+	color:#666;
+	margin-bottom: 1vw;
+}
+body div h2{
+	font-size: 0.2rem;
+	color:#999;
+	line-height:1.8;
+}
+body div h3{
+	font-size: 0.30rem;
+	color:#fea427;
+	line-height:0;
+}
+/*价格单独设置成横向*/
+body .price div{
+	display: flex;
+	justify-content:space-between;
+	align-items: center;
+}
+/*结单原因*/
+.layui-form-label{
+	text-align: left;
+	padding-left: 0;
+}
+.layui-form-item{margin: 0;}
+.layui-input-block{
+	height: 6vw!important;
+	width: 38vw;
+	float: right;
+	margin-left: 0;
+}
+.layui-form-select dl dd, .layui-form-select dl dt{
+	line-height:1.6;
+}
+.layui-form-select dl dd.layui-this{
+	background-color: #f1f1f1;
+	color: #666;
+}
+/*提交按钮设置*/
+input[type="submit"]{
+	height: 10vw;
+	background-color:#fea427;
+	border-radius:5vw;
+	color: white;
+	width: 76%;
+	position:fixed;
+	bottom:10vw;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

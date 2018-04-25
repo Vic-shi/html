@@ -1,0 +1,170 @@
+.layui-form{
+	display: inline-block;
+	background-color: #fff;
+	height:50px;
+	width:550px;
+	padding-left:40px;
+	border-radius: 10px;
+	margin-left:0px;
+}
+.layui-form-select .layui-input{
+	padding:0px;
+	font-size: 18px;
+	width:35px;
+	border: none;
+	color:#333333;
+	margin:0px;
+	width:140px;
+	height:50px;
+	background: url("../../image/management/drop_down_icon.png") no-repeat scroll right center transparent;
+}
+.layui-form-item{
+	margin-left:60px;
+}
+.layui-form-item .layui-inline{
+	margin-right:0px;
+}
+.layui-form-item .layui-input-inline{
+	margin: 0;
+	width:160px;
+}
+.layui-form-select dl dd.layui-this{
+	background-color: #eae9e9;
+	color:#4ec3fb;
+}
+.layui-form-select dl dd.layui-select-tips,.layui-form-select dl dd, .layui-form-select dl dt{
+	color:#d6d6d6;
+}
+.layui-form-select .layui-edge{
+	display: none;
+}
+.move_down{
+	margin-top:25px;
+}
+#move_left{
+	margin-right:24px;
+}
+#inquiry_column{
+	background-color: #f6f5f5;
+	display: flex;
+	flex-flow:row wrap;
+}
+#advertisement_title{
+	background-color: #fff;
+	padding-left:50px;
+	margin-right:25px;
+	height:50px;
+	width:820px;
+	border-radius: 10px;
+	font-size: 18px;
+	color:#333333;
+}
+.inquiry{
+	width:125px;
+	height:50px;
+	background-color: #4ec3fb;
+	color:#fff;
+	border-radius: 4px;
+	font-size: 18px;
+	cursor:pointer;
+}
+.inquiry:hover{
+	background-color: #46aee0;
+}
+.table{
+	margin-left:16px;
+	margin-right:16px;
+	width:98%;
+	min-width:768px;
+}
+.table thead{
+	border-bottom: 1px solid #c8c6c6;
+}
+.table thead>tr{
+	height:80px;
+	font-size:18px;
+}
+.table tbody{
+	font-size:16px;
+	color:#666;
+}
+.table tbody>tr{
+	height:80px;
+	border-bottom: 1px solid #c8c6c6;
+}
+.advertisement_serial_number,.advertisement_img,.advertisement_title,.advertisement_btn,.advertisement_time{
+	width:300px;
+	min-width:150px;
+	text-align: center;
+}
+input.error::-webkit-input-placeholder{
+	color:#fe0338;
+}
+.confirm_the_selection{
+	width:105px;
+	height:35px;
+	background-color: #4ec3fb;
+	color:#fff;
+	border-radius: 4px;
+	font-size: 16px;
+	cursor:pointer;
+}
+.confirm_the_selection:hover{
+	background-color: #46aee0;
+}
+.permutation{
+	display:flex;
+	flex-flow:row wrap;
+}
+.erp_news_Keywords{
+	width:300px;
+	font-size: 18px;
+	color:#333333;
+}
+/* 点击选择后的弹框 */
+.popup{display: none;}
+.popup_bac{
+	background-color: #000000;
+	opacity: 0.5;
+	width:100%;
+	height:100%;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:900;
+}
+.popup_look{border-radius:10px;position:fixed;z-index:999;margin:auto;left:0; right:0; top:0; bottom:0;width:1000px; height:600px;background-color: #ffffff;}
+.flex{display: flex;justify-content: space-around;align-items: flex-end;}
+.popup_top{height: 65%;width: 100%;}
+#advertisement_uploadImages{
+	width:284px;
+	height:48px;
+	background-color: #4ec3fb;
+	color:#fff;
+	line-height: 48px;
+	text-align: center;
+}
+.error{
+	color:#fe0338!important;
+	font-size: 18px!important;
+}
+.select_img{
+	cursor: pointer;
+	width:284px;
+	height:48px;
+	background-color: #4ec3fb;
+	color:#fff;
+	line-height: 48px;
+	text-align: center;
+	cursor: pointer;
+}
+.vertical_arrangement{
+	 display: flex;
+	 flex-direction:column;
+}
+.popup_textarea{width: 300px; height: 200px;}
+.popup_text{text-align: center; font-size: 16px;padding-top: 35px;line-height: 48px;}
+.popup_affirm{display: flex;justify-content: center;align-items: flex-end;height: 32%}
+.popup_button{border: 1px solid #999999;text-align: center;font-size: 16px;line-height: 28px;width: 200px;margin: 40px;border-radius:5px;cursor: pointer;}
+#img_upload{width: 300px; }
+.tr_height{height: 90px; width: auto;}
